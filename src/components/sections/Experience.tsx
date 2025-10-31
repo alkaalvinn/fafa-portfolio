@@ -27,7 +27,7 @@ const Experience = () => {
                 }`}
               >
                 {/* Timeline dot */}
-                <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-orange-500 rounded-full hidden md:block"></div>
+                <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-gray-700 rounded-full hidden md:block"></div>
 
                 {/* Content card */}
                 <div className={`flex-1 ${
@@ -35,7 +35,7 @@ const Experience = () => {
                 }`}>
                   <div className="bg-gray-50 rounded-lg p-8 shadow-lg hover:shadow-xl transition-shadow duration-300">
                     <div className="flex items-center gap-4 mb-3">
-                      <Calendar className="text-orange-500" size={20} />
+                      <Calendar className="text-gray-700" size={20} />
                       <span className="text-sm text-gray-600">{exp.period}</span>
                     </div>
 
@@ -57,7 +57,7 @@ const Experience = () => {
                     <ul className="space-y-2">
                       {exp.responsibilities.map((resp, idx) => (
                         <li key={idx} className="flex items-start gap-2">
-                          <span className="text-orange-500 mt-1">•</span>
+                          <span className="text-gray-700 mt-1">•</span>
                           <span className="text-gray-600">{resp}</span>
                         </li>
                       ))}

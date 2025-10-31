@@ -12,7 +12,7 @@ const Footer = () => {
           <div className="text-center md:text-left mb-4 md:mb-0">
             <p className="text-gray-400">
               © {currentYear} Muhammad Fatih Abrar. Made with{' '}
-              <Heart className="inline-block text-red-500" size={16} fill="currentColor" />
+              <Heart className="inline-block text-gray-400" size={16} fill="currentColor" />
             </p>
           </div>
 

@@ -17,10 +17,10 @@ const Projects = () => {
   };
 
   const categoryColors = {
-    photography: 'bg-blue-500',
-    videography: 'bg-green-500',
-    design: 'bg-purple-500',
-    copywriting: 'bg-orange-500'
+    photography: 'bg-gray-700',
+    videography: 'bg-gray-600',
+    design: 'bg-gray-800',
+    copywriting: 'bg-gray-900'
   };
 
   return (
@@ -43,7 +43,7 @@ const Projects = () => {
               onClick={() => setFilter(category as any)}
               className={`px-6 py-2 rounded-full capitalize transition-all duration-200 ${
                 filter === category
-                  ? 'bg-orange-500 text-white'
+                  ? 'bg-gray-800 text-white'
                   : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-300'
               }`}
             >
@@ -83,7 +83,7 @@ const Projects = () => {
 
                   {/* Featured badge */}
                   {project.featured && (
-                    <div className="absolute top-4 left-4 bg-orange-500 text-white px-3 py-1 rounded-full text-sm font-medium">
+                    <div className="absolute top-4 left-4 bg-gray-700 text-white px-3 py-1 rounded-full text-sm font-medium">
                       Featured
                     </div>
                   )}
@@ -102,7 +102,7 @@ const Projects = () => {
                     <span className="text-sm text-gray-500">
                       {project.category}
                     </span>
-                    <button className="text-orange-500 hover:text-orange-600 transition-colors duration-200 font-medium text-sm">
+                    <button className="text-gray-700 hover:text-gray-800 transition-colors duration-200 font-medium text-sm">
                       Learn more →
                     </button>
                   </div>
@@ -114,7 +114,7 @@ const Projects = () => {
 
         {/* Load more button */}
         <div className="text-center mt-12">
-          <button className="px-8 py-3 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors duration-200 font-medium">
+          <button className="px-8 py-3 bg-gray-800 text-white rounded-lg hover:bg-gray-900 transition-colors duration-200 font-medium">
             Load More Projects
           </button>
         </div>

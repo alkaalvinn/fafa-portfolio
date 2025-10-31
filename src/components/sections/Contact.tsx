@@ -71,14 +71,14 @@ const Contact = () => {
             {/* Contact details */}
             <div className="space-y-4">
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center">
-                  <Mail className="text-orange-500" size={24} />
+                <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center">
+                  <Mail className="text-gray-700" size={24} />
                 </div>
                 <div>
                   <p className="text-sm text-gray-500">Email</p>
                   <a
                     href={`mailto:${socialLinks.email}`}
-                    className="text-gray-900 font-medium hover:text-orange-500 transition-colors duration-200"
+                    className="text-gray-900 font-medium hover:text-gray-700 transition-colors duration-200"
                   >
                     {socialLinks.email}
                   </a>
@@ -86,8 +86,8 @@ const Contact = () => {
               </div>
 
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center">
-                  <MapPin className="text-orange-500" size={24} />
+                <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center">
+                  <MapPin className="text-gray-700" size={24} />
                 </div>
                 <div>
                   <p className="text-sm text-gray-500">Location</p>
@@ -96,14 +96,14 @@ const Contact = () => {
               </div>
 
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center">
-                  <Phone className="text-orange-500" size={24} />
+                <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center">
+                  <Phone className="text-gray-700" size={24} />
                 </div>
                 <div>
                   <p className="text-sm text-gray-500">Phone</p>
                   <a
                     href="tel:+628123456789"
-                    className="text-gray-900 font-medium hover:text-orange-500 transition-colors duration-200"
+                    className="text-gray-900 font-medium hover:text-gray-700 transition-colors duration-200"
                   >
                     +62 812-3456-789
                   </a>
@@ -151,7 +151,7 @@ const Contact = () => {
                   value={formData.name}
                   onChange={handleInputChange}
                   required
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent outline-none transition-all duration-200"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-700 focus:border-transparent outline-none transition-all duration-200"
                   placeholder="Your name"
                 />
               </div>
@@ -167,7 +167,7 @@ const Contact = () => {
                   value={formData.email}
                   onChange={handleInputChange}
                   required
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent outline-none transition-all duration-200"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-700 focus:border-transparent outline-none transition-all duration-200"
                   placeholder="your.email@example.com"
                 />
               </div>
@@ -194,7 +194,7 @@ const Contact = () => {
                 className={`w-full py-3 px-6 rounded-lg font-medium transition-all duration-200 flex items-center justify-center gap-2 ${
                   isSubmitting
                     ? 'bg-gray-400 text-gray-200 cursor-not-allowed'
-                    : 'bg-orange-500 text-white hover:bg-orange-600'
+                    : 'bg-gray-800 text-white hover:bg-gray-900'
                 }`}
               >
                 {isSubmitting ? (

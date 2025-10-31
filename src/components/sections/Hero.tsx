@@ -14,7 +14,7 @@ const Hero = () => {
           {/* Text Content */}
           <div className="flex-1 text-center lg:text-left">
             <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-4">
-              Hi, I'm <span className="text-orange-500">Muhammad Fatih Abrar</span>
+              Hi, I'm <span className="text-gray-800">Muhammad Fatih Abrar</span>
             </h1>
             <h2 className="text-2xl md:text-3xl text-gray-700 mb-6">
               Creative Communication Professional
@@ -27,7 +27,7 @@ const Hero = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8">
               <button
                 onClick={() => scrollToSection('#projects')}
-                className="px-8 py-3 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors duration-200 font-medium"
+                className="px-8 py-3 bg-gray-800 text-white rounded-lg hover:bg-gray-900 transition-colors duration-200 font-medium"
               >
                 View My Work
               </button>
@@ -47,7 +47,7 @@ const Hero = () => {
                 href={socialLinks.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-600 hover:text-orange-500 transition-colors duration-200"
+                className="text-gray-600 hover:text-gray-800 transition-colors duration-200"
               >
                 LinkedIn
               </a>
@@ -55,7 +55,7 @@ const Hero = () => {
                 href={socialLinks.portfolio}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-600 hover:text-orange-500 transition-colors duration-200"
+                className="text-gray-600 hover:text-gray-800 transition-colors duration-200"
               >
                 Portfolio
               </a>
@@ -63,7 +63,7 @@ const Hero = () => {
                 href={socialLinks.portfolioVideo}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-600 hover:text-orange-500 transition-colors duration-200"
+                className="text-gray-600 hover:text-gray-800 transition-colors duration-200"
               >
                 Video Portfolio
               </a>
@@ -73,7 +73,7 @@ const Hero = () => {
           {/* Image/Illustration */}
           <div className="flex-1 flex justify-center">
             <div className="relative">
-              <div className="w-80 h-80 bg-gradient-to-br from-orange-400 to-orange-600 rounded-full flex items-center justify-center">
+              <div className="w-80 h-80 bg-gradient-to-br from-gray-700 to-gray-900 rounded-full flex items-center justify-center">
                 <div className="text-white text-6xl font-bold">
                   FA
                 </div>
