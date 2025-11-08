@@ -14,24 +14,25 @@
     font-family: 'Red Hat Display', system-ui, -apple-system, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+
+    /* Hide scrollbar for all modern browsers */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+    overflow-y: scroll; /* Biar tetap bisa scroll */
+    overflow-x: hidden; /* Hilangkan scrollbar horizontal */
   }
 
-  /* Custom scrollbar */
-  ::-webkit-scrollbar {
-    width: 8px;
+  /* Hide scrollbar for Chrome, Safari, and Edge */
+  html::-webkit-scrollbar,
+  body::-webkit-scrollbar {
+    display: none;
   }
 
-  ::-webkit-scrollbar-track {
-    background: #f3f4f6;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background: #6b7280;
-    border-radius: 4px;
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    background: #4b5563;
+  /* Custom smooth scroll behavior for better experience */
+  @supports (scroll-behavior: smooth) {
+    html {
+      scroll-behavior: smooth;
+    }
   }
 }
 

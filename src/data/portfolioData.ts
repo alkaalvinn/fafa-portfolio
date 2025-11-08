@@ -75,9 +75,9 @@ export const projects: Project[] = [
   },
   {
     id: 4,
-    title: 'Digital Marketing Copy',
-    description: 'Copywriting for digital marketing campaigns',
-    category: 'copywriting',
+    title: 'Digital Marketing Communication',
+    description: 'Strategic communication for digital marketing campaigns',
+    category: 'communication',
     featured: false
   }
 ];

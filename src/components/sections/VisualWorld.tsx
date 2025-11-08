@@ -202,7 +202,7 @@ const VisualWorld = () => {
           className="absolute z-20 text-center pointer-events-none"
         >
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-black tracking-tighter leading-none">
-            I LIVE IN
+            LIVE IN
           </h1>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-gray-800 tracking-tight leading-none mt-1">
             VISUAL WORLD
