@@ -99,6 +99,7 @@ export const skills: Skill[] = [
 
 export const socialLinks = {
   linkedin: 'https://linkedin.com/in/muhammadfatihabrar',
+  instagram: 'https://instagram.com/mv.fath',
   email: 'fatih.abrar@example.com',
   portfolio: 'https://bit.ly/PortfolioFatihAbrar',
   portfolioVideo: 'https://bit.ly/PortfolioVideoFatihAbrar'

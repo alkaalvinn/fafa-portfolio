@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { projects } from '../../data/portfolioData';
 import { ExternalLink, Camera, Video, Palette, MessageSquare, ChevronLeft, ChevronRight } from 'lucide-react';
 
@@ -88,6 +89,17 @@ const Projects = () => {
                 {/* Overlay Gradient */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
 
+                {/* View Project Button - Top Right */}
+                <div className="absolute top-4 right-4 md:top-6 md:right-6">
+                  <Link
+                    to={`/project/${filteredProjects[currentIndex].id}`}
+                    className="bg-white text-gray-900 px-6 py-3 rounded-lg font-medium hover:bg-gray-100 transition-all duration-200 inline-flex items-center gap-2 shadow-lg hover:shadow-xl transform hover:scale-105"
+                  >
+                    <ExternalLink size={18} />
+                    View Project
+                  </Link>
+                </div>
+
                 {/* Project Content Overlay */}
                 <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-12 text-white">
                   {/* Category and Featured Badges */}
@@ -109,15 +121,9 @@ const Projects = () => {
                   </h3>
 
                   {/* Project Description */}
-                  <p className="text-lg md:text-xl text-white/90 mb-6 max-w-3xl">
+                  <p className="text-lg md:text-xl text-white/90 max-w-3xl">
                     {filteredProjects[currentIndex].description}
                   </p>
-
-                  {/* CTA Button */}
-                  <button className="bg-white text-gray-900 px-8 py-3 rounded-lg font-medium hover:bg-gray-100 transition-colors duration-200 inline-flex items-center gap-2">
-                    <ExternalLink size={20} />
-                    View Project
-                  </button>
                 </div>
               </div>
             </div>
