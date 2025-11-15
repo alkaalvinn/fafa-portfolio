@@ -1,10 +1,10 @@
-import { experiences } from '../../data/portfolioData';
+import React, { useState, useEffect } from 'react';
 import { Calendar, MapPin } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { experiences } from '../../data/portfolioData';
 
 const Experience = () => {
-  // Generate placeholder images for each experience
-  const getExperienceImages = (companyId: number) => {
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const getExperienceImages = (companyId) => {
     return [
       `https://picsum.photos/seed/experience-${companyId}-1/400/300.jpg`,
       `https://picsum.photos/seed/experience-${companyId}-2/400/300.jpg`,
@@ -13,144 +13,194 @@ const Experience = () => {
     ];
   };
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const section = document.getElementById('experience');
+      if (!section) return;
+
+      const rect = section.getBoundingClientRect();
+      const sectionHeight = section.offsetHeight;
+      const viewportHeight = window.innerHeight;
+      
+      // Calculate progress from 0 to 1 based on scroll position
+      const progress = Math.max(0, Math.min(1, (viewportHeight - rect.top) / (sectionHeight * 0.3)));
+      setScrollProgress(progress);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll();
+    
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Calculate which experience should be visible
+  const getVisibleExperience = () => {
+    const section = document.getElementById('experience');
+    if (!section) return 0;
+
+    const rect = section.getBoundingClientRect();
+    const sectionHeight = section.offsetHeight;
+    const progress = Math.max(0, (window.innerHeight - rect.top) / sectionHeight);
+    
+    // After header animation (30%), show experiences
+    if (progress < 0.3) return -1;
+    
+    // Divide remaining scroll into equal parts for each experience
+    const experienceProgress = (progress - 0.3) / 0.7;
+    const index = Math.floor(experienceProgress * experiences.length);
+    return Math.min(index, experiences.length - 1);
+  };
+
+  const [visibleExpIndex, setVisibleExpIndex] = useState(-1);
+
+  useEffect(() => {
+    const handleExpScroll = () => {
+      setVisibleExpIndex(getVisibleExperience());
+    };
+
+    window.addEventListener('scroll', handleExpScroll);
+    handleExpScroll();
+    
+    return () => window.removeEventListener('scroll', handleExpScroll);
+  }, []);
+
+  // Calculate title position and size based on scroll
+  const titleScale = 1 - (scrollProgress * 0.7); // From 1 to 0.3
+  const titleY = scrollProgress * -40; // Move up
+  const titleOpacity = scrollProgress < 0.5 ? 1 : 1 - ((scrollProgress - 0.5) * 2);
+
+  // Header position (appears after title animation)
+  const headerOpacity = scrollProgress > 0.8 ? 1 : 0;
+  const headerY = scrollProgress > 0.8 ? 0 : 20;
+
   return (
-    <section id="experience" className="bg-white py-20">
-      {/* Header Section */}
-      <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeIn" }}
-        className="container mx-auto px-6 mb-20"
-      >
-        <div className="text-center md:text-left">
-          <h2 className="text-6xl md:text-7xl font-bold text-gray-900 mb-6">
+    <section id="experience" className="relative bg-white" style={{ minHeight: `${200 + experiences.length * 100}vh` }}>
+      {/* Sticky Container */}
+      <div className="sticky top-0 h-screen overflow-hidden flex items-center">
+        
+        {/* Animated Title - Center to Top */}
+        <div 
+          className="absolute inset-0 flex items-center justify-center pointer-events-none"
+          style={{
+            opacity: titleOpacity,
+            transform: `translateY(${titleY}vh) scale(${titleScale})`,
+            transition: 'opacity 0.3s ease-out'
+          }}
+        >
+          <h2 className="text-8xl md:text-9xl font-bold text-gray-900">
             Experience
           </h2>
-          <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto md:mx-0">
-            My professional journey through various industries and roles
-          </p>
         </div>
-      </motion.div>
 
-      {/* Experience Items - Large but reasonable height */}
-      {experiences.map((exp, index) => (
-        <motion.div
-          key={exp.id}
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeIn" }}
-          viewport={{ once: true }}
-          className="min-h-screen flex items-center justify-center relative overflow-hidden py-20"
-        >
-          {/* Consistent background decoration */}
-          <div className="absolute inset-0"></div>
-
-          {/* Content - Left text, Right images */}
-          <div className="relative z-10 w-full max-w-7xl mx-auto px-6">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              {/* Left Side - Text Content */}
-              <motion.div
-                initial={{ opacity: 0, x: -50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, ease: "easeIn", delay: 0.2 }}
-                viewport={{ once: true }}
-                className="text-left"
-              >
-                {/* Period */}
-                <div className="flex items-center gap-3 mb-6">
-                  <Calendar className="text-gray-700" size={24} />
-                  <span className="text-lg text-gray-600 font-medium">{exp.period}</span>
-                </div>
-
-                {/* Position */}
-                <h3 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                  {exp.position}
-                </h3>
-
-                {/* Company */}
-                <div className="flex items-center gap-3 mb-8">
-                  <MapPin className="text-gray-500" size={20} />
-                  <span className="text-2xl font-semibold text-gray-700">
-                    {exp.company}
-                  </span>
-                </div>
-
-                {/* Description */}
-                <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-                  {exp.description}
+        {/* Content Container */}
+        <div className="w-full h-full flex flex-col">
+          {/* Header Section - Fixed at top */}
+          <div 
+            className="flex-shrink-0 py-8 px-6"
+            style={{
+              opacity: headerOpacity,
+              transform: `translateY(${headerY}px)`,
+              transition: 'all 0.5s ease-out'
+            }}
+          >
+            <div className="container mx-auto max-w-7xl">
+              <div className="text-left">
+                <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-3 mt-20">
+                  Experience
+                </h2>
+                <p className="text-lg md:text-xl text-gray-600 max-w-2xl">
+                  My professional journey through various industries and roles
                 </p>
-
-                {/* Responsibilities */}
-                <div>
-                  <ul className="space-y-3 text-lg text-gray-600">
-                    {exp.responsibilities.map((resp, idx) => (
-                      <motion.li
-                        key={idx}
-                        initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.6, ease: "easeIn", delay: 0.3 + idx * 0.1 }}
-                        viewport={{ once: true }}
-                        className="flex items-start gap-3"
-                      >
-                        <span className="text-gray-700 mt-1">•</span>
-                        <span>{resp}</span>
-                      </motion.li>
-                    ))}
-                  </ul>
-                </div>
-              </motion.div>
-
-              {/* Right Side - Images */}
-              <motion.div
-                initial={{ opacity: 0, x: 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, ease: "easeIn", delay: 0.4 }}
-                viewport={{ once: true }}
-                className="relative"
-              >
-                <div className="grid grid-cols-2 gap-4">
-                  {getExperienceImages(exp.id).map((image, imgIndex) => (
-                    <motion.div
-                      key={imgIndex}
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      transition={{
-                        duration: 0.6,
-                        ease: "easeIn",
-                        delay: 0.5 + imgIndex * 0.1
-                      }}
-                      viewport={{ once: true }}
-                      className="relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
-                    >
-                      <img
-                        src={image}
-                        alt={`${exp.company} ${imgIndex + 1}`}
-                        className="w-full h-48 object-cover"
-                      />
-                      <div className="absolute inset-0 opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
-                    </motion.div>
-                  ))}
-                </div>
-              </motion.div>
+              </div>
             </div>
           </div>
 
-          {/* Navigation hint */}
-          {/* <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.6, ease: "easeIn", delay: 0.8 }}
-            viewport={{ once: true }}
-            className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-          >
-            <div className="animate-bounce">
-              <div className="w-6 h-10 border-2 border-gray-400 rounded-full flex justify-center">
-                <div className="w-1 h-3 bg-gray-400 rounded-full mt-2 animate-pulse"></div>
-              </div>
+          {/* Experience Cards Container - Takes remaining space */}
+          <div className="flex-1 relative px-6 py-8">
+            <div className="container mx-auto max-w-7xl h-full flex items-center">
+              {experiences.map((exp, index) => {
+                const isVisible = visibleExpIndex === index;
+                const opacity = isVisible ? 1 : 0;
+                const translateY = isVisible ? 0 : 20;
+
+                return (
+                  <div
+                    key={exp.id}
+                    className="absolute inset-0 flex items-center px-6"
+                    style={{
+                      opacity: opacity,
+                      transform: `translateY(${translateY}px)`,
+                      transition: 'all 0.8s ease-in-out',
+                      pointerEvents: isVisible ? 'auto' : 'none'
+                    }}
+                  >
+                    <div className="container mx-auto max-w-7xl">
+                      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center -mt-10">
+                        {/* Left Side - Text Content */}
+                        <div className="text-left space-y-5">
+                          {/* Period */}
+                          <div className="flex items-center gap-2">
+                            <Calendar className="text-gray-600" size={20} />
+                            <span className="text-base text-gray-600 font-medium">{exp.period}</span>
+                          </div>
+
+                          {/* Position */}
+                          <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
+                            {exp.position}
+                          </h3>
+
+                          {/* Company */}
+                          <div className="flex items-center gap-2">
+                            <MapPin className="text-gray-500" size={18} />
+                            <span className="text-xl md:text-2xl font-semibold text-gray-700">
+                              {exp.company}
+                            </span>
+                          </div>
+
+                          {/* Description */}
+                          <p className="text-base md:text-lg text-gray-600 leading-relaxed pt-2">
+                            {exp.description}
+                          </p>
+
+                          {/* Responsibilities */}
+                          <div className="pt-3">
+                            <ul className="space-y-2.5 text-sm md:text-base text-gray-600">
+                              {exp.responsibilities.map((resp, idx) => (
+                                <li key={idx} className="flex items-start gap-3">
+                                  <span className="text-gray-700 mt-1">•</span>
+                                  <span className="leading-relaxed">{resp}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        </div>
+
+                        {/* Right Side - Images */}
+                        <div className="relative">
+                          <div className="grid grid-cols-2 gap-4">
+                            {getExperienceImages(exp.id).map((image, imgIndex) => (
+                              <div
+                                key={imgIndex}
+                                className="relative overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300"
+                              >
+                                <img
+                                  src={image}
+                                  alt={`${exp.company} ${imgIndex + 1}`}
+                                  className="w-full aspect-[4/3] object-cover"
+                                />
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
-          </motion.div> */}
-        </motion.div>
-      ))}
+          </div>
+        </div>
+      </div>
     </section>
   );
 };
