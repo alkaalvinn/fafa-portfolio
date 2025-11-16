@@ -295,24 +295,6 @@ const VisualWorld = () => {
                     }}
                   />
                 </div>
-
-                {/* Decorative Corner Elements */}
-                <div
-                  className="absolute -top-1 -left-1 w-1.5 h-1.5 border-t border-l border-gray-500 opacity-60 transition-opacity duration-300"
-                  style={{ opacity: isHovered ? 0.9 : 0.3 }}
-                ></div>
-                <div
-                  className="absolute -top-1 -right-1 w-1.5 h-1.5 border-t border-r border-gray-500 opacity-60 transition-opacity duration-300"
-                  style={{ opacity: isHovered ? 0.9 : 0.3 }}
-                ></div>
-                <div
-                  className="absolute -bottom-1 -left-1 w-1.5 h-1.5 border-b border-l border-gray-500 opacity-60 transition-opacity duration-300"
-                  style={{ opacity: isHovered ? 0.9 : 0.3 }}
-                ></div>
-                <div
-                  className="absolute -bottom-1 -right-1 w-1.5 h-1.5 border-b border-r border-gray-500 opacity-60 transition-opacity duration-300"
-                  style={{ opacity: isHovered ? 0.9 : 0.3 }}
-                ></div>
               </motion.div>
             );
           })}
