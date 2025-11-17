@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { Calendar, MapPin } from 'lucide-react';
 import { experiences } from '../../data/portfolioData';
+import arrow from '../../../public/images/arrow.png';
 
 const Experience = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
   const getExperienceImages = (companyId) => {
     return [
-      `https://picsum.photos/seed/experience-${companyId}-1/400/300.jpg`,
-      `https://picsum.photos/seed/experience-${companyId}-2/400/300.jpg`,
-      `https://picsum.photos/seed/experience-${companyId}-3/400/300.jpg`,
-      `https://picsum.photos/seed/experience-${companyId}-4/400/300.jpg`,
+      `https://picsum.photos/seed/experience-${companyId}-1/300/300.jpg`,
+      `https://picsum.photos/seed/experience-${companyId}-2/300/300.jpg`,
+      arrow,
+      `https://picsum.photos/seed/experience-${companyId}-4/300/300.jpg`,
     ];
   };
 
@@ -105,7 +106,7 @@ const Experience = () => {
           >
             <div className="container mx-auto max-w-7xl">
               <div className="text-left">
-                <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-3 mt-20">
+                <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-4 mt-24">
                   Experience
                 </h2>
                 <p className="text-lg md:text-xl text-gray-600 max-w-2xl">
@@ -117,7 +118,7 @@ const Experience = () => {
 
           {/* Experience Cards Container - Takes remaining space */}
           <div className="flex-1 relative px-6 py-8">
-            <div className="container mx-auto max-w-7xl h-full flex items-center">
+            <div className="container mx-auto max-w-7xl h-full flex items-center pt-8 pb-20">
               {experiences.map((exp, index) => {
                 const isVisible = visibleExpIndex === index;
                 const opacity = isVisible ? 1 : 0;
@@ -135,7 +136,7 @@ const Experience = () => {
                     }}
                   >
                     <div className="container mx-auto max-w-7xl">
-                      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center -mt-10">
+                      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center -mt-10">
                         {/* Left Side - Text Content */}
                         <div className="text-left space-y-5">
                           {/* Period */}
