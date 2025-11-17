@@ -45,12 +45,29 @@ function ScrollToTop() {
   const location = useLocation();
 
   useEffect(() => {
-    // Only scroll to top when navigating to project pages
-    // Don't scroll when going back to home with hash
+    // Scroll to top when navigating to project pages
     if (location.pathname.startsWith('/project/')) {
       window.scrollTo(0, 0);
+      return;
     }
-  }, [location.pathname]);
+    
+    // Handle scroll to projects section when coming back from project page
+    if (location.pathname === '/' && location.state?.scrollToProjects) {
+      setTimeout(() => {
+        const projectsSection = document.getElementById('projects');
+        if (projectsSection) {
+          const offset = 80;
+          const elementPosition = projectsSection.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+        }
+      }, 100);
+    }
+  }, [location]);
 
   return null;
 }

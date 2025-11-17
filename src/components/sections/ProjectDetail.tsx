@@ -1,14 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { X, Calendar, User, ExternalLink, Tag } from 'lucide-react';
-import type { Project } from '../../types';
+import { useNavigate, useLocation } from 'react-router-dom';
 
-interface ProjectDetailProps {
-  project: Project | null;
-  isOpen: boolean;
-  onClose: () => void;
-}
+const ProjectDetail = ({ project, isOpen, onClose }) => {
+  const navigate = useNavigate();
+  const location = useLocation();
 
-const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, isOpen, onClose }) => {
   if (!project || !isOpen) return null;
 
   const categoryColors = {
@@ -25,12 +22,17 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, isOpen, onClose 
     communication: '💬'
   };
 
+  // Function to navigate back to projects section
+const handleBackToProjects = () => {
+  navigate('/', { state: { scrollToProjects: true } });
+};
+
   return (
     <div className="fixed inset-0 z-50 overflow-y-auto">
       {/* Backdrop */}
       <div
         className="fixed inset-0 bg-black/50 backdrop-blur-sm"
-        onClick={onClose}
+        onClick={handleBackToProjects}
       />
 
       {/* Modal Content */}
@@ -39,7 +41,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, isOpen, onClose 
 
           {/* Close Button */}
           <button
-            onClick={onClose}
+            onClick={handleBackToProjects}
             className="absolute top-4 right-4 z-10 bg-white/90 hover:bg-white text-gray-900 p-2 rounded-full shadow-lg transition-all duration-200 hover:scale-110"
           >
             <X size={24} />
@@ -98,7 +100,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, isOpen, onClose 
                 {project.description}
               </p>
               <p className="text-gray-600 leading-relaxed">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
               </p>
             </div>
 
@@ -109,13 +111,13 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, isOpen, onClose 
                 <div>
                   <h3 className="font-semibold text-gray-900 mb-2">Challenge</h3>
                   <p className="text-gray-600">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. The main challenge was to create a unique visual identity that would stand out in a competitive market.
+                    The main challenge was to create a unique visual identity that would stand out in a competitive market while maintaining brand consistency.
                   </p>
                 </div>
                 <div>
                   <h3 className="font-semibold text-gray-900 mb-2">Solution</h3>
                   <p className="text-gray-600">
-                    Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. The solution involved comprehensive research, iterative design process, and close collaboration with stakeholders to ensure all requirements were met.
+                    The solution involved comprehensive research, iterative design process, and close collaboration with stakeholders to ensure all requirements were met.
                   </p>
                 </div>
               </div>
@@ -154,7 +156,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, isOpen, onClose 
                 </div>
               </div>
               <p className="text-gray-600">
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. The project exceeded client expectations and delivered measurable business results.
+                The project exceeded client expectations and delivered measurable business results with significant impact on brand awareness and user engagement.
               </p>
             </div>
 
@@ -179,7 +181,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, isOpen, onClose 
               <h2 className="text-2xl font-bold text-gray-900 mb-4">Client Testimonial</h2>
               <div className="bg-gray-50 p-6 rounded-lg">
                 <p className="text-gray-700 italic mb-4">
-                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. The team delivered exceptional results beyond our expectations."
+                  "The team delivered exceptional results beyond our expectations. Their creativity and attention to detail made this project a huge success."
                 </p>
                 <div className="flex items-center gap-3">
                   <div className="w-12 h-12 bg-gray-300 rounded-full"></div>
@@ -198,7 +200,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, isOpen, onClose 
                 View Live Project
               </button>
               <button
-                onClick={onClose}
+                onClick={handleBackToProjects}
                 className="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-50 transition-colors duration-200"
               >
                 Back to Projects

@@ -90,7 +90,7 @@ const Projects = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
 
                 {/* View Project Button - Top Right */}
-                <div className="absolute top-4 right-4 md:top-6 md:right-6">
+                <div className="absolute top-4 right-4 md:top-6 md:right-6 z-50">
                   <Link
                     to={`/project/${filteredProjects[currentIndex].id}`}
                     className="bg-white text-gray-900 px-6 py-3 rounded-lg font-medium hover:bg-gray-100 transition-all duration-200 inline-flex items-center gap-2 shadow-lg hover:shadow-xl transform hover:scale-105"
