@@ -24,7 +24,7 @@ const Hero = () => {
             <div className="order-1 lg:order-1">
               {/* Minimal greeting */}
               <div className="mb-12">
-                <h1 className="text-4xl md:text-6xl lg:text-7xl font-light text-gray-900 mb-6 tracking-tight">
+                <h1 className="text-4xl md:text-6xl lg:text-6xl font-light text-gray-900 mb-6 tracking-tight">
                   Hello, I'm <span className="font-medium text-gray-800">Muhammad Fatih Abrar</span>
                 </h1>
                 <div className="w-24 h-px bg-gradient-to-r from-transparent via-gray-400 to-transparent mb-8"></div>
@@ -52,7 +52,7 @@ const Hero = () => {
           </div>
 
           {/* Simple CTA - Bawah tetap sama */}
-          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mt-16 lg:mt-4">
+          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mt-16 lg:mt-12">
             <button
               onClick={() => scrollToSection('#projects')}
               className="group px-8 py-4 bg-black text-white rounded-full hover:bg-gray-800 transition-all duration-300 font-medium tracking-wide transform hover:scale-105 shadow-lg"
