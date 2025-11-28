@@ -34,7 +34,7 @@ const VisualWorld = () => {
   ];
 
   // Background hero image
-  const heroImage = "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1920&h=1080&fit=crop";
+  const heroImage = "/images/visual.png";
 
   // Continuous rotation animation
   useEffect(() => {
