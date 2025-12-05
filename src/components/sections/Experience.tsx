@@ -88,7 +88,7 @@ const Experience = () => {
             transition: 'opacity 0.3s ease-out'
           }}
         >
-          <h2 className="text-8xl md:text-9xl font-bold text-gray-900">
+          <h2 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold text-gray-900">
             Experience
           </h2>
         </div>
@@ -96,8 +96,8 @@ const Experience = () => {
         {/* Content Container */}
         <div className="w-full h-full flex flex-col">
           {/* Header Section - Fixed at top */}
-          <div 
-            className="flex-shrink-0 py-8 px-6"
+          <div
+            className="flex-shrink-0 py-4 sm:py-6 md:py-8 px-4 sm:px-6"
             style={{
               opacity: headerOpacity,
               transform: `translateY(${headerY}px)`,
@@ -106,10 +106,10 @@ const Experience = () => {
           >
             <div className="container mx-auto max-w-7xl">
               <div className="text-left">
-                <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-4 mt-24">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 mt-16 sm:mt-20 md:mt-24">
                   Experience
                 </h2>
-                <p className="text-lg md:text-xl text-gray-600 max-w-2xl">
+                <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl">
                   My professional journey through various industries and roles
                 </p>
               </div>
@@ -117,8 +117,8 @@ const Experience = () => {
           </div>
 
           {/* Experience Cards Container - Takes remaining space */}
-          <div className="flex-1 relative px-6 py-8">
-            <div className="container mx-auto max-w-7xl h-full flex items-center pt-8 pb-20">
+          <div className="flex-1 relative px-4 sm:px-6 py-4 sm:py-6 md:py-8">
+            <div className="container mx-auto max-w-7xl h-full flex items-center pt-4 sm:pt-6 md:pt-8 pb-12 sm:pb-16 md:pb-20">
               {experiences.map((exp, index) => {
                 const isVisible = visibleExpIndex === index;
                 const opacity = isVisible ? 1 : 0;
@@ -127,7 +127,7 @@ const Experience = () => {
                 return (
                   <div
                     key={exp.id}
-                    className="absolute inset-0 flex items-center px-6"
+                    className="absolute inset-0 flex items-center px-4 sm:px-6"
                     style={{
                       opacity: opacity,
                       transform: `translateY(${translateY}px)`,
@@ -138,38 +138,38 @@ const Experience = () => {
                     <div className="container mx-auto max-w-7xl">
                       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center -mt-10">
                         {/* Left Side - Text Content */}
-                        <div className="text-left space-y-5">
+                        <div className="text-left space-y-3 sm:space-y-4 lg:space-y-5">
                           {/* Period */}
                           <div className="flex items-center gap-2">
-                            <Calendar className="text-gray-600" size={20} />
-                            <span className="text-base text-gray-600 font-medium">{exp.period}</span>
+                            <Calendar className="text-gray-600" size={16} sm:size={18} md:size={20} />
+                            <span className="text-sm sm:text-base text-gray-600 font-medium">{exp.period}</span>
                           </div>
 
                           {/* Position */}
-                          <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
+                          <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
                             {exp.position}
                           </h3>
 
                           {/* Company */}
                           <div className="flex items-center gap-2">
-                            <MapPin className="text-gray-500" size={18} />
-                            <span className="text-xl md:text-2xl font-semibold text-gray-700">
+                            <MapPin className="text-gray-500" size={14} sm:size={16} md:size={18} />
+                            <span className="text-lg sm:text-xl md:text-2xl font-semibold text-gray-700">
                               {exp.company}
                             </span>
                           </div>
 
                           {/* Description */}
-                          <p className="text-base md:text-lg text-gray-600 leading-relaxed pt-2">
+                          <p className="text-sm sm:text-base md:text-lg text-gray-600 leading-relaxed pt-2">
                             {exp.description}
                           </p>
 
                           {/* Responsibilities */}
                           <div className="pt-3">
-                            <ul className="space-y-2.5 text-sm md:text-base text-gray-600">
+                            <ul className="space-y-2 sm:space-y-2.5 text-sm sm:text-sm md:text-base text-gray-600">
                               {exp.responsibilities.map((resp, idx) => (
-                                <li key={idx} className="flex items-start gap-3">
-                                  <span className="text-gray-700 mt-1">•</span>
-                                  <span className="leading-relaxed">{resp}</span>
+                                <li key={idx} className="flex items-start gap-2 sm:gap-3">
+                                  <span className="text-gray-700 mt-0.5 text-sm sm:text-base">•</span>
+                                  <span className="leading-relaxed text-sm sm:text-sm md:text-base">{resp}</span>
                                 </li>
                               ))}
                             </ul>
@@ -178,7 +178,7 @@ const Experience = () => {
 
                         {/* Right Side - Images */}
                         <div className="relative">
-                          <div className="grid grid-cols-2 gap-4">
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-4">
                             {getExperienceImages(exp.id).map((image, imgIndex) => (
                               <div
                                 key={imgIndex}
