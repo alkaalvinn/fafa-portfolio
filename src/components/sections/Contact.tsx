@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { portfolioImages, placeholderImages } from '../../data/portfolioData';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -7,6 +8,12 @@ const Contact = () => {
     email: '',
     message: ''
   });
+
+  // Get contact images from portfolioData or use placeholders
+  const contactImages = {
+    portrait1: portfolioImages.contact.portrait1,
+    portrait2: portfolioImages.contact.portrait2
+  };
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState('idle');
 
@@ -81,9 +88,13 @@ const Contact = () => {
           {/* Desktop: Image 1 - Top Right */}
           <div className="hidden lg:block absolute top-28 right-20 w-56 h-24 overflow-hidden animate-float-1">
             <img
-              src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&h=400&fit=crop"
+              src={contactImages.portrait1}
               alt="Portrait 1"
               className="w-full h-full object-cover"
+              onError={(e) => {
+                // Fallback ke placeholder jika gambar tidak ditemukan
+                e.target.src = placeholderImages.contact.portrait1;
+              }}
             />
           </div>
 
@@ -109,9 +120,12 @@ const Contact = () => {
               }}
             >
               <img
-                src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&h=400&fit=crop"
+                src={contactImages.portrait1}
                 alt="Portrait 1"
                 className="w-full h-full object-cover"
+                onError={(e) => {
+                  e.target.src = placeholderImages.contact.portrait1;
+                }}
               />
             </div>
           </div>
@@ -119,9 +133,12 @@ const Contact = () => {
           {/* Desktop: Image 2 - Left Side */}
           <div className="hidden lg:block absolute left-2 top-60 w-32 h-48 overflow-hidden animate-float-2">
             <img
-              src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=500&fit=crop"
+              src={contactImages.portrait2}
               alt="Portrait 2"
               className="w-full h-full object-cover"
+              onError={(e) => {
+                e.target.src = placeholderImages.contact.portrait2;
+              }}
             />
           </div>
 
@@ -158,9 +175,12 @@ const Contact = () => {
               }}
             >
               <img
-                src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=500&fit=crop"
+                src={contactImages.portrait2}
                 alt="Portrait 2"
                 className="w-full h-full object-cover"
+                onError={(e) => {
+                  e.target.src = placeholderImages.contact.portrait2;
+                }}
               />
             </div>
           </div>

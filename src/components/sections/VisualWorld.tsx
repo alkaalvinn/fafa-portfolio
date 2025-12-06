@@ -1,37 +1,62 @@
 import React, { useState, useEffect } from 'react';
+import { portfolioImages, placeholderImages } from '../../data/portfolioData';
 
 const VisualWorld = () => {
   const [hoveredImage, setHoveredImage] = useState(null);
   const [rotation, setRotation] = useState(0);
   const [scrollProgress, setScrollProgress] = useState(0);
 
-  // Portfolio images - 24 gambar lengkap
-  const visualImages = [
-    { id: 1, imageUrl: "https://images.unsplash.com/photo-1542038784456-1b839f078944?w=400&h=500&fit=crop", angle: 0 },
-    { id: 2, imageUrl: "https://images.unsplash.com/photo-1558655146-d09347e92766?w=400&h=500&fit=crop", angle: 15 },
-    { id: 3, imageUrl: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=500&fit=crop", angle: 30 },
-    { id: 4, imageUrl: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=500&fit=crop", angle: 45 },
-    { id: 5, imageUrl: "https://images.unsplash.com/photo-1581276879432-15e50529f34b?w=400&h=500&fit=crop", angle: 60 },
-    { id: 6, imageUrl: "https://images.unsplash.com/photo-1599421498721-88ba9224cd2f?w=400&h=500&fit=crop", angle: 75 },
-    { id: 7, imageUrl: "https://images.unsplash.com/photo-1579546929518-9e396f3cc809?w=400&h=500&fit=crop", angle: 90 },
-    { id: 8, imageUrl: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=400&h=500&fit=crop", angle: 105 },
-    { id: 9, imageUrl: "https://images.unsplash.com/photo-1561708321-e45b04e8cfee?w=400&h=500&fit=crop", angle: 120 },
-    { id: 10, imageUrl: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=400&h=500&fit=crop", angle: 135 },
-    { id: 11, imageUrl: "https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=400&h=500&fit=crop", angle: 150 },
-    { id: 12, imageUrl: "https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=400&h=500&fit=crop", angle: 165 },
-    { id: 13, imageUrl: "https://images.unsplash.com/photo-1522542550221-4fd1c5af2cc1?w=400&h=500&fit=crop", angle: 180 },
-    { id: 14, imageUrl: "https://images.unsplash.com/photo-1559028006-4a637a3a5ca3?w=400&h=500&fit=crop", angle: 195 },
-    { id: 15, imageUrl: "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=400&h=500&fit=crop", angle: 210 },
-    { id: 16, imageUrl: "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=400&h=500&fit=crop", angle: 225 },
-    { id: 17, imageUrl: "https://images.unsplash.com/photo-1555952517-2e8e729e0b44?w=400&h=500&fit=crop", angle: 240 },
-    { id: 18, imageUrl: "https://images.unsplash.com/photo-1626785774596-26b83b5765b5?w=400&h=500&fit=crop", angle: 255 },
-    { id: 19, imageUrl: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&h=500&fit=crop", angle: 270 },
-    { id: 20, imageUrl: "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=400&h=500&fit=crop", angle: 285 },
-    { id: 21, imageUrl: "https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=400&h=500&fit=crop", angle: 300 },
-    { id: 22, imageUrl: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&h=500&fit=crop", angle: 315 },
-    { id: 23, imageUrl: "https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?w=400&h=500&fit=crop", angle: 330 },
-    { id: 24, imageUrl: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=500&fit=crop", angle: 345 }
-  ];
+  // Portfolio images dari portfolioData
+  // Jika ada gambar di portfolioImages, gunakan itu
+  // Jika tidak, gunakan placeholder
+  const getVisualImages = () => {
+    const images = portfolioImages.visualWorld;
+
+    // Cek apakah semua gambar adalah placeholder
+    const hasOnlyPlaceholders = images.every(img =>
+      img.includes('placeholder-visual')
+    );
+
+    if (hasOnlyPlaceholders) {
+      // Gunakan placeholder yang lebih bagus
+      return [
+        { id: 1, imageUrl: placeholderImages.visual[0] || images[0], angle: 0 },
+        { id: 2, imageUrl: placeholderImages.visual[1] || images[1], angle: 15 },
+        { id: 3, imageUrl: placeholderImages.visual[2] || images[2], angle: 30 },
+        { id: 4, imageUrl: placeholderImages.visual[3] || images[3], angle: 45 },
+        { id: 5, imageUrl: placeholderImages.visual[4] || images[4], angle: 60 },
+        { id: 6, imageUrl: placeholderImages.visual[5] || images[5], angle: 75 },
+        { id: 7, imageUrl: placeholderImages.visual[6] || images[6], angle: 90 },
+        { id: 8, imageUrl: placeholderImages.visual[7] || images[7], angle: 105 },
+        { id: 9, imageUrl: placeholderImages.visual[8] || images[8], angle: 120 },
+        { id: 10, imageUrl: placeholderImages.visual[9] || images[9], angle: 135 },
+        { id: 11, imageUrl: placeholderImages.visual[10] || images[10], angle: 150 },
+        { id: 12, imageUrl: placeholderImages.visual[11] || images[11], angle: 165 },
+        // Tambahkan gambar dengan ID unik untuk sisanya
+        { id: 13, imageUrl: "https://images.unsplash.com/photo-1522542550221-4fd1c5af2cc1?w=400&h=500&fit=crop", angle: 180 },
+        { id: 14, imageUrl: "https://images.unsplash.com/photo-1559028006-4a637a3a5ca3?w=400&h=500&fit=crop", angle: 195 },
+        { id: 15, imageUrl: "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=400&h=500&fit=crop", angle: 210 },
+        { id: 16, imageUrl: "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=400&h=500&fit=crop", angle: 225 },
+        { id: 17, imageUrl: "https://images.unsplash.com/photo-1555952517-2e8e729e0b44?w=400&h=500&fit=crop", angle: 240 },
+        { id: 18, imageUrl: "https://images.unsplash.com/photo-1626785774596-26b83b5765b5?w=400&h=500&fit=crop", angle: 255 },
+        { id: 19, imageUrl: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&h=500&fit=crop", angle: 270 },
+        { id: 20, imageUrl: "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=400&h=500&fit=crop", angle: 285 },
+        { id: 21, imageUrl: "https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=400&h=500&fit=crop", angle: 300 },
+        { id: 22, imageUrl: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&h=500&fit=crop", angle: 315 },
+        { id: 23, imageUrl: "https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?w=400&h=500&fit=crop", angle: 330 },
+        { id: 24, imageUrl: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=500&fit=crop", angle: 345 }
+      ];
+    }
+
+    // Jika ada gambar asli, gunakan gambar tersebut
+    return images.map((imageUrl, index) => ({
+      id: index + 1,
+      imageUrl: imageUrl,
+      angle: index * 15
+    }));
+  };
+
+  const visualImages = getVisualImages();
 
   // Background hero image
   const heroImage = "/images/visual.png";

@@ -82,6 +82,18 @@
     text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
   }
 
+  /* Responsive overflow utilities */
+  .safe-area-x {
+    padding-left: max(env(safe-area-inset-left), 1rem);
+    padding-right: max(env(safe-area-inset-right), 1rem);
+  }
+
+  /* Touch-friendly utilities */
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
   /* Skills animation keyframes */
   @keyframes float {
     0%, 100% {
@@ -96,5 +108,21 @@
     75% {
       transform: translateX(-10px) translateY(-5px);
     }
+  }
+
+  /* Mobile-specific keyframes */
+  @keyframes slideUp {
+    from {
+      transform: translateY(20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.6s ease-out;
   }
 }

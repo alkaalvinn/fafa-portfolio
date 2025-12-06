@@ -1,11 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { Calendar, MapPin } from 'lucide-react';
-import { experiences } from '../../data/portfolioData';
+import { experiences, portfolioImages, placeholderImages } from '../../data/portfolioData';
 import arrow from '../../../public/images/arrow.png';
 
 const Experience = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
+
+  // Fungsi untuk mendapatkan gambar experience
   const getExperienceImages = (companyId) => {
+    // Cek apakah ada gambar di portfolioImages untuk companyId ini
+    const images = portfolioImages.experience[companyId];
+
+    // Jika ada, gunakan gambar tersebut
+    if (images && images.length > 0) {
+      return images;
+    }
+
+    // Jika tidak ada, gunakan placeholder
     return [
       `https://picsum.photos/seed/experience-${companyId}-1/300/300.jpg`,
       `https://picsum.photos/seed/experience-${companyId}-2/300/300.jpg`,
