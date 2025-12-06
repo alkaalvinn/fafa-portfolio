@@ -106,19 +106,19 @@ const Skills = () => {
   ];
 
   return (
-    <section id="skills" className="py-20 bg-gray-50">
-      <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">
+    <section id="skills" className="py-12 sm:py-16 md:py-20 bg-gray-50">
+      <div className="container mx-auto px-4 sm:px-6">
+        <div className="text-center mb-10 sm:mb-12 md:mb-16">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-3 sm:mb-4">
             My Skills
           </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
             My creative and professional capabilities
           </p>
         </div>
 
         {/* Skills Tags */}
-        <ul className="flex flex-wrap justify-center gap-3 text-lg max-w-4xl mx-auto">
+        <ul className="flex flex-wrap justify-center gap-2 sm:gap-3 text-sm sm:text-base md:text-lg max-w-4xl mx-auto">
           {allSkills.map((skill, index) => {
             const colorSet = colorCombinations[index % colorCombinations.length];
             return (
@@ -127,7 +127,7 @@ const Skills = () => {
                 className={`
                   ${index % 2 === 1 ? colorSet.initialBg : 'bg-white'}
                   border border-black
-                  rounded-2xl px-5 py-3
+                  rounded-xl sm:rounded-2xl px-3 sm:px-4 md:px-5 py-2 sm:py-2.5 md:py-3
                   ${index % 2 === 1 ? colorSet.initialText : 'text-gray-700'}
                   hover:scale-105 transition-all duration-300 cursor-default
                   hover:shadow-lg

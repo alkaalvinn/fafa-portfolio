@@ -41,20 +41,20 @@ const Projects = () => {
   };
 
   return (
-    <section id="projects" className="py-20 bg-gray-50">
-      <div className="container mx-auto px-6">
+    <section id="projects" className="py-12 sm:py-16 md:py-20 bg-gray-50">
+      <div className="container mx-auto px-4 sm:px-6">
         {/* Header */}
-        <div className="text-center mb-8">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">
+        <div className="text-center mb-6 sm:mb-8">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-3 sm:mb-4">
             Projects
           </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
             A collection of my creative work across different mediums
           </p>
         </div>
 
         {/* Filter buttons */}
-        <div className="flex flex-wrap justify-center gap-4 mb-8">
+        <div className="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4 mb-6 sm:mb-8">
           {['photography', 'videography', 'design', 'communication'].map((category) => (
             <button
               key={category}
@@ -62,7 +62,7 @@ const Projects = () => {
                 setFilter(category as any);
                 setCurrentIndex(0); // Reset to first project when filter changes
               }}
-              className={`px-6 py-2 rounded-full capitalize transition-all duration-200 ${
+              className={`px-4 sm:px-5 md:px-6 py-2 rounded-full capitalize transition-all duration-200 text-sm sm:text-base ${
                 filter === category
                   ? 'bg-gray-800 text-white'
                   : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-300'
@@ -77,9 +77,9 @@ const Projects = () => {
         {filteredProjects.length > 0 && (
           <div className="relative max-w-full mx-auto">
             {/* Current Project Banner */}
-            <div className="relative bg-white rounded-2xl overflow-hidden shadow-2xl">
+            <div className="relative bg-white rounded-xl sm:rounded-2xl overflow-hidden shadow-2xl">
               {/* Banner Image */}
-              <div className="relative h-96 md:h-[500px] overflow-hidden">
+              <div className="relative h-64 sm:h-80 md:h-96 lg:h-[500px] overflow-hidden">
                 <img
                   src={getProjectBanner(filteredProjects[currentIndex].id)}
                   alt={filteredProjects[currentIndex].title}
@@ -90,38 +90,38 @@ const Projects = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
 
                 {/* View Project Button - Top Right */}
-                <div className="absolute top-4 right-4 md:top-6 md:right-6 z-50">
+                <div className="absolute top-3 right-3 sm:top-4 sm:right-4 md:top-6 md:right-6 z-50">
                   <Link
                     to={`/project/${filteredProjects[currentIndex].id}`}
-                    className="bg-white text-gray-900 px-6 py-3 rounded-lg font-medium hover:bg-gray-100 transition-all duration-200 inline-flex items-center gap-2 shadow-lg hover:shadow-xl transform hover:scale-105"
+                    className="bg-white text-gray-900 px-4 py-2 sm:px-5 sm:py-2.5 md:px-6 md:py-3 rounded-lg font-medium hover:bg-gray-100 transition-all duration-200 inline-flex items-center gap-2 shadow-lg hover:shadow-xl transform hover:scale-105 text-sm sm:text-base"
                   >
-                    <ExternalLink size={18} />
+                    <ExternalLink size={16} sm:size={18} />
                     View Project
                   </Link>
                 </div>
 
                 {/* Project Content Overlay */}
-                <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-12 text-white">
+                <div className="absolute inset-0 flex flex-col justify-end p-4 sm:p-6 md:p-12 text-white">
                   {/* Category and Featured Badges */}
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className={`${categoryColors[filteredProjects[currentIndex].category]} px-4 py-2 rounded-full text-sm font-medium flex items-center gap-2`}>
-                      {React.createElement(categoryIcons[filteredProjects[currentIndex].category], { size: 16 })}
+                  <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
+                    <div className={`${categoryColors[filteredProjects[currentIndex].category]} px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-medium flex items-center gap-1 sm:gap-2`}>
+                      {React.createElement(categoryIcons[filteredProjects[currentIndex].category], { size: 14, sm:16 })}
                       {filteredProjects[currentIndex].category}
                     </div>
                     {filteredProjects[currentIndex].featured && (
-                      <div className="bg-yellow-500 text-black px-4 py-2 rounded-full text-sm font-medium">
+                      <div className="bg-yellow-500 text-black px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-medium">
                         Featured
                       </div>
                     )}
                   </div>
 
                   {/* Project Title */}
-                  <h3 className="text-3xl md:text-5xl font-bold mb-4">
+                  <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-5xl font-bold mb-3 sm:mb-4">
                     {filteredProjects[currentIndex].title}
                   </h3>
 
                   {/* Project Description */}
-                  <p className="text-lg md:text-xl text-white/90 max-w-3xl">
+                  <p className="text-sm sm:text-base md:text-lg lg:text-xl text-white/90 max-w-3xl">
                     {filteredProjects[currentIndex].description}
                   </p>
                 </div>
@@ -134,19 +134,19 @@ const Projects = () => {
                 {/* Previous Button */}
                 <button
                   onClick={handlePrev}
-                  className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white text-gray-900 p-3 rounded-full shadow-lg transition-all duration-200 hover:scale-110"
+                  className="absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white text-gray-900 p-2 sm:p-3 rounded-full shadow-lg transition-all duration-200 hover:scale-110"
                   aria-label="Previous project"
                 >
-                  <ChevronLeft size={24} />
+                  <ChevronLeft size={20} sm:size={24} />
                 </button>
 
                 {/* Next Button */}
                 <button
                   onClick={handleNext}
-                  className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white text-gray-900 p-3 rounded-full shadow-lg transition-all duration-200 hover:scale-110"
+                  className="absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white text-gray-900 p-2 sm:p-3 rounded-full shadow-lg transition-all duration-200 hover:scale-110"
                   aria-label="Next project"
                 >
-                  <ChevronRight size={24} />
+                  <ChevronRight size={20} sm:size={24} />
                 </button>
               </>
             )}

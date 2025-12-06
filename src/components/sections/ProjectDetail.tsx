@@ -36,19 +36,19 @@ const handleBackToProjects = () => {
       />
 
       {/* Modal Content */}
-      <div className="relative min-h-screen flex items-center justify-center p-4">
-        <div className="relative bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden shadow-2xl">
+      <div className="relative min-h-screen flex items-center justify-center p-2 sm:p-4">
+        <div className="relative bg-white rounded-xl sm:rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden shadow-2xl">
 
           {/* Close Button */}
           <button
             onClick={handleBackToProjects}
-            className="absolute top-4 right-4 z-10 bg-white/90 hover:bg-white text-gray-900 p-2 rounded-full shadow-lg transition-all duration-200 hover:scale-110"
+            className="absolute top-3 right-3 sm:top-4 sm:right-4 z-10 bg-white/90 hover:bg-white text-gray-900 p-1.5 sm:p-2 rounded-full shadow-lg transition-all duration-200 hover:scale-110"
           >
-            <X size={24} />
+            <X size={20} sm:size={24} />
           </button>
 
           {/* Hero Image */}
-          <div className="relative h-64 md:h-96 overflow-hidden">
+          <div className="relative h-48 sm:h-56 md:h-80 lg:h-96 overflow-hidden">
             <img
               src={`https://picsum.photos/seed/project-${project.id}-detail/1200/600.jpg`}
               alt={project.title}
@@ -57,66 +57,66 @@ const handleBackToProjects = () => {
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
 
             {/* Project Title Overlay */}
-            <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
-              <div className="flex items-center gap-3 mb-3">
-                <span className={`${categoryColors[project.category]} text-white px-4 py-2 rounded-full text-sm font-medium flex items-center gap-2`}>
+            <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 md:p-8">
+              <div className="flex items-center gap-2 sm:gap-3 mb-2 sm:mb-3">
+                <span className={`${categoryColors[project.category]} text-white px-3 py-1 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-medium flex items-center gap-1 sm:gap-2`}>
                   <span>{categoryIcons[project.category]}</span>
                   {project.category}
                 </span>
                 {project.featured && (
-                  <div className="bg-yellow-500 text-black px-4 py-2 rounded-full text-sm font-medium">
+                  <div className="bg-yellow-500 text-black px-3 py-1 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-medium">
                     Featured
                   </div>
                 )}
               </div>
-              <h1 className="text-3xl md:text-5xl font-bold text-white mb-3">
+              <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-5xl font-bold text-white mb-2 sm:mb-3">
                 {project.title}
               </h1>
             </div>
           </div>
 
           {/* Content */}
-          <div className="p-6 md:p-8 max-h-[50vh] overflow-y-auto">
+          <div className="p-4 sm:p-6 md:p-8 max-h-[50vh] overflow-y-auto">
             {/* Project Meta */}
-            <div className="flex flex-wrap gap-4 mb-8 pb-6 border-b border-gray-200">
-              <div className="flex items-center gap-2 text-gray-600">
-                <Calendar size={18} />
-                <span className="text-sm">2024</span>
+            <div className="flex flex-wrap gap-3 sm:gap-4 mb-6 sm:mb-8 pb-4 sm:pb-6 border-b border-gray-200">
+              <div className="flex items-center gap-1.5 sm:gap-2 text-gray-600">
+                <Calendar size={16} sm:size={18} />
+                <span className="text-xs sm:text-sm">2024</span>
               </div>
-              <div className="flex items-center gap-2 text-gray-600">
-                <User size={18} />
-                <span className="text-sm">Lead Designer</span>
+              <div className="flex items-center gap-1.5 sm:gap-2 text-gray-600">
+                <User size={16} sm:size={18} />
+                <span className="text-xs sm:text-sm">Lead Designer</span>
               </div>
-              <div className="flex items-center gap-2 text-gray-600">
-                <Tag size={18} />
-                <span className="text-sm">{project.category}</span>
+              <div className="flex items-center gap-1.5 sm:gap-2 text-gray-600">
+                <Tag size={16} sm:size={18} />
+                <span className="text-xs sm:text-sm">{project.category}</span>
               </div>
             </div>
 
             {/* Description */}
-            <div className="mb-8">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">Overview</h2>
-              <p className="text-lg text-gray-700 leading-relaxed mb-4">
+            <div className="mb-6 sm:mb-8">
+              <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">Overview</h2>
+              <p className="text-base sm:text-lg text-gray-700 leading-relaxed mb-3 sm:mb-4">
                 {project.description}
               </p>
-              <p className="text-gray-600 leading-relaxed">
+              <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
               </p>
             </div>
 
             {/* Project Details */}
-            <div className="mb-8">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">Project Details</h2>
-              <div className="grid md:grid-cols-2 gap-6">
+            <div className="mb-6 sm:mb-8">
+              <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">Project Details</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                 <div>
-                  <h3 className="font-semibold text-gray-900 mb-2">Challenge</h3>
-                  <p className="text-gray-600">
+                  <h3 className="font-semibold text-gray-900 mb-2 text-sm sm:text-base">Challenge</h3>
+                  <p className="text-gray-600 text-sm sm:text-base">
                     The main challenge was to create a unique visual identity that would stand out in a competitive market while maintaining brand consistency.
                   </p>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-gray-900 mb-2">Solution</h3>
-                  <p className="text-gray-600">
+                  <h3 className="font-semibold text-gray-900 mb-2 text-sm sm:text-base">Solution</h3>
+                  <p className="text-gray-600 text-sm sm:text-base">
                     The solution involved comprehensive research, iterative design process, and close collaboration with stakeholders to ensure all requirements were met.
                   </p>
                 </div>
@@ -124,13 +124,13 @@ const handleBackToProjects = () => {
             </div>
 
             {/* Tools & Technologies */}
-            <div className="mb-8">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">Tools & Technologies</h2>
-              <div className="flex flex-wrap gap-2">
+            <div className="mb-6 sm:mb-8">
+              <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">Tools & Technologies</h2>
+              <div className="flex flex-wrap gap-1.5 sm:gap-2">
                 {['Adobe Photoshop', 'Illustrator', 'Figma', 'After Effects', 'Premiere Pro', 'Cinema 4D'].map((tool) => (
                   <span
                     key={tool}
-                    className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm"
+                    className="px-2.5 py-1 sm:px-3 sm:py-1 bg-gray-100 text-gray-700 rounded-full text-xs sm:text-sm"
                   >
                     {tool}
                   </span>
