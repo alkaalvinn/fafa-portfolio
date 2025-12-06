@@ -17,45 +17,67 @@ const Hero = () => {
       </div>
 
       <div className="container mx-auto px-6 py-12 relative z-10">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center min-h-[calc(100vh-8rem)]">
 
             {/* Kolom Kiri - Minimal greeting + Clear Value Proposition */}
-            <div className="order-1 lg:order-1">
+            <div className="order-2 lg:order-1 text-center lg:text-left">
               {/* Minimal greeting */}
-              <div className="mb-12">
-                <h1 className="text-4xl md:text-6xl lg:text-6xl font-light text-gray-900 mb-6 tracking-tight">
-                  Hello, I'm <span className="font-medium text-gray-800">Muhammad Fatih Abrar</span>
+              <div className="mb-8 lg:mb-12">
+                <h1
+                  className="text-gray-900 mb-4 lg:mb-6 tracking-tight"
+                  style={{
+                    fontSize: 'clamp(1.75rem, 5vw, 3.5rem)',
+                    lineHeight: 'clamp(2.25rem, 6vw, 4rem)'
+                  }}
+                >
+                  Hello, I'm <span className="font-medium">Muhammad Fatih Abrar</span>
                 </h1>
-                <div className="w-24 h-px bg-gradient-to-r from-transparent via-gray-400 to-transparent mb-8"></div>
+                <div className="w-16 lg:w-24 h-px bg-gradient-to-r from-transparent via-gray-400 to-transparent mx-auto lg:mx-0 mb-6 lg:mb-8"></div>
               </div>
 
               {/* Clear value proposition */}
-              <div className="mb-12">
-                <h2 className="text-xl md:text-2xl lg:text-3xl font-light text-gray-600 mb-6 leading-relaxed">
+              <div className="mb-8 lg:mb-12">
+                <h2
+                  className="text-gray-600 mb-4 lg:mb-6 leading-relaxed"
+                  style={{
+                    fontSize: 'clamp(1.125rem, 3vw, 1.5rem)'
+                  }}
+                >
                   I craft meaningful stories through design and communication
                 </h2>
-                <p className="text-base md:text-lg text-gray-500 max-w-2xl leading-relaxed">
+                <p
+                  className="text-gray-500 leading-relaxed"
+                  style={{
+                    fontSize: 'clamp(0.875rem, 2vw, 1.125rem)'
+                  }}
+                >
                   Transforming complex ideas into clear, compelling narratives that connect brands with their audience.
                 </p>
               </div>
             </div>
 
             {/* Kolom Kanan - Gambar fafa.png */}
-            <div className="order-2 lg:order-2 flex justify-center items-center">
+            <div className="order-1 lg:order-2 flex justify-center items-center mb-8 lg:mb-0">
               <img
                 src="/images/fafa.png"
                 alt="Muhammad Fatih Abrar"
-                className="w-48 h-48 md:w-64 md:h-64 lg:w-80 lg:h-80 object-cover rounded-2xl lg:rounded-3xl shadow-lg"
+                className="object-cover shadow-lg"
+                style={{
+                  width: 'clamp(12rem, 40vw, 20rem)',
+                  height: 'clamp(12rem, 40vw, 20rem)',
+                  borderRadius: 'clamp(0.75rem, 2vw, 1.5rem)'
+                }}
               />
             </div>
           </div>
 
-          {/* Simple CTA - Bawah tetap sama */}
-          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mt-16 lg:mt-12">
+          {/* Simple CTA - Responsive buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center mt-12 lg:mt-16">
             <button
               onClick={() => scrollToSection('#projects')}
-              className="group px-8 py-4 bg-black text-white rounded-full hover:bg-gray-800 transition-all duration-300 font-medium tracking-wide transform hover:scale-105 shadow-lg"
+              className="group w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-black text-white rounded-full hover:bg-gray-800 transition-all duration-300 font-medium tracking-wide transform hover:scale-105 shadow-lg text-sm sm:text-base"
+              style={{ minWidth: 'clamp(8rem, 90vw, 12rem)' }}
             >
               View My Work
               <span className="inline-block ml-2 transition-transform duration-300 group-hover:translate-x-1">→</span>
@@ -63,47 +85,52 @@ const Hero = () => {
             <a
               href="/CV_Muhammad Fatih Abrar.pdf"
               download
-              className="group px-8 py-4 border-2 border-gray-800 text-gray-800 rounded-full hover:bg-gray-800 hover:text-white transition-all duration-300 font-medium tracking-wide inline-flex items-center gap-3"
+              className="group w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 border-2 border-gray-800 text-gray-800 rounded-full hover:bg-gray-800 hover:text-white transition-all duration-300 font-medium tracking-wide inline-flex items-center justify-center gap-3 text-sm sm:text-base"
+              style={{ minWidth: 'clamp(8rem, 90vw, 12rem)' }}
             >
-              <Download size={18} />
+              <Download size={16} className="sm:w-[18px] sm:h-[18px]" />
               Download CV
             </a>
           </div>
 
-          {/* Minimal social links - Bawah tetap sama */}
-          <div className="flex gap-6 justify-center items-center mt-12">
+          {/* Minimal social links - Responsive layout */}
+          <div className="flex flex-wrap gap-3 sm:gap-6 justify-center items-center mt-8 lg:mt-12">
             <a
               href={socialLinks.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-600 hover:text-black transition-colors duration-300 text-sm tracking-medium underline-offset-4 hover:underline"
+              className="text-gray-600 hover:text-black transition-colors duration-300 text-xs sm:text-sm underline-offset-4 hover:underline"
+              style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}
             >
               LinkedIn
             </a>
-            <span className="text-gray-400">•</span>
+            <span className="text-gray-400 text-xs sm:text-sm">•</span>
             <a
               href={socialLinks.instagram}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-600 hover:text-black transition-colors duration-300 text-sm tracking-medium underline-offset-4 hover:underline"
+              className="text-gray-600 hover:text-black transition-colors duration-300 text-xs sm:text-sm underline-offset-4 hover:underline"
+              style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}
             >
               Instagram
             </a>
-            <span className="text-gray-400">•</span>
+            <span className="text-gray-400 text-xs sm:text-sm">•</span>
             <a
               href={socialLinks.portfolio}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-600 hover:text-black transition-colors duration-300 text-sm tracking-medium underline-offset-4 hover:underline"
+              className="text-gray-600 hover:text-black transition-colors duration-300 text-xs sm:text-sm underline-offset-4 hover:underline"
+              style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}
             >
               Portfolio
             </a>
-            <span className="text-gray-400">•</span>
+            <span className="text-gray-400 text-xs sm:text-sm">•</span>
             <a
               href={socialLinks.portfolioVideo}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-600 hover:text-black transition-colors duration-300 text-sm tracking-medium underline-offset-4 hover:underline"
+              className="text-gray-600 hover:text-black transition-colors duration-300 text-xs sm:text-sm underline-offset-4 hover:underline"
+              style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}
             >
               Video
             </a>

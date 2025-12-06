@@ -74,6 +74,37 @@ const VisualWorld = () => {
     return { x, y, angle };
   };
 
+  // Calculate radius and image size based on screen size
+  const getResponsiveValues = () => {
+    if (typeof window !== 'undefined') {
+      const screenWidth = window.innerWidth;
+      if (screenWidth < 640) {
+        return {
+          radius: 180,
+          imageSize: { width: '40px', height: '48px' }, // Mobile
+          isMobile: true
+        };
+      }
+      if (screenWidth < 1024) {
+        return {
+          radius: 250,
+          imageSize: { width: '55px', height: '66px' }, // Tablet
+          isMobile: false
+        };
+      }
+      return {
+        radius: 320,
+        imageSize: { width: '70px', height: '85px' }, // Desktop
+        isMobile: false
+      };
+    }
+    return {
+      radius: 320,
+      imageSize: { width: '70px', height: '85px' },
+      isMobile: false
+    };
+  };
+
   // Gradual scaling berdasarkan scroll
   // 0-0.3: Small image (20% - 40%)
   // 0.3-0.7: Growing to fullscreen (40% - 100%)
@@ -141,11 +172,25 @@ const VisualWorld = () => {
           }}
         >
           {/* Center Text */}
-          <div className="absolute z-20 text-center pointer-events-none">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-tighter leading-none">
+          <div className="absolute z-20 text-center pointer-events-none px-4">
+            <h1
+              className="font-bold text-white tracking-tighter leading-none"
+              style={{
+                fontSize: 'clamp(1.5rem, 5vw, 3rem)',
+                WebkitTextStroke: '1px rgba(0,0,0,0.5)',
+                textShadow: '2px 2px 4px rgba(0,0,0,0.8), 0 0 20px rgba(0,0,0,0.5)'
+              }}
+            >
               I LIVE IN
             </h1>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tight leading-none mt-1">
+            <h2
+              className="font-black text-white tracking-tight leading-none mt-1"
+              style={{
+                fontSize: 'clamp(2rem, 6vw, 3.75rem)',
+                WebkitTextStroke: '1px rgba(0,0,0,0.5)',
+                textShadow: '2px 2px 4px rgba(0,0,0,0.8), 0 0 20px rgba(0,0,0,0.5)'
+              }}
+            >
               VISUAL WORLD
             </h2>
           </div>
@@ -154,7 +199,7 @@ const VisualWorld = () => {
           <div className="relative w-full h-full flex items-center justify-center">
             {visualImages.map((image, index) => {
               const isHovered = hoveredImage === image.id;
-              const radius = 320;
+              const { radius, imageSize, isMobile } = getResponsiveValues();
               const position = calculateCircularPosition(index, visualImages.length, radius, rotation);
               const imageRotation = position.angle - 90;
 
@@ -165,8 +210,8 @@ const VisualWorld = () => {
                   style={{
                     left: '50%',
                     top: '50%',
-                    width: '70px',
-                    height: '85px',
+                    width: imageSize.width,
+                    height: imageSize.height,
                     transform: `translate(calc(-50% + ${position.x}px), calc(-50% + ${position.y}px)) rotate(${imageRotation}deg) scale(${isHovered ? 1.3 : 1})`,
                     zIndex: isHovered ? 50 : 10,
                   }}
