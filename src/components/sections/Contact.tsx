@@ -46,7 +46,7 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="min-h-screen bg-neutral-50 flex items-center justify-center p-3 sm:p-4 md:p-6 lg:p-8">
+    <section id="contact" className="min-h-screen bg-black flex items-center justify-center p-3 sm:p-4 md:p-6 lg:p-8">
       <style>{`
         @keyframes floatRotate1 {
           0% {
@@ -101,7 +101,7 @@ const Contact = () => {
           {/* Text - Desktop and Mobile */}
           <div className="relative z-10 pt-4 lg:pt-32 text-center lg:text-left">
             <h1
-              className="tracking-tight leading-none"
+              className="tracking-tight leading-none text-white"
               style={{
                 fontSize: 'clamp(2rem, 8vw, 5rem)'
               }}
@@ -145,7 +145,7 @@ const Contact = () => {
           {/* Text continued - Desktop and Mobile */}
           <div className="relative z-10 ml-0 lg:ml-40 mt-1 lg:mt-0 text-center lg:text-left">
             <h1
-              className="tracking-tight leading-none"
+              className="tracking-tight leading-none text-white"
               style={{
                 fontSize: 'clamp(2rem, 8vw, 5rem)'
               }}
@@ -156,7 +156,7 @@ const Contact = () => {
 
           <div className="relative z-10 ml-0 lg:ml-48 left-0 lg:left-20 mt-1 lg:mt-0 text-center lg:text-left">
             <h1
-              className="tracking-tight leading-none"
+              className="tracking-tight leading-none text-white"
               style={{
                 fontSize: 'clamp(2rem, 8vw, 5rem)'
               }}
@@ -191,7 +191,7 @@ const Contact = () => {
               href="https://instagram.com/yourhandle"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 sm:gap-3 px-3 sm:px-4 py-2 lg:px-5 lg:py-3 border-2 border-gray-700 hover:border-black hover:bg-black hover:text-white transition-all duration-200 group w-full sm:w-auto"
+              className="flex items-center justify-center gap-2 sm:gap-3 px-3 sm:px-4 py-2 lg:px-5 lg:py-3 border-2 border-gray-700 hover:border-lime-400 hover:bg-lime-400 hover:text-black transition-all duration-200 group w-full sm:w-auto"
               style={{
                 fontSize: 'clamp(0.625rem, 2vw, 0.75rem)'
               }}
@@ -199,50 +199,50 @@ const Contact = () => {
               <svg className="w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
               </svg>
-              <span className="font-light tracking-wider">INSTAGRAM</span>
+              <span className="font-light tracking-wider text-gray-300 group-hover:text-black">INSTAGRAM</span>
             </a>
 
             <a
               href="mailto:your.email@example.com"
-              className="flex items-center justify-center gap-2 sm:gap-3 px-3 sm:px-4 py-2 lg:px-5 lg:py-3 border-2 border-gray-700 hover:border-black hover:bg-black hover:text-white transition-all duration-200 group w-full sm:w-auto"
+              className="flex items-center justify-center gap-2 sm:gap-3 px-3 sm:px-4 py-2 lg:px-5 lg:py-3 border-2 border-gray-700 hover:border-lime-400 hover:bg-lime-400 hover:text-black transition-all duration-200 group w-full sm:w-auto"
               style={{
                 fontSize: 'clamp(0.625rem, 2vw, 0.75rem)'
               }}
             >
-              <svg className="w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5 text-gray-300 group-hover:text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
               </svg>
-              <span className="font-light tracking-wider">EMAIL</span>
+              <span className="font-light tracking-wider text-gray-300 group-hover:text-black">EMAIL</span>
             </a>
 
             <a
               href="https://linkedin.com/in/yourprofile"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 sm:gap-3 px-3 sm:px-4 py-2 lg:px-5 lg:py-3 border-2 border-gray-700 hover:border-black hover:bg-black hover:text-white transition-all duration-200 group w-full sm:w-auto"
+              className="flex items-center justify-center gap-2 sm:gap-3 px-3 sm:px-4 py-2 lg:px-5 lg:py-3 border-2 border-gray-700 hover:border-lime-400 hover:bg-lime-400 hover:text-black transition-all duration-200 group w-full sm:w-auto"
               style={{
                 fontSize: 'clamp(0.625rem, 2vw, 0.75rem)'
               }}
             >
-              <svg className="w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5" fill="currentColor" viewBox="0 0 24 24">
+              <svg className="w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5 text-gray-300 group-hover:text-black" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
               </svg>
-              <span className="font-light tracking-wider">LINKEDIN</span>
+              <span className="font-light tracking-wider text-gray-300 group-hover:text-black">LINKEDIN</span>
             </a>
           </div>
         </div>
 
         {/* Right Side - Form */}
-        <div className="bg-white rounded-xl sm:rounded-2xl lg:rounded-3xl p-4 sm:p-6 md:p-8 lg:p-12 shadow-sm order-2 lg:order-2">
+        <div className="bg-gray-900 rounded-xl sm:rounded-2xl lg:rounded-3xl p-4 sm:p-6 md:p-8 lg:p-12 shadow-sm order-2 lg:order-2 border border-gray-800">
           <div className="mb-4 sm:mb-6 lg:mb-8">
             <h2
-              className="font-light mb-2 text-center lg:text-left"
+              className="font-light mb-2 text-center lg:text-left text-white"
               style={{
                 fontSize: 'clamp(0.875rem, 3vw, 1.5rem)'
               }}
             >
               FILL OUT THE FORM SO I CAN{' '}
-              <span className="italic font-serif">CONTACT YOU</span>
+              <span className="italic font-serif text-lime-400">CONTACT YOU</span>
             </h2>
           </div>
 
@@ -255,7 +255,7 @@ const Contact = () => {
                 value={formData.name}
                 onChange={handleInputChange}
                 placeholder="FULL NAME"
-                className="w-full px-0 py-2 sm:py-3 border-0 border-b border-gray-300 focus:border-gray-900 focus:ring-0 outline-none transition-colors duration-200 placeholder:text-gray-400 placeholder:text-xs sm:placeholder:text-sm placeholder:tracking-wider bg-transparent"
+                className="w-full px-0 py-2 sm:py-3 border-0 border-b border-gray-700 focus:border-lime-400 focus:ring-0 outline-none transition-colors duration-200 placeholder:text-gray-500 placeholder:text-xs sm:placeholder:text-sm placeholder:tracking-wider bg-transparent text-white"
                 style={{
                   fontSize: 'clamp(0.875rem, 2.5vw, 1rem)'
                 }}
@@ -271,7 +271,7 @@ const Contact = () => {
                   value={formData.mobile}
                   onChange={handleInputChange}
                   placeholder="MOBILE NUMBER"
-                  className="w-full px-0 py-2 sm:py-3 border-0 border-b border-gray-300 focus:border-gray-900 focus:ring-0 outline-none transition-colors duration-200 placeholder:text-gray-400 placeholder:text-xs sm:placeholder:text-sm placeholder:tracking-wider bg-transparent"
+                  className="w-full px-0 py-2 sm:py-3 border-0 border-b border-gray-700 focus:border-lime-400 focus:ring-0 outline-none transition-colors duration-200 placeholder:text-gray-500 placeholder:text-xs sm:placeholder:text-sm placeholder:tracking-wider bg-transparent text-white"
                   style={{
                     fontSize: 'clamp(0.875rem, 2.5vw, 1rem)'
                   }}
@@ -280,7 +280,7 @@ const Contact = () => {
 
               <div className="relative">
                 <div
-                  className="absolute left-0 top-2 sm:top-3 text-gray-400 tracking-wider"
+                  className="absolute left-0 top-2 sm:top-3 text-gray-500 tracking-wider"
                   style={{
                     fontSize: 'clamp(0.625rem, 2vw, 0.75rem)'
                   }}
@@ -293,7 +293,7 @@ const Contact = () => {
                   value={formData.email}
                   onChange={handleInputChange}
                   placeholder="EMAIL"
-                  className="w-full px-0 py-2 sm:py-3 pl-6 sm:pl-8 lg:pl-12 border-0 border-b border-gray-300 focus:border-gray-900 focus:ring-0 outline-none transition-colors duration-200 placeholder:text-gray-400 placeholder:text-xs sm:placeholder:text-sm placeholder:tracking-wider bg-transparent"
+                  className="w-full px-0 py-2 sm:py-3 pl-6 sm:pl-8 lg:pl-12 border-0 border-b border-gray-700 focus:border-lime-400 focus:ring-0 outline-none transition-colors duration-200 placeholder:text-gray-500 placeholder:text-xs sm:placeholder:text-sm placeholder:tracking-wider bg-transparent text-white"
                   style={{
                     fontSize: 'clamp(0.875rem, 2.5vw, 1rem)'
                   }}
@@ -309,7 +309,7 @@ const Contact = () => {
                 onChange={handleInputChange}
                 rows={1}
                 placeholder="YOUR QUESTION / IDEA / PROPOSAL"
-                className="w-full px-0 py-2 sm:py-3 border-0 border-b border-gray-300 focus:border-gray-900 focus:ring-0 outline-none transition-colors duration-200 placeholder:text-gray-400 placeholder:text-xs sm:placeholder:text-sm placeholder:tracking-wider resize-none bg-transparent"
+                className="w-full px-0 py-2 sm:py-3 border-0 border-b border-gray-700 focus:border-lime-400 focus:ring-0 outline-none transition-colors duration-200 placeholder:text-gray-500 placeholder:text-xs sm:placeholder:text-sm placeholder:tracking-wider resize-none bg-transparent text-white"
                 style={{
                   fontSize: 'clamp(0.875rem, 2.5vw, 1rem)'
                 }}
@@ -323,8 +323,8 @@ const Contact = () => {
                 disabled={isSubmitting}
                 className={`w-full py-2.5 sm:py-3 lg:py-4 px-4 lg:px-6 rounded-full font-light transition-all duration-300 ${
                   isSubmitting
-                    ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                    : 'bg-black text-white hover:bg-gray-800'
+                    ? 'bg-gray-700 text-gray-400 cursor-not-allowed'
+                    : 'bg-lime-400 text-black hover:bg-lime-300 hover:shadow-lg hover:shadow-lime-400/50'
                 }`}
                 style={{
                   fontSize: 'clamp(0.625rem, 2vw, 0.875rem)'
@@ -332,7 +332,7 @@ const Contact = () => {
               >
                 {isSubmitting ? (
                   <div className="flex items-center justify-center gap-2 sm:gap-3">
-                    <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 lg:w-4 lg:h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                    <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 lg:w-4 lg:h-4 border-2 border-lime-400 border-t-transparent rounded-full animate-spin"></div>
                     <span>SENDING...</span>
                   </div>
                 ) : (
@@ -344,7 +344,7 @@ const Contact = () => {
             {/* Status messages */}
             {submitStatus === 'success' && (
               <div
-                className="p-2.5 sm:p-3 lg:p-4 bg-green-50 text-green-800 rounded-lg sm:rounded-xl lg:rounded-2xl text-center"
+                className="p-2.5 sm:p-3 lg:p-4 bg-lime-400/20 text-lime-400 rounded-lg sm:rounded-xl lg:rounded-2xl text-center border border-lime-400/30"
                 style={{
                   fontSize: 'clamp(0.625rem, 2vw, 0.875rem)'
                 }}
@@ -355,7 +355,7 @@ const Contact = () => {
 
             {submitStatus === 'error' && (
               <div
-                className="p-2.5 sm:p-3 lg:p-4 bg-red-50 text-red-800 rounded-lg sm:rounded-xl lg:rounded-2xl text-center"
+                className="p-2.5 sm:p-3 lg:p-4 bg-red-500/20 text-red-400 rounded-lg sm:rounded-xl lg:rounded-2xl text-center border border-red-500/30"
                 style={{
                   fontSize: 'clamp(0.625rem, 2vw, 0.875rem)'
                 }}

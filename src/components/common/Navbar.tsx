@@ -3,14 +3,16 @@ import { useState, useEffect } from 'react';
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
+  const [isDarkSection, setIsDarkSection] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
 
       // Update active section based on scroll position
-      const sections = ['home', 'experience', 'projects', 'skills', 'contact'];
+      const sections = ['home', 'experience', 'visual-world', 'projects', 'skills', 'contact'];
       const scrollPosition = window.scrollY + 100;
+      let currentSection = 'home';
 
       for (const section of sections) {
         const element = document.getElementById(section);
@@ -18,10 +20,14 @@ const Navbar = () => {
           const { offsetTop, offsetHeight } = element;
           if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
             setActiveSection(section);
+            currentSection = section;
             break;
           }
         }
       }
+
+      // Check if current section is dark (visual-world, projects, skills, contact)
+      setIsDarkSection(['visual-world', 'projects', 'skills', 'contact'].includes(currentSection));
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -53,7 +59,9 @@ const Navbar = () => {
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
       scrolled
-        ? 'bg-white shadow-lg'
+        ? isDarkSection
+          ? 'bg-black/90 shadow-lg backdrop-blur-sm'
+          : 'bg-white shadow-lg'
         : 'bg-transparent'
     }`}>
       <div className="w-full px-4 py-4 sm:px-6">
@@ -70,14 +78,22 @@ const Navbar = () => {
                     onClick={() => scrollToSection(item.href)}
                     className={`relative text-sm font-medium tracking-wide transition-all duration-300 whitespace-nowrap ${
                       isActive
-                        ? 'text-black'
-                        : 'text-gray-600 hover:text-black'
+                        ? isDarkSection
+                          ? 'text-lime-400'
+                          : 'text-black'
+                        : isDarkSection
+                          ? 'text-gray-400 hover:text-white'
+                          : 'text-gray-600 hover:text-black'
                     }`}
                   >
                     {item.name}
-                    <span className={`absolute bottom-[-4px] left-0 w-full h-px bg-black transition-all duration-300 ${
-                      isActive ? 'opacity-100' : 'opacity-0'
-                    }`}></span>
+                    <span className={`absolute bottom-[-4px] left-0 w-full h-px transition-all duration-300 ${
+                      isActive
+                        ? isDarkSection
+                          ? 'bg-lime-400'
+                          : 'bg-black'
+                        : ''
+                    } ${isActive ? 'opacity-100' : 'opacity-0'}`}></span>
                   </button>
                 );
               })}
@@ -93,14 +109,22 @@ const Navbar = () => {
                     onClick={() => scrollToSection(item.href)}
                     className={`relative text-sm font-medium tracking-wide transition-all duration-300 whitespace-nowrap ${
                       isActive
-                        ? 'text-black'
-                        : 'text-gray-600 hover:text-black'
+                        ? isDarkSection
+                          ? 'text-lime-400'
+                          : 'text-black'
+                        : isDarkSection
+                          ? 'text-gray-400 hover:text-white'
+                          : 'text-gray-600 hover:text-black'
                     }`}
                   >
                     {item.name}
-                    <span className={`absolute bottom-[-4px] left-0 w-full h-px bg-black transition-all duration-300 ${
-                      isActive ? 'opacity-100' : 'opacity-0'
-                    }`}></span>
+                    <span className={`absolute bottom-[-4px] left-0 w-full h-px transition-all duration-300 ${
+                      isActive
+                        ? isDarkSection
+                          ? 'bg-lime-400'
+                          : 'bg-black'
+                        : ''
+                    } ${isActive ? 'opacity-100' : 'opacity-0'}`}></span>
                   </button>
                 );
               })}
@@ -117,14 +141,22 @@ const Navbar = () => {
                   onClick={() => scrollToSection(item.href)}
                   className={`relative text-sm font-medium tracking-wide transition-all duration-300 ${
                     isActive
-                      ? 'text-black'
-                      : 'text-gray-600 hover:text-black'
+                      ? isDarkSection
+                        ? 'text-lime-400'
+                        : 'text-black'
+                      : isDarkSection
+                        ? 'text-gray-400 hover:text-white'
+                        : 'text-gray-600 hover:text-black'
                   }`}
                 >
                   {item.name}
-                  <span className={`absolute bottom-[-4px] left-0 w-full h-px bg-black transition-all duration-300 ${
-                    isActive ? 'opacity-100' : 'opacity-0'
-                  }`}></span>
+                  <span className={`absolute bottom-[-4px] left-0 w-full h-px transition-all duration-300 ${
+                    isActive
+                      ? isDarkSection
+                        ? 'bg-lime-400'
+                        : 'bg-black'
+                      : ''
+                  } ${isActive ? 'opacity-100' : 'opacity-0'}`}></span>
                 </button>
               );
             })}

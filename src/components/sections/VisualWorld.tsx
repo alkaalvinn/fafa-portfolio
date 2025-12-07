@@ -206,7 +206,7 @@ const VisualWorld = () => {
                 textShadow: '2px 2px 4px rgba(0,0,0,0.8), 0 0 20px rgba(0,0,0,0.5)'
               }}
             >
-              I LIVE IN
+              LIVE IN
             </h1>
             <h2
               className="font-black text-white tracking-tight leading-none mt-1"
