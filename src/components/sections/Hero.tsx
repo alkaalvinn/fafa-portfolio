@@ -228,7 +228,7 @@ const Hero = () => {
             <div className="flex items-center gap-4">
               <button
                 onClick={() => scrollToSection('#projects')}
-                className="px-6 py-3 bg-black text-white rounded-full hover:bg-gray-900 transition-all duration-200 font-medium text-sm hover:scale-105"
+                className="px-6 py-3 -mt-10 bg-black text-white rounded-full hover:bg-gray-900 transition-all duration-200 font-medium text-sm hover:scale-105"
               >
                 View My Work
                 <span className="inline-block ml-2">→</span>
@@ -236,7 +236,7 @@ const Hero = () => {
               <a
                 href="/CV_Muhammad Fatih Abrar.pdf"
                 download
-                className="px-6 py-3 border border-gray-800 text-gray-800 rounded-full hover:bg-gray-800 hover:text-white transition-all duration-200 font-medium text-sm inline-flex items-center gap-2"
+                className="px-6 py-3 -mt-10 border border-gray-800 text-gray-800 rounded-full hover:bg-gray-800 hover:text-white transition-all duration-200 font-medium text-sm inline-flex items-center gap-2"
               >
                 <Download size={16} />
                 Download CV
@@ -244,12 +244,11 @@ const Hero = () => {
             </div>
 
             {/* Social Links - DI BAWAH BUTTON */}
-            <div className="flex items-center justify-center gap-6 mt-8">
+            <div className="flex items-center gap-6 mt-8">
               {[
                 { href: socialLinks.linkedin, label: 'LinkedIn' },
                 { href: socialLinks.instagram, label: 'Instagram' },
                 { href: socialLinks.portfolio, label: 'Portfolio' },
-                { href: socialLinks.portfolioVideo, label: 'Video' }
               ].map((link, index) => (
                 <React.Fragment key={link.label}>
                   <a
@@ -260,7 +259,7 @@ const Hero = () => {
                   >
                     {link.label}
                   </a>
-                  {index < 3 && (
+                  {index < 2 && (
                     <span className="text-gray-400 mx-2">•</span>
                   )}
                 </React.Fragment>

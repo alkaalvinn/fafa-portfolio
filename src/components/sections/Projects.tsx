@@ -113,7 +113,7 @@ const Projects = () => {
         {filteredProjects.length > 0 && (
           <div className="relative max-w-full mx-auto">
             {/* Current Project Banner */}
-            <div className="relative bg-gray-900 rounded-xl sm:rounded-2xl overflow-hidden shadow-2xl border border-gray-800">
+            <div className="relative bg-white rounded-xl sm:rounded-2xl overflow-hidden shadow-2xl">
               {/* Banner Image */}
               <div className="relative h-64 sm:h-80 md:h-96 lg:h-[500px] overflow-hidden">
                 <div
@@ -147,7 +147,7 @@ const Projects = () => {
                 <div className="absolute top-3 right-3 sm:top-4 sm:right-4 md:top-6 md:right-6 z-50">
                   <Link
                     to={`/project/${filteredProjects[currentIndex].id}`}
-                    className="bg-lime-400 text-black px-4 py-2 sm:px-5 sm:py-2.5 md:px-6 md:py-3 rounded-lg font-medium hover:bg-lime-300 transition-all duration-200 inline-flex items-center gap-2 shadow-lg hover:shadow-lg hover:shadow-lime-400/50 transform hover:scale-105 text-sm sm:text-base"
+                    className="bg-white text-gray-900 px-4 py-2 sm:px-5 sm:py-2.5 md:px-6 md:py-3 rounded-lg font-medium hover:bg-gray-100 transition-all duration-200 inline-flex items-center gap-2 shadow-lg hover:shadow-xl transform hover:scale-105 text-sm sm:text-base"
                   >
                     <ExternalLink size={16} sm:size={18} />
                     View Project
@@ -175,7 +175,7 @@ const Projects = () => {
                 {/* Previous Button */}
                 <button
                   onClick={handlePrev}
-                  className="absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 bg-lime-400/90 hover:bg-lime-400 text-black p-2 sm:p-3 rounded-full shadow-lg transition-all duration-200 hover:scale-110"
+                  className="absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white text-gray-900 p-2 sm:p-3 rounded-full shadow-lg transition-all duration-200 hover:scale-110"
                   aria-label="Previous project"
                 >
                   <ChevronLeft size={20} sm:size={24} />
@@ -184,7 +184,7 @@ const Projects = () => {
                 {/* Next Button */}
                 <button
                   onClick={handleNext}
-                  className="absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 bg-lime-400/90 hover:bg-lime-400 text-black p-2 sm:p-3 rounded-full shadow-lg transition-all duration-200 hover:scale-110"
+                  className="absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white text-gray-900 p-2 sm:p-3 rounded-full shadow-lg transition-all duration-200 hover:scale-110"
                   aria-label="Next project"
                 >
                   <ChevronRight size={20} sm:size={24} />
@@ -212,7 +212,7 @@ const Projects = () => {
 
             {/* Project Counter */}
             {filteredProjects.length > 1 && (
-              <div className="text-center mt-4 text-gray-400 font-medium">
+              <div className="text-center mt-4 text-gray-600 font-medium">
                 {currentIndex + 1} / {filteredProjects.length}
               </div>
             )}
