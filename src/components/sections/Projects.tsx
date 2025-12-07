@@ -67,8 +67,11 @@ const Projects = () => {
   const getProjectBanner = (projectId: number) => {
     // Design project (ID: 1) uses local image
     if (projectId === 1) {
-      return '/images/design-banner.png';
+      return '/images/banner-1.png';
+    } else if (projectId === 3) {
+      return '/images/banner-3.png';
     }
+
     // Other projects use placeholder
     return `https://picsum.photos/seed/project-${projectId}/1200/600.jpg`;
   };
