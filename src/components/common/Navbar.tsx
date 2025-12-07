@@ -13,6 +13,7 @@ const Navbar = () => {
       const sections = ['home', 'experience', 'visual-world', 'projects', 'skills', 'contact'];
       const scrollPosition = window.scrollY + 100;
       let currentSection = 'home';
+      let shouldBeDark = false;
 
       for (const section of sections) {
         const element = document.getElementById(section);
@@ -21,13 +22,32 @@ const Navbar = () => {
           if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
             setActiveSection(section);
             currentSection = section;
+
+            // Special logic for visual-world section
+            if (section === 'visual-world') {
+              const visualSection = document.getElementById('visual-world');
+              if (visualSection) {
+                const rect = visualSection.getBoundingClientRect();
+                const sectionHeight = visualSection.offsetHeight;
+                const viewportHeight = window.innerHeight;
+
+                // Calculate progress within visual-world section
+                const rawProgress = (viewportHeight - rect.top) / sectionHeight;
+                const progress = Math.max(0, Math.min(1, rawProgress));
+
+                // Make navbar dark when content appears (progress > 0.75)
+                shouldBeDark = progress > 0.9;
+              }
+            } else {
+              // For other sections, check if they're dark sections
+              shouldBeDark = ['projects', 'skills', 'contact'].includes(section);
+            }
             break;
           }
         }
       }
 
-      // Check if current section is dark (visual-world, projects, skills, contact)
-      setIsDarkSection(['visual-world', 'projects', 'skills', 'contact'].includes(currentSection));
+      setIsDarkSection(shouldBeDark);
     };
 
     window.addEventListener('scroll', handleScroll);

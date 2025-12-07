@@ -1,4 +1,9 @@
 {
+  "env": {
+    "ANTHROPIC_AUTH_TOKEN": "d9f71920066946819005962bf1d8af0d.HxDX2iWG5V34xBFU",
+    "ANTHROPIC_BASE_URL": "https://api.z.ai/api/anthropic",
+    "API_TIMEOUT_MS": "3000000"
+  },
   "permissions": {
     "allow": [
       "Bash(mkdir:*)",
@@ -7,14 +12,10 @@
       "Bash(npm run dev)",
       "Bash(npm uninstall:*)",
       "Bash(npm run build:*)",
-      "Bash(curl:*)"
+      "Bash(curl:*)",
+      "Bash(git restore:*)"
     ],
     "deny": [],
     "ask": []
-  },
-  "env": {
-        "ANTHROPIC_AUTH_TOKEN": "d9f71920066946819005962bf1d8af0d.HxDX2iWG5V34xBFU",
-        "ANTHROPIC_BASE_URL": "https://api.z.ai/api/anthropic",
-        "API_TIMEOUT_MS": "3000000"
-    }
+  }
 }
