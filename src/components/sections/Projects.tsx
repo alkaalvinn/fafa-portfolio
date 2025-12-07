@@ -63,17 +63,29 @@ const Projects = () => {
     setMousePosition({ x: 0, y: 0 });
   };
 
-  // Generate banner images for projects
-  const getProjectBanner = (projectId: number) => {
-    // Design project (ID: 1) uses local image
+  // Generate banner images/videos for projects
+  const getProjectBanner = (projectId: number, category?: string) => {
+    // Bank Indonesia Anniversary Campaign (ID: 1) uses local image
     if (projectId === 1) {
       return '/images/banner-1.png';
-    } else if (projectId === 3) {
+    }
+    // Kraft Heinz Brand Communication Strategy (ID: 3) uses local image
+    else if (projectId === 3) {
       return '/images/banner-3.png';
+    }
+
+    // Corporate Video Documentary (ID: 2) uses video
+    if (category === 'videography' || projectId === 2) {
+      return '/videos/video.mp4';
     }
 
     // Other projects use placeholder
     return `https://picsum.photos/seed/project-${projectId}/1200/600.jpg`;
+  };
+
+  // Check if project should use video
+  const isVideoProject = (category?: string) => {
+    return category === 'videography';
   };
 
   return (
@@ -113,8 +125,8 @@ const Projects = () => {
         {filteredProjects.length > 0 && (
           <div className="relative max-w-full mx-auto">
             {/* Current Project Banner */}
-            <div className="relative bg-white rounded-xl sm:rounded-2xl overflow-hidden shadow-2xl">
-              {/* Banner Image */}
+            <div className="relative bg-black  overflow-hidden shadow-2xl">
+              {/* Banner Image/Video */}
               <div className="relative h-64 sm:h-80 md:h-96 lg:h-[500px] overflow-hidden">
                 <div
                   ref={bannerRef}
@@ -129,15 +141,30 @@ const Projects = () => {
                   onMouseEnter={handleMouseEnter}
                   onMouseLeave={handleMouseLeave}
                 >
-                  <img
-                    src={getProjectBanner(filteredProjects[currentIndex].id)}
-                    alt={filteredProjects[currentIndex].title}
-                    className="w-full h-full object-cover"
-                    style={{
-                      transform: `translateZ(${isHovering ? '50px' : '0px'})`,
-                      transition: 'transform 0.3s ease-out'
-                    }}
-                  />
+                  {isVideoProject(filteredProjects[currentIndex].category) ? (
+                    <video
+                      src={getProjectBanner(filteredProjects[currentIndex].id, filteredProjects[currentIndex].category)}
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      className="w-full h-full object-cover"
+                      style={{
+                        transform: `translateZ(${isHovering ? '50px' : '0px'})`,
+                        transition: 'transform 0.3s ease-out'
+                      }}
+                    />
+                  ) : (
+                    <img
+                      src={getProjectBanner(filteredProjects[currentIndex].id)}
+                      alt={filteredProjects[currentIndex].title}
+                      className="w-full h-full object-cover"
+                      style={{
+                        transform: `translateZ(${isHovering ? '50px' : '0px'})`,
+                        transition: 'transform 0.3s ease-out'
+                      }}
+                    />
+                  )}
                 </div>
 
                 {/* Overlay Gradient */}
@@ -147,7 +174,7 @@ const Projects = () => {
                 <div className="absolute top-3 right-3 sm:top-4 sm:right-4 md:top-6 md:right-6 z-50">
                   <Link
                     to={`/project/${filteredProjects[currentIndex].id}`}
-                    className="bg-white text-gray-900 px-4 py-2 sm:px-5 sm:py-2.5 md:px-6 md:py-3 rounded-lg font-medium hover:bg-gray-100 transition-all duration-200 inline-flex items-center gap-2 shadow-lg hover:shadow-xl transform hover:scale-105 text-sm sm:text-base"
+                    className="bg-lime-400 text-gray-900 px-4 py-2 sm:px-5 sm:py-2.5 md:px-6 md:py-3 rounded-lg font-medium hover:bg-gray-100 transition-all duration-200 inline-flex items-center gap-2 shadow-lg hover:shadow-xl transform hover:scale-105 text-sm sm:text-base"
                   >
                     <ExternalLink size={16} sm:size={18} />
                     View Project

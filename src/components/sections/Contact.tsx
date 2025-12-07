@@ -188,7 +188,7 @@ const Contact = () => {
           {/* Social Media Links - Responsive layout */}
           <div className="mt-6 lg:mt-12 flex flex-col sm:flex-row gap-2 sm:gap-3 lg:gap-4 items-center justify-center lg:justify-start">
             <a
-              href="https://instagram.com/yourhandle"
+              href="https://www.instagram.com/mv.fath_/"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center justify-center gap-2 sm:gap-3 px-3 sm:px-4 py-2 lg:px-5 lg:py-3 border-2 border-gray-700 hover:border-lime-400 hover:bg-lime-400 hover:text-black transition-all duration-200 group w-full sm:w-auto"
@@ -203,7 +203,7 @@ const Contact = () => {
             </a>
 
             <a
-              href="mailto:your.email@example.com"
+              href="mailto:muhammad.fatih.abrar@gmail.com"
               className="flex items-center justify-center gap-2 sm:gap-3 px-3 sm:px-4 py-2 lg:px-5 lg:py-3 border-2 border-gray-700 hover:border-lime-400 hover:bg-lime-400 hover:text-black transition-all duration-200 group w-full sm:w-auto"
               style={{
                 fontSize: 'clamp(0.625rem, 2vw, 0.75rem)'
@@ -216,7 +216,7 @@ const Contact = () => {
             </a>
 
             <a
-              href="https://linkedin.com/in/yourprofile"
+              href="https://www.linkedin.com/in/muhammad-fatih-abrar-014199198/"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center justify-center gap-2 sm:gap-3 px-3 sm:px-4 py-2 lg:px-5 lg:py-3 border-2 border-gray-700 hover:border-lime-400 hover:bg-lime-400 hover:text-black transition-all duration-200 group w-full sm:w-auto"

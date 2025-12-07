@@ -3,53 +3,81 @@ import type { Experience, Project, Skill } from '../types';
 export const experiences: Experience[] = [
   {
     id: 1,
-    company: 'Bank Indonesia',
-    position: 'Communication Specialist',
-    period: '2022 - Present',
-    description: 'Handling internal and external communication strategies',
+    company: 'Central Bank of Indonesia',
+    position: 'Program - Consumer Protection',
+    period: 'October 2025 - Present',
+    description:
+      'Supporting consumer protection initiatives through creative production, campaign support, and event management.',
     responsibilities: [
-      'Develop communication campaigns',
-      'Manage social media content',
-      'Create visual materials for corporate communications'
+      'Developed Terms of References (ToR) and creative briefs for Geber PK campaign, delivering 5 campaign series that reached 5,000+ participants.',
+      'Produced 10+ monthly creative assets for social media and offline campaigns to support consumer protection initiatives.',
+      'Coordinated VIP guest relations and documentation for high-profile federal programs.',
+      'Managed end-to-end KOL and speaker handling, from selection and briefing to on-site coordination.',
+      'Supported seamless execution of large-scale campaign events across online and offline platforms.'
     ]
   },
   {
     id: 2,
-    company: 'Kraft Heinz',
-    position: 'Brand Communication',
-    period: '2021 - 2022',
-    description: 'Brand communication and content creation',
+    company: 'PT Dua Puluh Tiga',
+    position: 'Graphic Design Intern',
+    period: 'July 2025 - October 2025',
+    description:
+      'Designed creative assets and audiovisual content to strengthen employer branding visibility and internal communication.',
     responsibilities: [
-      'Brand storytelling',
-      'Digital content creation',
-      'Campaign management'
+      'Designed and delivered 20+ monthly creative assets for social media and offline activation.',
+      'Produced 7 monthly audiovisual contents for Instagram and TikTok to boost internal brand perception.',
+      'Developed and implemented visual identity guidelines for employer branding division.',
+      'Streamlined creative production workflow to ensure design consistency.',
+      'Supported content strategies that enhanced engagement for talent branding.'
     ]
   },
   {
     id: 3,
-    company: 'GMF AeroAsia',
-    position: 'Marketing Communication',
-    period: '2020 - 2021',
-    description: 'Marketing communication and brand management',
+    company: 'Kraft Heinz',
+    position: 'Graphic Design Intern',
+    period: 'January 2025 - March 2025',
+    description:
+      'Created visual and video assets for FMCG e-commerce and digital advertising campaigns.',
     responsibilities: [
-      'Marketing campaign development',
-      'Corporate branding',
-      'Event management'
+      'Designed 10+ monthly creative assets for e-commerce platforms such as Shopee, Tokopedia, and Lazada.',
+      'Produced optimized visuals to enhance product discoverability and platform performance.',
+      'Developed and edited 10+ monthly video ads for Meta and TikTok campaigns.',
+      'Improved campaign performance through visual consistency and market-oriented adaptation.',
+      'Collaborated with marketing team to support commercial communication goals.'
     ]
   },
   {
     id: 4,
-    company: 'Hangry',
-    position: 'Content Creator',
-    period: '2019 - 2020',
-    description: 'Content creation and social media management',
+    company: 'GMF AeroAsia',
+    position: 'Corporate Communications Intern',
+    period: 'July 2024 - August 2024',
+    description:
+      'Strengthened corporate image through internal communication, content production, and stakeholder experience management.',
     responsibilities: [
-      'Social media content creation',
-      'Visual design',
-      'Copywriting'
+      'Produced internal mini releases distributed to 5,000+ employees.',
+      'Executed end-to-end content aligned with corporate reputation strategy.',
+      'Achieved +9.4% account reach, +45.6% engagement, and 23.8K average reel views through optimized storytelling.',
+      'Managed guest visit protocols and documentation for key stakeholders.',
+      'Created narrative-driven visuals to support corporate branding goals.'
+    ]
+  },
+  {
+    id: 5,
+    company: 'Hangry',
+    position: 'Content Production Intern',
+    period: 'August 2023 - December 2023',
+    description:
+      'Produced multimedia content and strengthened brand engagement through visual storytelling for a food-tech startup.',
+    responsibilities: [
+      'Created and managed 40+ pieces of social media content including photography and videography.',
+      'Developed storylines and storyboards to strengthen brand tone.',
+      'Edited and polished 50+ images and 25+ videos for social media platforms.',
+      'Ensured visuals aligned with brand standards to maximize engagement.',
+      'Worked closely with marketing team to support ongoing campaigns.'
     ]
   }
 ];
+
 
 export const projects: Project[] = [
   {
@@ -79,24 +107,48 @@ export const projects: Project[] = [
 ];
 
 export const skills: Skill[] = [
+  // Photography Skills
   { id: 1, name: 'Photography', category: 'Creative', level: 90 },
-  { id: 2, name: 'Videography', category: 'Creative', level: 85 },
-  { id: 3, name: 'Graphic Design', category: 'Creative', level: 88 },
-  { id: 4, name: 'Copywriting', category: 'Creative', level: 82 },
-  { id: 5, name: 'Adobe Photoshop', category: 'Software', level: 95 },
-  { id: 6, name: 'Adobe Illustrator', category: 'Software', level: 90 },
-  { id: 7, name: 'Adobe Premiere Pro', category: 'Software', level: 85 },
-  { id: 8, name: 'After Effects', category: 'Software', level: 80 },
-  { id: 9, name: 'Communication Strategy', category: 'Professional', level: 92 },
-  { id: 10, name: 'Brand Management', category: 'Professional', level: 88 },
-  { id: 11, name: 'Content Creation', category: 'Professional', level: 90 },
-  { id: 11, name: 'Social Media Marketing', category: 'Professional', level: 85 }
+  { id: 2, name: 'Photo Editing', category: 'Creative', level: 88 },
+  { id: 3, name: 'DSLR Photography', category: 'Creative', level: 85 },
+
+  // Videography Skills
+  { id: 4, name: 'Videography', category: 'Creative', level: 85 },
+  { id: 5, name: 'Video Editing', category: 'Creative', level: 82 },
+
+  // Design Skills
+  { id: 6, name: 'Graphic Design', category: 'Creative', level: 88 },
+  { id: 7, name: 'Brand Design', category: 'Creative', level: 85 },
+
+  // Content Skills
+  { id: 8, name: 'Copywriting', category: 'Creative', level: 82 },
+  { id: 9, name: 'Content Creation', category: 'Creative', level: 90 },
+  { id: 10, name: 'Content Strategy', category: 'Creative', level: 85 },
+
+  // Adobe Software
+  { id: 11, name: 'Adobe Photoshop', category: 'Software', level: 95 },
+  { id: 12, name: 'Adobe Illustrator', category: 'Software', level: 90 },
+  { id: 13, name: 'Adobe Premiere Pro', category: 'Software', level: 85 },
+  { id: 14, name: 'After Effects', category: 'Software', level: 80 },
+
+  // Communication Skills
+  { id: 15, name: 'Communication Strategy', category: 'Professional', level: 92 },
+  { id: 16, name: 'Brand Management', category: 'Professional', level: 88 },
+  { id: 17, name: 'Digital Marketing', category: 'Professional', level: 85 },
+  { id: 18, name: 'Social Media Management', category: 'Professional', level: 90 },
+  { id: 19, name: 'Public Relations', category: 'Professional', level: 82 },
+  { id: 20, name: 'Event Management', category: 'Professional', level: 80 },
+  { id: 21, name: 'Presentation Skills', category: 'Professional', level: 88 },
+
+  // Languages
+  { id: 22, name: 'Bahasa Indonesia', category: 'Language', level: 95 },
+  { id: 23, name: 'English', category: 'Language', level: 85 }
 ];
 
 export const socialLinks = {
-  linkedin: 'https://linkedin.com/in/muhammadfatihabrar',
-  instagram: 'https://instagram.com/mv.fath',
-  email: 'fatih.abrar@example.com',
+  linkedin: 'https://www.linkedin.com/in/fatihabrar/',
+  instagram: 'https://www.instagram.com/mv.fath/',
+  email: 'fatihabrar@gmail.com',
   portfolio: 'https://bit.ly/PortfolioFatihAbrar',
   portfolioVideo: 'https://bit.ly/PortfolioVideoFatihAbrar'
 };
