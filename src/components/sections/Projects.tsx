@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { projects } from '../../data/portfolioData';
 import { ExternalLink, Camera, Video, Palette, MessageSquare, ChevronLeft, ChevronRight } from 'lucide-react';
@@ -6,6 +6,9 @@ import { ExternalLink, Camera, Video, Palette, MessageSquare, ChevronLeft, Chevr
 const Projects = () => {
   const [filter, setFilter] = useState<'photography' | 'videography' | 'design' | 'communication'>('design');
   const [currentIndex, setCurrentIndex] = useState(0);
+  const bannerRef = useRef<HTMLDivElement>(null);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isHovering, setIsHovering] = useState(false);
 
   const filteredProjects = projects.filter(project => project.category === filter);
 
@@ -33,6 +36,31 @@ const Projects = () => {
     setCurrentIndex((prevIndex) =>
       prevIndex === filteredProjects.length - 1 ? 0 : prevIndex + 1
     );
+  };
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!bannerRef.current || !isHovering) return;
+
+    const rect = bannerRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+
+    const rotateX = Math.min(Math.max((y - centerY) / 25, -10), 10);
+    const rotateY = Math.min(Math.max((centerX - x) / 25, -10), 10);
+
+    setMousePosition({ x: rotateY, y: rotateX });
+  };
+
+  const handleMouseEnter = () => {
+    setIsHovering(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovering(false);
+    setMousePosition({ x: 0, y: 0 });
   };
 
   // Generate banner images for projects
@@ -85,14 +113,32 @@ const Projects = () => {
             <div className="relative bg-white rounded-xl sm:rounded-2xl overflow-hidden shadow-2xl">
               {/* Banner Image */}
               <div className="relative h-64 sm:h-80 md:h-96 lg:h-[500px] overflow-hidden">
-                <img
-                  src={getProjectBanner(filteredProjects[currentIndex].id)}
-                  alt={filteredProjects[currentIndex].title}
-                  className="w-full h-full object-cover"
-                />
+                <div
+                  ref={bannerRef}
+                  className="absolute inset-0 cursor-pointer"
+                  style={{
+                    transform: `perspective(1000px) rotateX(${mousePosition.y}deg) rotateY(${mousePosition.x}deg) scale(${isHovering ? 1.02 : 1})`,
+                    transition: isHovering ? 'transform 0.1s ease-out' : 'transform 0.3s ease-out',
+                    transformStyle: 'preserve-3d',
+                    willChange: 'transform'
+                  }}
+                  onMouseMove={handleMouseMove}
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
+                >
+                  <img
+                    src={getProjectBanner(filteredProjects[currentIndex].id)}
+                    alt={filteredProjects[currentIndex].title}
+                    className="w-full h-full object-cover"
+                    style={{
+                      transform: `translateZ(${isHovering ? '50px' : '0px'})`,
+                      transition: 'transform 0.3s ease-out'
+                    }}
+                  />
+                </div>
 
                 {/* Overlay Gradient */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent pointer-events-none"></div>
 
                 {/* View Project Button - Top Right */}
                 <div className="absolute top-3 right-3 sm:top-4 sm:right-4 md:top-6 md:right-6 z-50">
@@ -106,8 +152,7 @@ const Projects = () => {
                 </div>
 
                 {/* Project Content Overlay */}
-                <div className="absolute inset-0 flex flex-col justify-end p-4 sm:p-6 md:p-12 text-white">
-
+                <div className="absolute inset-0 flex flex-col justify-end p-4 sm:p-6 md:p-12 text-white pointer-events-none">
                   {/* Project Title */}
                   <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-5xl font-bold mb-3 sm:mb-4">
                     {filteredProjects[currentIndex].title}
