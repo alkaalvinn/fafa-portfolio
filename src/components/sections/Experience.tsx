@@ -81,12 +81,8 @@ const Experience = () => {
   const titleY = scrollProgress * -40; // Move up
   const titleOpacity = scrollProgress < 0.5 ? 1 : 1 - ((scrollProgress - 0.5) * 2);
 
-  // Header position (appears after title animation)
-  const headerOpacity = scrollProgress > 0.8 ? 1 : 0;
-  const headerY = scrollProgress > 0.8 ? 0 : 20;
-
   return (
-    <section id="experience" className="relative bg-white" style={{ minHeight: `${200 + experiences.length * 100}vh` }}>
+    <section id="experience" className="relative bg-white" style={{ minHeight: `${200 + experiences.length * 120}vh` }}>
       {/* Sticky Container */}
       <div className="sticky top-0 h-screen overflow-hidden flex items-center">
         
@@ -111,37 +107,6 @@ const Experience = () => {
 
         {/* Content Container */}
         <div className="w-full h-full flex flex-col">
-          {/* Header Section - Fixed at top */}
-          <div
-            className="flex-shrink-0 py-6 sm:py-8 px-4 sm:px-6"
-            style={{
-              opacity: headerOpacity,
-              transform: `translateY(${headerY}px)`,
-              transition: 'all 0.5s ease-out'
-            }}
-          >
-            <div className="container mx-auto max-w-7xl">
-              <div className="text-left">
-                <h2
-                  className="font-bold text-gray-900 mb-3 sm:mb-4 mt-12 sm:mt-24"
-                  style={{
-                    fontSize: 'clamp(2rem, 6vw, 3.75rem)'
-                  }}
-                >
-                  Experience
-                </h2>
-                <p
-                  className="text-gray-600 max-w-2xl"
-                  style={{
-                    fontSize: 'clamp(0.875rem, 2.5vw, 1.25rem)'
-                  }}
-                >
-                  My professional journey through various industries and roles
-                </p>
-              </div>
-            </div>
-          </div>
-
           {/* Experience Cards Container - Takes remaining space */}
           <div className="flex-1 relative px-4 sm:px-6 py-6 sm:py-8">
             <div className="container mx-auto max-w-7xl h-full flex items-center pt-6 sm:pt-8 pb-16 sm:pb-20">
@@ -201,16 +166,6 @@ const Experience = () => {
                             </span>
                           </div>
 
-                          {/* Description */}
-                          <p
-                            className="text-gray-600 leading-relaxed pt-2"
-                            style={{
-                              fontSize: 'clamp(0.875rem, 2.5vw, 1.125rem)'
-                            }}
-                          >
-                            {exp.description}
-                          </p>
-
                           {/* Responsibilities */}
                           <div className="pt-2 sm:pt-3">
                             <ul
@@ -243,7 +198,7 @@ const Experience = () => {
                                 <img
                                   src={image}
                                   alt={`${exp.company} ${imgIndex + 1}`}
-                                  className="w-full aspect-[4/3] object-cover"
+                                  className="w-full aspect-[16/9] sm:aspect-[4/3] object-cover"
                                 />
                               </div>
                             ))}

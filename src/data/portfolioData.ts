@@ -205,26 +205,33 @@ export const portfolioImages = {
       '/images/experience/bi-3.jpg',
       '/images/experience/bi-4.jpg'
     ],
-    // Kraft Heinz - 4 gambar
+    // PT Dua Puluh Tiga - 4 gambar
     2: [
+      '/images/experience/23-1.jpg',
+      '/images/experience/23-2.jpg',
+      '/images/experience/23-3.jpg',
+      '/images/experience/23-4.jpg'
+    ],
+    // Kraft Heinz - 4 gambar
+    3: [
       '/images/experience/kh-1.jpg',
       '/images/experience/kh-2.jpg',
       '/images/experience/kh-3.jpg',
       '/images/experience/kh-4.jpg'
     ],
     // GMF AeroAsia - 4 gambar
-    3: [
-      '/images/experience/gmf-1.jpg',
-      '/images/experience/gmf-2.jpg',
-      '/images/experience/gmf-3.jpg',
-      '/images/experience/gmf-4.jpg'
+    4: [
+      '/images/experience/ga-1.jpg',
+      '/images/experience/ga-2.jpg',
+      '/images/experience/ga-3.jpg',
+      '/images/experience/ga-4.jpg'
     ],
     // Hangry - 4 gambar
-    4: [
-      '/images/experience/hangry-1.jpg',
-      '/images/experience/hangry-2.jpg',
-      '/images/experience/hangry-3.jpg',
-      '/images/experience/hangry-4.jpg'
+    5: [
+      '/images/experience/ha-1.jpg',
+      '/images/experience/ha-2.jpg',
+      '/images/experience/ha-3.jpg',
+      '/images/experience/ha-4.jpg'
     ]
   },
 
