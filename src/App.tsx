@@ -22,7 +22,6 @@ function HomePage() {
         <VisualWorld />
         <Projects />
         <Skills />
-        <WorkWithMe />
         <Contact />
       </main>
       <Footer />

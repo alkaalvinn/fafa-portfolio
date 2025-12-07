@@ -37,6 +37,11 @@ const Projects = () => {
 
   // Generate banner images for projects
   const getProjectBanner = (projectId: number) => {
+    // Design project (ID: 1) uses local image
+    if (projectId === 1) {
+      return '/images/design-banner.png';
+    }
+    // Other projects use placeholder
     return `https://picsum.photos/seed/project-${projectId}/1200/600.jpg`;
   };
 
@@ -102,18 +107,6 @@ const Projects = () => {
 
                 {/* Project Content Overlay */}
                 <div className="absolute inset-0 flex flex-col justify-end p-4 sm:p-6 md:p-12 text-white">
-                  {/* Category and Featured Badges */}
-                  <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
-                    <div className={`${categoryColors[filteredProjects[currentIndex].category]} px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-medium flex items-center gap-1 sm:gap-2`}>
-                      {React.createElement(categoryIcons[filteredProjects[currentIndex].category], { size: 14, sm:16 })}
-                      {filteredProjects[currentIndex].category}
-                    </div>
-                    {filteredProjects[currentIndex].featured && (
-                      <div className="bg-yellow-500 text-black px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-medium">
-                        Featured
-                      </div>
-                    )}
-                  </div>
 
                   {/* Project Title */}
                   <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-5xl font-bold mb-3 sm:mb-4">

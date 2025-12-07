@@ -54,31 +54,27 @@ export const experiences: Experience[] = [
 export const projects: Project[] = [
   {
     id: 1,
-    title: 'Corporate Branding Campaign',
-    description: 'Complete branding campaign for multinational company',
-    category: 'design',
-    featured: true
-  },
-  {
-    id: 2,
     title: 'Product Photography Series',
     description: 'Professional product photography for e-commerce',
     category: 'photography',
-    featured: true
   },
   {
-    id: 3,
+    id: 2,
     title: 'Corporate Video Documentary',
     description: 'Documentary video production for company anniversary',
     category: 'videography',
-    featured: false
+  },
+  {
+    id: 3,
+    title: 'Corporate Branding Campaign',
+    description: 'Complete branding campaign for multinational company',
+    category: 'design',
   },
   {
     id: 4,
     title: 'Digital Marketing Communication',
     description: 'Strategic communication for digital marketing campaigns',
     category: 'communication',
-    featured: false
   }
 ];
 
