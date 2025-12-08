@@ -159,7 +159,7 @@ export const socialLinks = {
 
 export const portfolioImages = {
   // Hero Section - Tidak perlu diganti (fafa.png)
-  hero: '/images/fafa.png',
+  hero: '/images/fafa.webp',
 
   // Visual World Section - 24 gambar untuk rotasi
   visualWorld: [
@@ -170,30 +170,30 @@ export const portfolioImages = {
     // dst...
 
     // Temporary placeholder images (akan diganti nanti)
-    '/images/Photo/GMF/DSC04682.jpg',
-    '/images/placeholder-visual-2.jpg',
-    '/images/placeholder-visual-3.jpg',
-    '/images/placeholder-visual-4.jpg',
-    '/images/placeholder-visual-5.jpg',
-    '/images/placeholder-visual-6.jpg',
-    '/images/placeholder-visual-7.jpg',
-    '/images/placeholder-visual-8.jpg',
-    '/images/placeholder-visual-9.jpg',
-    '/images/placeholder-visual-10.jpg',
-    '/images/placeholder-visual-11.jpg',
-    '/images/placeholder-visual-12.jpg',
-    '/images/placeholder-visual-13.jpg',
-    '/images/placeholder-visual-14.jpg',
-    '/images/placeholder-visual-15.jpg',
-    '/images/placeholder-visual-16.jpg',
-    '/images/placeholder-visual-17.jpg',
-    '/images/placeholder-visual-18.jpg',
-    '/images/placeholder-visual-19.jpg',
-    '/images/placeholder-visual-20.jpg',
-    '/images/experience/23-1.webp',
-      '/images/experience/23-2.webp',
-      '/images/experience/23-3.webp',
-      '/images/experience/23-4.webp'
+    '/images/visualworld/1.webp',
+    '/images/visualworld/2.webp',
+    '/images/visualworld/3.webp',
+    '/images/visualworld/4.webp',
+    '/images/visualworld/5.webp',
+    '/images/visualworld/6.webp',
+    '/images/visualworld/7.webp',
+    '/images/visualworld/8.webp',
+    '/images/visualworld/9.webp',
+    '/images/visualworld/10.webp',
+    '/images/visualworld/11.webp',
+    '/images/visualworld/12.webp',
+    '/images/visualworld/13.webp',
+    '/images/visualworld/14.webp',
+    '/images/visualworld/15.webp',
+    '/images/visualworld/16.webp',
+    '/images/visualworld/17.webp',
+    '/images/visualworld/18.webp',
+    '/images/visualworld/19.webp',
+    '/images/visualworld/20.webp',
+    '/images/visualworld/21.webp',
+    '/images/visualworld/22.webp',
+    '/images/visualworld/23.webp',
+    '/images/visualworld/24.webp'
   ],
 
   // Experience Section - 4 gambar per perusahaan
@@ -262,7 +262,7 @@ export const placeholderImages = {
 
   // Contact placeholders
   contact: {
-    portrait1: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&h=400&fit=crop',
-    portrait2: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=500&fit=crop'
+    portrait1: '/images/co-1.webp',
+    portrait2: '/images/co-2.webp'
   }
 };

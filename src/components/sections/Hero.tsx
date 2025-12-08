@@ -175,7 +175,7 @@ const Hero = () => {
             <div className="flex items-center justify-between gap-20">
 
               {/* Left: Text */}
-              <div className="flex-1 max-w-xl">
+              <div className="flex-1 max-w-xl ml-10">
                 <h1
                   className="text-gray-900 font-medium tracking-tight mb-6"
                   style={{
@@ -209,7 +209,7 @@ const Hero = () => {
               </div>
 
               {/* Right: Image */}
-              <div className="flex-shrink-0">
+              <div className="flex-shrink-0 mr-10">
                 <img
                   src={portfolioImages.hero}
                   alt="Muhammad Fatih Abrar"
@@ -225,7 +225,7 @@ const Hero = () => {
             </div>
 
             {/* CTA Buttons */}
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-4 ml-10">
               <button
                 onClick={() => scrollToSection('#projects')}
                 className="px-6 py-3 -mt-10 bg-black text-white rounded-full hover:bg-gray-900 transition-all duration-200 font-medium text-sm hover:scale-105"
@@ -244,7 +244,7 @@ const Hero = () => {
             </div>
 
             {/* Social Links - DI BAWAH BUTTON */}
-            <div className="flex items-center gap-6 mt-8">
+            <div className="flex items-center gap-6 mt-8 ml-10">
               {[
                 { href: socialLinks.linkedin, label: 'LinkedIn' },
                 { href: socialLinks.instagram, label: 'Instagram' },

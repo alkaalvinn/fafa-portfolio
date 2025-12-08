@@ -15,14 +15,6 @@ const Experience = () => {
     if (images && images.length > 0) {
       return images;
     }
-
-    // Jika tidak ada, gunakan placeholder
-    return [
-      `https://picsum.photos/seed/experience-${companyId}-1/300/300.jpg`,
-      `https://picsum.photos/seed/experience-${companyId}-2/300/300.jpg`,
-      arrow,
-      `https://picsum.photos/seed/experience-${companyId}-4/300/300.jpg`,
-    ];
   };
 
   useEffect(() => {
@@ -127,7 +119,7 @@ const Experience = () => {
                     }}
                   >
                     <div className="container mx-auto max-w-7xl">
-                      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center -mt-6 sm:-mt-10">
+                      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-16 items-center -mt-6 sm:-mt-10">
                         {/* Left Side - Text Content */}
                         <div className="text-left space-y-3 sm:space-y-5">
                           {/* Period */}
@@ -167,9 +159,9 @@ const Experience = () => {
                           </div>
 
                           {/* Responsibilities */}
-                          <div className="pt-2 sm:pt-3">
+                          <div className="pt-0 sm:pt-2">
                             <ul
-                              className="space-y-0 sm:space-y-2.5 text-gray-600"
+                              className="space-y-0 sm:space-y-2 text-gray-600"
                               style={{
                                 fontSize: 'clamp(0.75rem, 2vw, 0.875rem)'
                               }}
@@ -186,7 +178,7 @@ const Experience = () => {
 
                         {/* Right Side - Images */}
                         <div className="relative">
-                          <div className="grid grid-cols-2 gap-2 sm:gap-4">
+                          <div className="grid grid-cols-2 gap-2 sm:gap-4 -pt-8 sm:pt-2">
                             {getExperienceImages(exp.id).map((image, imgIndex) => (
                               <div
                                 key={imgIndex}

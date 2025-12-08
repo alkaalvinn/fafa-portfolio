@@ -84,7 +84,7 @@ const Navbar = () => {
           : 'bg-white shadow-lg'
         : 'bg-transparent'
     }`}>
-      <div className="w-full px-4 py-2 pt-0 sm:px-6 sm:py-4">
+      <div className="w-full px-4 py-2 pt-2 sm:px-6 sm:py-4">
         <div className="w-full flex flex-col items-center justify-center gap-1">
           {/* Mobile Navigation - 2 Rows */}
           <div className="md:hidden w-full flex flex-col items-center justify-center gap-1">
