@@ -73,6 +73,10 @@ const Projects = () => {
     else if (projectId === 3) {
       return '/images/banner-3.png';
     }
+    // Communication
+    else if (projectId === 4) {
+      return '/images/banner-4.png';
+    }
 
     // Corporate Video Documentary (ID: 2) uses video
     if (category === 'videography' || projectId === 2) {

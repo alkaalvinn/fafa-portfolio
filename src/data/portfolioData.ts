@@ -10,7 +10,7 @@ export const experiences: Experience[] = [
       'Supporting consumer protection initiatives through creative production, campaign support, and event management.',
     responsibilities: [
       'Developed Terms of References (ToR) and creative briefs for Geber PK campaign, delivering 5 campaign series that reached 5,000+ participants.',
-      'Produced 10+ monthly creative assets for social media and offline campaigns to support consumer protection initiatives.',
+      'Produced 10+ monthly creative assets for social media and offline campaigns.',
       'Coordinated VIP guest relations and documentation for high-profile federal programs.',
       'Managed end-to-end KOL and speaker handling, from selection and briefing to on-site coordination.',
       'Supported seamless execution of large-scale campaign events across online and offline platforms.'
@@ -190,48 +190,48 @@ export const portfolioImages = {
     '/images/placeholder-visual-18.jpg',
     '/images/placeholder-visual-19.jpg',
     '/images/placeholder-visual-20.jpg',
-    '/images/placeholder-visual-21.jpg',
-    '/images/placeholder-visual-22.jpg',
-    '/images/placeholder-visual-23.jpg',
-    '/images/placeholder-visual-24.jpg'
+    '/images/experience/23-1.webp',
+      '/images/experience/23-2.webp',
+      '/images/experience/23-3.webp',
+      '/images/experience/23-4.webp'
   ],
 
   // Experience Section - 4 gambar per perusahaan
   experience: {
     // Bank Indonesia - 4 gambar
     1: [
-      '/images/experience/bi-1.jpg',
-      '/images/experience/bi-2.jpg',
-      '/images/experience/bi-3.jpg',
-      '/images/experience/bi-4.jpg'
+      '/images/experience/bi-1.webp',
+      '/images/experience/bi-2.webp',
+      '/images/experience/bi-3.webp',
+      '/images/experience/bi-4.webp'
     ],
     // PT Dua Puluh Tiga - 4 gambar
     2: [
-      '/images/experience/23-1.jpg',
-      '/images/experience/23-2.jpg',
-      '/images/experience/23-3.jpg',
-      '/images/experience/23-4.jpg'
+      '/images/experience/23-1.webp',
+      '/images/experience/23-2.webp',
+      '/images/experience/23-3.webp',
+      '/images/experience/23-4.webp'
     ],
     // Kraft Heinz - 4 gambar
     3: [
-      '/images/experience/kh-1.jpg',
-      '/images/experience/kh-2.jpg',
-      '/images/experience/kh-3.jpg',
-      '/images/experience/kh-4.jpg'
+      '/images/experience/kh-1.webp',
+      '/images/experience/kh-2.webp',
+      '/images/experience/kh-3.webp',
+      '/images/experience/kh-4.webp'
     ],
     // GMF AeroAsia - 4 gambar
     4: [
-      '/images/experience/ga-1.jpg',
-      '/images/experience/ga-2.jpg',
-      '/images/experience/ga-3.jpg',
-      '/images/experience/ga-4.jpg'
+      '/images/experience/ga-1.webp',
+      '/images/experience/ga-2.webp',
+      '/images/experience/ga-3.webp',
+      '/images/experience/ga-4.webp'
     ],
     // Hangry - 4 gambar
     5: [
-      '/images/experience/ha-1.jpg',
-      '/images/experience/ha-2.jpg',
-      '/images/experience/ha-3.jpg',
-      '/images/experience/ha-4.jpg'
+      '/images/experience/ha-1.webp',
+      '/images/experience/ha-2.webp',
+      '/images/experience/ha-3.webp',
+      '/images/experience/ha-4.webp'
     ]
   },
 

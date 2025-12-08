@@ -169,7 +169,7 @@ const Experience = () => {
                           {/* Responsibilities */}
                           <div className="pt-2 sm:pt-3">
                             <ul
-                              className="space-y-2 sm:space-y-2.5 text-gray-600"
+                              className="space-y-0 sm:space-y-2.5 text-gray-600"
                               style={{
                                 fontSize: 'clamp(0.75rem, 2vw, 0.875rem)'
                               }}
