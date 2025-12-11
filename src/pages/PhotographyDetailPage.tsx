@@ -1,0 +1,102 @@
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Footer from '../components/common/Footer';
+
+const PhotographyDetailPage = () => {
+  const navigate = useNavigate();
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [images, setImages] = useState([]);
+
+  useEffect(() => {
+    const imageFiles = Array.from({ length: 24 }, (_, i) => i + 1);
+    const imageData = imageFiles.map(num => ({
+      id: num,
+      src: `/images/visualworld/${num}.webp`,
+      alt: `Photography ${num}`,
+      orientation: num % 3 === 0 ? 'portrait' : 'landscape'
+    }));
+    setImages(imageData);
+  }, []);
+
+  const handleBackToProjects = () => {
+    navigate('/#projects');
+  };
+
+  return (
+    <div className="min-h-screen bg-white">
+      {/* Header Section */}
+      <div className="p-6 sm:p-8 md:p-10 pb-4">
+        <button
+          onClick={handleBackToProjects}
+          className="text-gray-600 hover:text-gray-900 text-sm sm:text-base mb-4 flex items-center gap-2 transition-colors"
+        >
+          ← Back to projects
+        </button>
+        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900">
+          Photography
+        </h1>
+      </div>
+
+      {/* Gallery Grid */}
+      <div className="px-6 sm:px-8 md:px-10 pb-20">
+        <div className="grid grid-cols-3 gap-2 sm:gap-3 md:gap-4 auto-rows-[200px] sm:auto-rows-[250px] md:auto-rows-[300px]">
+          {images.map((image, index) => {
+            // Create abstract layout
+            const isPortrait = index % 5 === 0 || index % 7 === 0;
+            const isLarge = index % 3 === 0;
+            const spanCols = isLarge ? 2 : 1;
+            const spanRows = isPortrait ? 2 : 1;
+
+            return (
+              <div
+                key={image.id}
+                className={`
+                  relative overflow-hidden rounded-lg cursor-pointer group
+                  ${spanCols === 2 ? 'col-span-2' : 'col-span-1'}
+                  ${spanRows === 2 ? 'row-span-2' : 'row-span-1'}
+                `}
+                onClick={() => setSelectedImage(image)}
+              >
+                <img
+                  src={image.src}
+                  alt={image.alt}
+                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Image Modal */}
+      {selectedImage && (
+        <div className="fixed inset-0 z-60 flex items-center justify-center p-4">
+          <div
+            className="absolute inset-0 bg-black/80 backdrop-blur-sm"
+            onClick={() => setSelectedImage(null)}
+          />
+          <div className="relative max-w-5xl max-h-[90vh]">
+            <button
+              onClick={() => setSelectedImage(null)}
+              className="absolute -top-12 right-0 text-white hover:text-gray-300 transition-colors"
+            >
+              <svg width="32" height="32" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+            <img
+              src={selectedImage.src}
+              alt={selectedImage.alt}
+              className="max-w-full max-h-[90vh] object-contain rounded-lg"
+            />
+          </div>
+        </div>
+      )}
+
+      <Footer />
+    </div>
+  );
+};
+
+export default PhotographyDetailPage;
