@@ -1,52 +1,90 @@
-import React from 'react';
-import { Calendar, User, ExternalLink, Tag } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Calendar, User, Tag } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import Footer from '../components/common/Footer';
+import { portfolioImages } from '../data/portfolioData';
 
 const DesignDetailPage = () => {
   const navigate = useNavigate();
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [images, setImages] = useState([]);
+
+  useEffect(() => {
+    // Combine Kraft Heinz and PT Dua Puluh Tiga images only
+    const kraftHeinzImages = portfolioImages.experience[3] || []; // Kraft Heinz
+    const ptDuaPuluhTigaImages = portfolioImages.experience[2] || []; // PT Dua Puluh Tiga
+    const allImages = [...kraftHeinzImages, ...ptDuaPuluhTigaImages];
+
+    const imageData = allImages.map((src, index) => ({
+      id: index,
+      src: src,
+      alt: `Design Project ${index + 1}`
+    }));
+    setImages(imageData);
+  }, []);
 
   const handleBackToProjects = () => {
     navigate('/#projects');
   };
 
-  const categoryColor = 'bg-gray-800';
-  const categoryIcon = '🎨';
-
   return (
     <div className="min-h-screen bg-white">
-      {/* Hero Image */}
-      <div className="relative h-48 sm:h-56 md:h-80 lg:h-96 overflow-hidden">
-        <img
-          src="https://picsum.photos/seed/design-detail/1200/600.jpg"
-          alt="Design"
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+      {/* Header Section */}
+      <div className="p-6 sm:p-8 md:p-20 pb-4">
+        <button
+          onClick={handleBackToProjects}
+          className="text-gray-600 hover:text-gray-900 text-sm sm:text-base mb-4 flex items-center gap-2 transition-colors"
+        >
+          ← Back to projects
+        </button>
+        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900">
+          Design Project
+        </h1>
+      </div>
 
-        {/* Project Title Overlay */}
-        <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 md:p-8">
-          <div className="flex items-center gap-2 sm:gap-3 mb-2 sm:mb-3">
-            <span className={`${categoryColor} text-white px-3 py-1 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-medium flex items-center gap-1 sm:gap-2`}>
-              <span>{categoryIcon}</span>
-              Design
-            </span>
-          </div>
-          <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-5xl font-bold text-white mb-2 sm:mb-3">
-            Design
-          </h1>
+      {/* Gallery Grid */}
+      <div className="px-6 sm:px-8 md:px-20 pb-12">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 sm:gap-4 md:gap-5">
+          {images.map((image, index) => (
+            <div
+              key={image.id}
+              className="relative overflow-hidden rounded-lg cursor-pointer group aspect-square"
+              onClick={() => setSelectedImage(image)}
+            >
+              <img
+                src={image.src}
+                alt={image.alt}
+                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+              />
+            </div>
+          ))}
         </div>
       </div>
 
-      {/* Back Navigation */}
-      <div className="container mx-auto px-6 py-4">
-        <button
-          onClick={handleBackToProjects}
-          className="inline-flex items-center gap-2 text-gray-600 hover:text-black transition-colors duration-200"
-        >
-          ← Back to Projects
-        </button>
-      </div>
+      {/* Image Modal */}
+      {selectedImage && (
+        <div className="fixed inset-0 z-60 flex items-center justify-center p-4">
+          <div
+            className="absolute inset-0 bg-black/80 backdrop-blur-sm"
+            onClick={() => setSelectedImage(null)}
+          />
+          <div className="relative max-w-5xl max-h-[90vh]">
+            <button
+              onClick={() => setSelectedImage(null)}
+              className="absolute -top-12 right-0 text-white hover:text-gray-300 transition-colors"
+            >
+              <svg width="32" height="32" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+            <img
+              src={selectedImage.src}
+              alt={selectedImage.alt}
+              className="max-w-full max-h-[90vh] object-contain rounded-lg"
+            />
+          </div>
+        </div>
+      )}
 
       {/* Content */}
       <div className="container mx-auto px-6 py-12 md:py-16">
@@ -134,25 +172,7 @@ const DesignDetailPage = () => {
             </p>
           </div>
 
-          {/* CTA Section */}
-          <div className="flex flex-col sm:flex-row gap-4 pt-6 border-t border-gray-200">
-            <a
-              href="#"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-6 py-3 bg-black text-white rounded-lg font-medium hover:bg-gray-800 transition-colors duration-200 inline-flex items-center justify-center gap-2"
-            >
-              <ExternalLink size={18} />
-              View Design Portfolio
-            </a>
-            <button
-              onClick={handleBackToProjects}
-              className="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-50 transition-colors duration-200"
-            >
-              Back to Projects
-            </button>
           </div>
-        </div>
       </div>
 
       <Footer />
