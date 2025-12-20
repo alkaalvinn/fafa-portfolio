@@ -1,51 +1,146 @@
-import React from 'react';
-import { Calendar, User, ExternalLink, Tag } from 'lucide-react';
+import React, { useState } from 'react';
+import { Calendar, User, Tag, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import Footer from '../components/common/Footer';
+import { Document, Page } from 'react-pdf';
+
+// react-pdf v9 should auto-configure worker
 
 const CommunicationDetailPage = () => {
   const navigate = useNavigate();
+  const [currentPdfIndex, setCurrentPdfIndex] = useState(0);
+  const [numPages, setNumPages] = useState(null);
+  const [pageNumber, setPageNumber] = useState(1);
+
+  // List of PDF files
+  const pdfFiles = [
+    { name: 'Backgrounders', path: '/pdf/210310210069_Muhammad Fatih Abrar_Backgrounders.pdf' },
+    { name: 'Konferensi Pers', path: '/pdf/210310210069_Muhammad Fatih Abrar_Konferensi Pers_Press Realese_Backgrounders.pdf' },
+    { name: 'Logo Guidelines', path: '/pdf/210310210069_Muhammad Fatih Abrar_Logo Guidelines.pdf' },
+    { name: 'Media Kit', path: '/pdf/210310210069_Muhammad Fatih Abrar_Media Kit.pdf' },
+    { name: 'Portfolio', path: '/pdf/210310210069_Muhammad Fatih Abrar.pdf' },
+    { name: 'Charity Event', path: '/pdf/Charity Event Pana Visual.pdf' },
+    { name: 'Radio Talkshow', path: '/pdf/210310210069_Muhammad Fatih Abrar_Radio Talkshow.pdf' },
+    { name: 'UTS', path: '/pdf/210310210069_Muhamamd Fatih Abrar_UTS.pdf' },
+    { name: 'Campaign Proposal', path: '/pdf/210310210069_MUHAMMAD FATIH ABRAR_CAMPAIGN PROPOSAL.pdf' },
+    { name: 'UAS', path: '/pdf/UAS_210310210069_Muhammad Fatih Abrar.pdf' },
+    { name: 'Miscellaneous Publicity', path: '/pdf/Micellaneous Publicity.pdf' },
+    { name: 'Press Conference', path: '/pdf/Press Conference.pdf' },
+    { name: 'Connected Campaign Deck', path: '/pdf/Connected to be Distracted - Campaign Deck.pdf' },
+    { name: 'Senyum Manis Campaign Deck', path: '/pdf/Senyum Manis dibalik Haus - Campaign Deck.pdf' },
+    { name: 'CV', path: '/pdf/CV.pdf' }
+  ];
 
   const handleBackToProjects = () => {
     navigate('/#projects');
   };
 
-  const categoryColor = 'bg-gray-900';
-  const categoryIcon = '💬';
+  function onDocumentLoadSuccess({ numPages }) {
+    setNumPages(numPages);
+    setPageNumber(1);
+  }
+
+  function changePdf(direction) {
+    if (direction === 'next' && currentPdfIndex < pdfFiles.length - 1) {
+      setCurrentPdfIndex(currentPdfIndex + 1);
+      setPageNumber(1);
+    } else if (direction === 'prev' && currentPdfIndex > 0) {
+      setCurrentPdfIndex(currentPdfIndex - 1);
+      setPageNumber(1);
+    }
+  }
+
+  function changePage(offset) {
+    setPageNumber(prevPageNumber => {
+      const newPageNumber = prevPageNumber + offset;
+      if (newPageNumber > numPages) return numPages;
+      if (newPageNumber < 1) return 1;
+      return newPageNumber;
+    });
+  }
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Hero Image */}
-      <div className="relative h-48 sm:h-56 md:h-80 lg:h-96 overflow-hidden">
-        <img
-          src="https://picsum.photos/seed/communication-detail/1200/600.jpg"
-          alt="Communication"
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-
-        {/* Project Title Overlay */}
-        <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 md:p-8">
-          <div className="flex items-center gap-2 sm:gap-3 mb-2 sm:mb-3">
-            <span className={`${categoryColor} text-white px-3 py-1 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-medium flex items-center gap-1 sm:gap-2`}>
-              <span>{categoryIcon}</span>
-              Communication
-            </span>
-          </div>
-          <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-5xl font-bold text-white mb-2 sm:mb-3">
-            Communication
-          </h1>
-        </div>
-      </div>
-
-      {/* Back Navigation */}
-      <div className="container mx-auto px-6 py-4">
+      {/* Header Section */}
+      <div className="p-6 sm:p-8 md:p-20 pb-4">
         <button
           onClick={handleBackToProjects}
-          className="inline-flex items-center gap-2 text-gray-600 hover:text-black transition-colors duration-200"
+          className="text-gray-600 hover:text-gray-900 text-sm sm:text-base mb-4 flex items-center gap-2 transition-colors"
         >
-          ← Back to Projects
+          ← Back to projects
         </button>
+        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900">
+          Communication
+        </h1>
+      </div>
+
+      {/* PDF Viewer Section */}
+      <div className="px-6 sm:px-8 md:px-20 pb-12">
+        <div className="bg-gray-50 rounded-lg p-4 sm:p-6">
+          {/* PDF Navigation */}
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center gap-4">
+              <button
+                onClick={() => changePdf('prev')}
+                disabled={currentPdfIndex === 0}
+                className={`p-2 rounded-lg ${currentPdfIndex === 0 ? 'bg-gray-200 text-gray-400' : 'bg-white text-gray-700 hover:bg-gray-100'} transition-colors`}
+              >
+                <ChevronLeft size={20} />
+              </button>
+              <h3 className="text-lg font-semibold text-gray-900">
+                {pdfFiles[currentPdfIndex].name}
+              </h3>
+              <button
+                onClick={() => changePdf('next')}
+                disabled={currentPdfIndex === pdfFiles.length - 1}
+                className={`p-2 rounded-lg ${currentPdfIndex === pdfFiles.length - 1 ? 'bg-gray-200 text-gray-400' : 'bg-white text-gray-700 hover:bg-gray-100'} transition-colors`}
+              >
+                <ChevronRight size={20} />
+              </button>
+            </div>
+            <div className="flex items-center gap-2 text-sm text-gray-600">
+              {currentPdfIndex + 1} / {pdfFiles.length}
+            </div>
+          </div>
+
+          {/* PDF Display */}
+          <div className="bg-white rounded-lg shadow-sm overflow-auto">
+            <div className="flex justify-center">
+              <Document
+                file={pdfFiles[currentPdfIndex].path}
+                onLoadSuccess={onDocumentLoadSuccess}
+                loading={<div className="py-8 text-center text-gray-500">Loading PDF...</div>}
+                error={<div className="py-8 text-center text-red-500">Failed to load PDF</div>}
+              >
+                <Page pageNumber={pageNumber} />
+              </Document>
+            </div>
+          </div>
+
+          {/* Page Navigation */}
+          {numPages && (
+            <div className="flex items-center justify-between mt-4">
+              <button
+                onClick={() => changePage(-1)}
+                disabled={pageNumber <= 1}
+                className={`px-4 py-2 rounded-lg ${pageNumber <= 1 ? 'bg-gray-200 text-gray-400' : 'bg-white text-gray-700 hover:bg-gray-100'} transition-colors`}
+              >
+                Previous
+              </button>
+              <div className="text-sm text-gray-600">
+                Page {pageNumber} of {numPages}
+              </div>
+              <button
+                onClick={() => changePage(1)}
+                disabled={pageNumber >= numPages}
+                className={`px-4 py-2 rounded-lg ${pageNumber >= numPages ? 'bg-gray-200 text-gray-400' : 'bg-white text-gray-700 hover:bg-gray-100'} transition-colors`}
+              >
+                Next
+              </button>
+            </div>
+          )}
+
+                  </div>
       </div>
 
       {/* Content */}
@@ -134,25 +229,7 @@ const CommunicationDetailPage = () => {
             </p>
           </div>
 
-          {/* CTA Section */}
-          <div className="flex flex-col sm:flex-row gap-4 pt-6 border-t border-gray-200">
-            <a
-              href="#"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-6 py-3 bg-black text-white rounded-lg font-medium hover:bg-gray-800 transition-colors duration-200 inline-flex items-center justify-center gap-2"
-            >
-              <ExternalLink size={18} />
-              View Case Studies
-            </a>
-            <button
-              onClick={handleBackToProjects}
-              className="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-50 transition-colors duration-200"
-            >
-              Back to Projects
-            </button>
-          </div>
-        </div>
+                  </div>
       </div>
 
       <Footer />

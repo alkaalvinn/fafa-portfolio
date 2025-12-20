@@ -1,55 +1,136 @@
-import React from 'react';
-import { Calendar, User, ExternalLink, Tag } from 'lucide-react';
+import React, { useState } from 'react';
+import { Calendar, User, Tag, ChevronLeft, ChevronRight, Play, Pause, Volume2 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import Footer from '../components/common/Footer';
 
 const VideographyDetailPage = () => {
   const navigate = useNavigate();
+  const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [volume, setVolume] = useState(1);
+
+  // List of video files
+  const videoFiles = [
+    { name: 'Project Showcase 1', path: '/videos/video.mp4' },
+    { name: 'Project Showcase 2', path: '/videos/video2.mp4' },
+    { name: 'Project Showcase 3', path: '/videos/video3.mp4' },
+    { name: 'Project Showcase 4', path: '/videos/video4.mp4' }
+  ];
 
   const handleBackToProjects = () => {
     navigate('/#projects');
   };
 
-  const categoryColor = 'bg-gray-600';
-  const categoryIcon = '🎥';
+  const changeVideo = (direction) => {
+    if (direction === 'next' && currentVideoIndex < videoFiles.length - 1) {
+      setCurrentVideoIndex(currentVideoIndex + 1);
+      // Video akan otomatis dimainkan karena autoPlay
+    } else if (direction === 'prev' && currentVideoIndex > 0) {
+      setCurrentVideoIndex(currentVideoIndex - 1);
+      // Video akan otomatis dimainkan karena autoPlay
+    }
+  };
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Hero Image */}
-      <div className="relative h-48 sm:h-56 md:h-80 lg:h-96 overflow-hidden">
-        <img
-          src="https://picsum.photos/seed/videography-detail/1200/600.jpg"
-          alt="Videography"
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+      {/* Header Section */}
+      <div className="p-6 sm:p-8 md:p-20 pb-4">
+        <button
+          onClick={handleBackToProjects}
+          className="text-gray-600 hover:text-gray-900 text-sm sm:text-base mb-4 flex items-center gap-2 transition-colors"
+        >
+          ← Back to projects
+        </button>
+        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900">
+          Videography
+        </h1>
+      </div>
 
-        {/* Project Title Overlay */}
-        <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 md:p-8">
-          <div className="flex items-center gap-2 sm:gap-3 mb-2 sm:mb-3">
-            <span className={`${categoryColor} text-white px-3 py-1 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-medium flex items-center gap-1 sm:gap-2`}>
-              <span>{categoryIcon}</span>
-              Videography
-            </span>
+      {/* Video Viewer Section */}
+      <div className="px-6 sm:px-8 md:px-20 pb-4">
+        <div className="bg-gray-50 rounded-lg p-4 sm:p-6">
+          {/* Video Navigation */}
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center gap-4">
+              <button
+                onClick={() => changeVideo('prev')}
+                disabled={currentVideoIndex === 0}
+                className={`p-2 rounded-lg ${currentVideoIndex === 0 ? 'bg-gray-200 text-gray-400' : 'bg-white text-gray-700 hover:bg-gray-100'} transition-colors`}
+              >
+                <ChevronLeft size={20} />
+              </button>
+              <h3 className="text-lg font-semibold text-gray-900">
+                {videoFiles[currentVideoIndex].name}
+              </h3>
+              <button
+                onClick={() => changeVideo('next')}
+                disabled={currentVideoIndex === videoFiles.length - 1}
+                className={`p-2 rounded-lg ${currentVideoIndex === videoFiles.length - 1 ? 'bg-gray-200 text-gray-400' : 'bg-white text-gray-700 hover:bg-gray-100'} transition-colors`}
+              >
+                <ChevronRight size={20} />
+              </button>
+            </div>
+            <div className="flex items-center gap-2 text-sm text-gray-600">
+              {currentVideoIndex + 1} / {videoFiles.length}
+            </div>
           </div>
-          <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-5xl font-bold text-white mb-2 sm:mb-3">
-            Videography
-          </h1>
+
+          {/* Video Player */}
+          <div className="bg-black rounded-lg overflow-hidden relative">
+            <video
+              key={currentVideoIndex} // Reset video when changing
+              className="w-full aspect-video"
+              autoPlay
+              muted
+              controls
+              playsInline
+              loop
+              onPlay={() => setIsPlaying(true)}
+              onPause={() => setIsPlaying(false)}
+            >
+              <source src={videoFiles[currentVideoIndex].path} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+
+          {/* Video Thumbnails */}
+          <div className="grid grid-cols-4 gap-2 mt-4">
+            {videoFiles.map((video, index) => (
+              <button
+                key={index}
+                onClick={() => {
+                  setCurrentVideoIndex(index);
+                  // Video akan otomatis dimainkan karena autoPlay
+                }}
+                className={`relative aspect-video rounded overflow-hidden transition-all ${
+                  index === currentVideoIndex
+                    ? 'ring-2 ring-black ring-offset-2'
+                    : 'hover:opacity-80'
+                }`}
+              >
+                <video
+                  src={video.path}
+                  className="w-full h-full object-cover"
+                  muted
+                  onMouseEnter={(e) => {
+                    e.currentTarget.play();
+                    setTimeout(() => e.currentTarget.pause(), 2000); // Play 2 seconds then pause
+                  }}
+                />
+                <div className="absolute inset-0 bg-black/20 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
+                  <Play size={20} className="text-white" />
+                </div>
+                <span className="absolute bottom-1 right-1 text-xs bg-black/70 text-white px-1 rounded">
+                  {index + 1}
+                </span>
+              </button>
+            ))}
+          </div>
         </div>
       </div>
 
-      {/* Back Navigation */}
-      <div className="container mx-auto px-6 py-4">
-        <button
-          onClick={handleBackToProjects}
-          className="inline-flex items-center gap-2 text-gray-600 hover:text-black transition-colors duration-200"
-        >
-          ← Back to Projects
-        </button>
-      </div>
-
       {/* Content */}
-      <div className="container mx-auto px-6 py-12 md:py-16">
+      <div className="container mx-auto px-6 py-2 md:py-16">
         <div className="max-w-4xl mx-auto">
           {/* Project Meta */}
           <div className="flex flex-wrap gap-3 sm:gap-4 mb-6 sm:mb-8 pb-4 sm:pb-6 border-b border-gray-200">
@@ -134,25 +215,7 @@ const VideographyDetailPage = () => {
             </p>
           </div>
 
-          {/* CTA Section */}
-          <div className="flex flex-col sm:flex-row gap-4 pt-6 border-t border-gray-200">
-            <a
-              href="#"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-6 py-3 bg-black text-white rounded-lg font-medium hover:bg-gray-800 transition-colors duration-200 inline-flex items-center justify-center gap-2"
-            >
-              <ExternalLink size={18} />
-              View Portfolio
-            </a>
-            <button
-              onClick={handleBackToProjects}
-              className="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-50 transition-colors duration-200"
-            >
-              Back to Projects
-            </button>
-          </div>
-        </div>
+                  </div>
       </div>
 
       <Footer />
