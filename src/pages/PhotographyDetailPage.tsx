@@ -25,7 +25,7 @@ const PhotographyDetailPage = () => {
   return (
     <div className="min-h-screen bg-white">
       {/* Header Section */}
-      <div className="p-6 sm:p-8 md:p-10 pb-4">
+      <div className="p-6 sm:p-8 md:p-20 pb-4">
         <button
           onClick={handleBackToProjects}
           className="text-gray-600 hover:text-gray-900 text-sm sm:text-base mb-4 flex items-center gap-2 transition-colors"
@@ -38,22 +38,25 @@ const PhotographyDetailPage = () => {
       </div>
 
       {/* Gallery Grid */}
-      <div className="px-6 sm:px-8 md:px-10 pb-20">
-        <div className="grid grid-cols-3 gap-2 sm:gap-3 md:gap-4 auto-rows-[200px] sm:auto-rows-[250px] md:auto-rows-[300px]">
+      <div className="px-6 sm:px-8 md:px-20 pb-20">
+        <div className="grid grid-cols-4 gap-2 sm:gap-3 md:gap-4 auto-rows-[140px] sm:auto-rows-[160px] md:auto-rows-[180px]">
           {images.map((image, index) => {
-            // Create abstract layout
-            const isPortrait = index % 5 === 0 || index % 7 === 0;
-            const isLarge = index % 3 === 0;
-            const spanCols = isLarge ? 2 : 1;
-            const spanRows = isPortrait ? 2 : 1;
+            // Repeating pattern that perfectly fills 4-column grid without gaps
+            const pos = index % 6; // Pattern repeats every 6 items
+            let cols = 1, rows = 1;
+
+            if (pos === 0) { cols = 2; rows = 1; } // Wide photo spanning 2 cols
+            else if (pos === 2 || pos === 3) { cols = 1; rows = 2; } // Tall photos
+            else if (pos === 4) { cols = 2; rows = 1; } // Another wide photo
+            // pos 1 and 5 remain as single squares
 
             return (
               <div
                 key={image.id}
                 className={`
                   relative overflow-hidden rounded-lg cursor-pointer group
-                  ${spanCols === 2 ? 'col-span-2' : 'col-span-1'}
-                  ${spanRows === 2 ? 'row-span-2' : 'row-span-1'}
+                  ${cols === 2 ? 'col-span-2' : 'col-span-1'}
+                  ${rows === 2 ? 'row-span-2' : 'row-span-1'}
                 `}
                 onClick={() => setSelectedImage(image)}
               >
@@ -62,7 +65,6 @@ const PhotographyDetailPage = () => {
                   alt={image.alt}
                   className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
               </div>
             );
           })}
