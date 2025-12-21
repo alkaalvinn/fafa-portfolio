@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/common/Navbar';
 import Hero from './components/sections/Hero';
+import CreativeBanner from './components/sections/CreativeBanner';
 import Experience from './components/sections/Experience';
 import VisualWorld from './components/sections/VisualWorld';
 import Projects from './components/sections/Projects';
@@ -18,6 +19,7 @@ function HomePage() {
       <Navbar />
       <main>
         <Hero />
+        <CreativeBanner />
         <Experience />
         <VisualWorld />
         <Projects />
