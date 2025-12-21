@@ -2,15 +2,23 @@ import React, { useState } from 'react';
 import { Calendar, User, Tag, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import Footer from '../components/common/Footer';
-import { Document, Page } from 'react-pdf';
 
-// react-pdf v9 should auto-configure worker
+// Core viewer
+import { Viewer } from '@react-pdf-viewer/core';
+
+// Configure PDF.js worker
+import { GlobalWorkerOptions } from 'pdfjs-dist';
+GlobalWorkerOptions.workerSrc = new URL(
+  'pdfjs-dist/build/pdf.worker.min.js',
+  import.meta.url
+).toString();
+
+// Import styles
+import '@react-pdf-viewer/core/lib/styles/index.css';
 
 const CommunicationDetailPage = () => {
   const navigate = useNavigate();
   const [currentPdfIndex, setCurrentPdfIndex] = useState(0);
-  const [numPages, setNumPages] = useState(null);
-  const [pageNumber, setPageNumber] = useState(1);
 
   // List of PDF files
   const pdfFiles = [
@@ -35,28 +43,12 @@ const CommunicationDetailPage = () => {
     navigate('/#projects');
   };
 
-  function onDocumentLoadSuccess({ numPages }) {
-    setNumPages(numPages);
-    setPageNumber(1);
-  }
-
   function changePdf(direction) {
     if (direction === 'next' && currentPdfIndex < pdfFiles.length - 1) {
       setCurrentPdfIndex(currentPdfIndex + 1);
-      setPageNumber(1);
     } else if (direction === 'prev' && currentPdfIndex > 0) {
       setCurrentPdfIndex(currentPdfIndex - 1);
-      setPageNumber(1);
     }
-  }
-
-  function changePage(offset) {
-    setPageNumber(prevPageNumber => {
-      const newPageNumber = prevPageNumber + offset;
-      if (newPageNumber > numPages) return numPages;
-      if (newPageNumber < 1) return 1;
-      return newPageNumber;
-    });
   }
 
   return (
@@ -104,41 +96,11 @@ const CommunicationDetailPage = () => {
           </div>
 
           {/* PDF Display */}
-          <div className="bg-white rounded-lg shadow-sm overflow-auto">
-            <div className="flex justify-center">
-              <Document
-                file={pdfFiles[currentPdfIndex].path}
-                onLoadSuccess={onDocumentLoadSuccess}
-                loading={<div className="py-8 text-center text-gray-500">Loading PDF...</div>}
-                error={<div className="py-8 text-center text-red-500">Failed to load PDF</div>}
-              >
-                <Page pageNumber={pageNumber} />
-              </Document>
-            </div>
+          <div className="bg-white rounded-lg shadow-sm overflow-auto" style={{ height: '750px' }}>
+            <Viewer
+              fileUrl={pdfFiles[currentPdfIndex].path}
+            />
           </div>
-
-          {/* Page Navigation */}
-          {numPages && (
-            <div className="flex items-center justify-between mt-4">
-              <button
-                onClick={() => changePage(-1)}
-                disabled={pageNumber <= 1}
-                className={`px-4 py-2 rounded-lg ${pageNumber <= 1 ? 'bg-gray-200 text-gray-400' : 'bg-white text-gray-700 hover:bg-gray-100'} transition-colors`}
-              >
-                Previous
-              </button>
-              <div className="text-sm text-gray-600">
-                Page {pageNumber} of {numPages}
-              </div>
-              <button
-                onClick={() => changePage(1)}
-                disabled={pageNumber >= numPages}
-                className={`px-4 py-2 rounded-lg ${pageNumber >= numPages ? 'bg-gray-200 text-gray-400' : 'bg-white text-gray-700 hover:bg-gray-100'} transition-colors`}
-              >
-                Next
-              </button>
-            </div>
-          )}
 
                   </div>
       </div>
