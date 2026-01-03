@@ -75,6 +75,20 @@ export const experiences: Experience[] = [
       'Ensured visuals aligned with brand standards to maximize engagement.',
       'Worked closely with marketing team to support ongoing campaigns.'
     ]
+  },
+  {
+    id: 6,
+    company: 'Pana Visual',
+    position: 'Chief Operating Officer & Founder',
+    period: 'July 2020 - December 2022',
+    description:
+      'Managed multi-client projects, produced tailored content, supported advertising pitches, and contributed to improved client satisfaction.',
+    responsibilities: [
+      'Acquired and managed projects for over 10 clients over a 2-year period.',
+      'Developed and produced 10+ pieces of content per client each month, tailored to specific needs.',
+      'Assisted in pitching 5 advertising decks, successfully addressing and fulfilling client requirements.',
+      'Significantly enhanced client customer satisfaction through strategic improvements and effective olutions.'
+    ]
   }
 ];
 
@@ -232,6 +246,12 @@ export const portfolioImages = {
       '/images/experience/ha-2.webp',
       '/images/experience/ha-3.webp',
       '/images/experience/ha-4.webp'
+    ],
+    6: [
+      '/images/experience/pa-1.webp',
+      '/images/experience/pa-2.webp',
+      '/images/experience/pa-3.webp',
+      '/images/experience/pa-4.webp'
     ]
   },
 
