@@ -3,7 +3,6 @@ import { portfolioImages, placeholderImages } from '../../data/portfolioData';
 
 const VisualWorld = () => {
   const [hoveredImage, setHoveredImage] = useState(null);
-  const [rotation, setRotation] = useState(0);
   const [scrollProgress, setScrollProgress] = useState(0);
 
   // Portfolio images dari portfolioData
@@ -30,14 +29,6 @@ const VisualWorld = () => {
 
   // Background hero image
   const heroImage = "/images/visual.webp";
-
-  // Continuous rotation animation
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setRotation(prev => (prev + 0.08) % 360);
-    }, 16);
-    return () => clearInterval(interval);
-  }, []);
 
   // Scroll progress dengan tracking lebih detail
   useEffect(() => {
@@ -146,6 +137,7 @@ const VisualWorld = () => {
             <img
               src={heroImage}
               alt="Visual World"
+              loading="eager"
               className="w-full h-full object-cover"
             />
           </div>
@@ -190,12 +182,12 @@ const VisualWorld = () => {
             </h2>
           </div>
 
-          {/* Rotating Circle of Images - 24 gambar */}
+          {/* Circle of Images - 24 gambar (tanpa rotasi) */}
           <div className="relative w-full h-full flex items-center justify-center">
             {visualImages.map((image, index) => {
               const isHovered = hoveredImage === image.id;
               const { radius, imageSize, isMobile } = getResponsiveValues();
-              const position = calculateCircularPosition(index, visualImages.length, radius, rotation);
+              const position = calculateCircularPosition(index, visualImages.length, radius, 0);
               const imageRotation = position.angle - 90;
 
               return (
@@ -214,10 +206,12 @@ const VisualWorld = () => {
                   onMouseLeave={() => setHoveredImage(null)}
                 >
                   <div className="relative w-full h-full overflow-hidden shadow-2xl">
-                    <div
-                      className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-700"
+                    <img
+                      src={image.imageUrl}
+                      alt={`Visual World ${image.id}`}
+                      loading="lazy"
+                      className="absolute inset-0 w-full h-full object-cover transition-all duration-700"
                       style={{
-                        backgroundImage: `url(${image.imageUrl})`,
                         transform: isHovered ? 'scale(1.15)' : 'scale(1)',
                         filter: isHovered ? 'brightness(1.2) contrast(1.2)' : 'brightness(0.8) contrast(1)'
                       }}
