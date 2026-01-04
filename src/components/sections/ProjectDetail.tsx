@@ -3,8 +3,15 @@ import PhotographyDetail from './PhotographyDetail';
 import VideographyDetail from './VideographyDetail';
 import DesignDetail from './DesignDetail';
 import CommunicationDetail from './CommunicationDetail';
+import type { Project } from '../../types';
 
-const ProjectDetail = ({ project, isOpen, onClose }) => {
+interface ProjectDetailProps {
+  project: Project;
+  isOpen: boolean;
+  onClose?: () => void;
+}
+
+const ProjectDetail = ({ project, isOpen, onClose }: ProjectDetailProps) => {
   if (!project || !isOpen) return null;
 
   switch (project.category) {

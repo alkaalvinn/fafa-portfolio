@@ -43,7 +43,7 @@ const CommunicationDetailPage = () => {
     navigate('/#projects');
   };
 
-  function changePdf(direction) {
+  function changePdf(direction: 'next' | 'prev') {
     if (direction === 'next' && currentPdfIndex < pdfFiles.length - 1) {
       setCurrentPdfIndex(currentPdfIndex + 1);
     } else if (direction === 'prev' && currentPdfIndex > 0) {
@@ -111,15 +111,15 @@ const CommunicationDetailPage = () => {
           {/* Project Meta */}
           <div className="flex flex-wrap gap-3 sm:gap-4 mb-6 sm:mb-8 pb-4 sm:pb-6 border-b border-gray-200">
             <div className="flex items-center gap-1.5 sm:gap-2 text-gray-600">
-              <Calendar size={16} sm:size={18} />
+              <Calendar size={16}  />
               <span className="text-xs sm:text-sm">2024</span>
             </div>
             <div className="flex items-center gap-1.5 sm:gap-2 text-gray-600">
-              <User size={16} sm:size={18} />
+              <User size={16}  />
               <span className="text-xs sm:text-sm">Communication Strategist</span>
             </div>
             <div className="flex items-center gap-1.5 sm:gap-2 text-gray-600">
-              <Tag size={16} sm:size={18} />
+              <Tag size={16}  />
               <span className="text-xs sm:text-sm">Communication</span>
             </div>
           </div>

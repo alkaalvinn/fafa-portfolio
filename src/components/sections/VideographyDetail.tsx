@@ -2,7 +2,12 @@ import React from 'react';
 import { X, Calendar, User, ExternalLink, Tag } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
-const VideographyDetail = ({ isOpen, onClose }) => {
+interface VideographyDetailProps {
+  isOpen: boolean;
+  onClose?: () => void;
+}
+
+const VideographyDetail = ({ isOpen }: VideographyDetailProps) => {
   const navigate = useNavigate();
 
   if (!isOpen) return null;
@@ -31,7 +36,7 @@ const VideographyDetail = ({ isOpen, onClose }) => {
             onClick={handleBackToProjects}
             className="absolute top-3 right-3 sm:top-4 sm:right-4 z-10 bg-white/90 hover:bg-white text-gray-900 p-1.5 sm:p-2 rounded-full shadow-lg transition-all duration-200 hover:scale-110"
           >
-            <X size={20} sm:size={24} />
+            <X size={20}  />
           </button>
 
           {/* Hero Image */}
@@ -62,15 +67,15 @@ const VideographyDetail = ({ isOpen, onClose }) => {
             {/* Project Meta */}
             <div className="flex flex-wrap gap-3 sm:gap-4 mb-6 sm:mb-8 pb-4 sm:pb-6 border-b border-gray-200">
               <div className="flex items-center gap-1.5 sm:gap-2 text-gray-600">
-                <Calendar size={16} sm:size={18} />
+                <Calendar size={16}  />
                 <span className="text-xs sm:text-sm">2024</span>
               </div>
               <div className="flex items-center gap-1.5 sm:gap-2 text-gray-600">
-                <User size={16} sm:size={18} />
+                <User size={16}  />
                 <span className="text-xs sm:text-sm">Video Producer</span>
               </div>
               <div className="flex items-center gap-1.5 sm:gap-2 text-gray-600">
-                <Tag size={16} sm:size={18} />
+                <Tag size={16}  />
                 <span className="text-xs sm:text-sm">Videography</span>
               </div>
             </div>

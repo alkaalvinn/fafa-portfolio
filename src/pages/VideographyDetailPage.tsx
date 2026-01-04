@@ -1,13 +1,11 @@
-import React, { useState } from 'react';
-import { Calendar, User, Tag, ChevronLeft, ChevronRight, Play, Pause, Volume2 } from 'lucide-react';
+import { useState } from 'react';
+import { Calendar, User, Tag, ChevronLeft, ChevronRight, Play } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import Footer from '../components/common/Footer';
 
 const VideographyDetailPage = () => {
   const navigate = useNavigate();
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [volume, setVolume] = useState(1);
 
   // List of video files
   const videoFiles = [
@@ -21,7 +19,7 @@ const VideographyDetailPage = () => {
     navigate('/#projects');
   };
 
-  const changeVideo = (direction) => {
+  const changeVideo = (direction: 'next' | 'prev') => {
     if (direction === 'next' && currentVideoIndex < videoFiles.length - 1) {
       setCurrentVideoIndex(currentVideoIndex + 1);
       // Video akan otomatis dimainkan karena autoPlay
@@ -85,8 +83,6 @@ const VideographyDetailPage = () => {
               controls
               playsInline
               loop
-              onPlay={() => setIsPlaying(true)}
-              onPause={() => setIsPlaying(false)}
             >
               <source src={videoFiles[currentVideoIndex].path} type="video/mp4" />
               Your browser does not support the video tag.
@@ -135,15 +131,15 @@ const VideographyDetailPage = () => {
           {/* Project Meta */}
           <div className="flex flex-wrap gap-3 sm:gap-4 mb-6 sm:mb-8 pb-4 sm:pb-6 border-b border-gray-200">
             <div className="flex items-center gap-1.5 sm:gap-2 text-gray-600">
-              <Calendar size={16} sm:size={18} />
+              <Calendar size={16}  />
               <span className="text-xs sm:text-sm">2024</span>
             </div>
             <div className="flex items-center gap-1.5 sm:gap-2 text-gray-600">
-              <User size={16} sm:size={18} />
+              <User size={16}  />
               <span className="text-xs sm:text-sm">Video Producer</span>
             </div>
             <div className="flex items-center gap-1.5 sm:gap-2 text-gray-600">
-              <Tag size={16} sm:size={18} />
+              <Tag size={16}  />
               <span className="text-xs sm:text-sm">Videography</span>
             </div>
           </div>

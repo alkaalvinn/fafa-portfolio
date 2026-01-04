@@ -1,4 +1,4 @@
-import { Mail, Linkedin, Instagram, ExternalLink, Github, Twitter } from 'lucide-react';
+import { Mail, Linkedin, Instagram, ExternalLink } from 'lucide-react';
 import { socialLinks } from '../../data/portfolioData';
 
 const Footer = () => {

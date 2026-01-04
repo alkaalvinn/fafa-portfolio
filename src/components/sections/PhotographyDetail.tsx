@@ -1,11 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { X } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
-const PhotographyDetail = ({ isOpen, onClose }) => {
+interface ImageData {
+  id: number;
+  src: string;
+  alt: string;
+  orientation: string;
+}
+
+interface PhotographyDetailProps {
+  isOpen: boolean;
+  onClose?: () => void;
+}
+
+const PhotographyDetail = ({ isOpen }: PhotographyDetailProps) => {
   const navigate = useNavigate();
-  const [selectedImage, setSelectedImage] = useState(null);
-  const [images, setImages] = useState([]);
+  const [selectedImage, setSelectedImage] = useState<ImageData | null>(null);
+  const [images, setImages] = useState<ImageData[]>([]);
 
   useEffect(() => {
     if (isOpen) {
@@ -43,7 +55,7 @@ const PhotographyDetail = ({ isOpen, onClose }) => {
             onClick={handleBackToProjects}
             className="absolute top-3 right-3 sm:top-4 sm:right-4 z-10 bg-white/90 hover:bg-white text-gray-900 p-1.5 sm:p-2 rounded-full shadow-lg transition-all duration-200 hover:scale-110"
           >
-            <X size={20} sm:size={24} />
+            <X size={20}  />
           </button>
 
           {/* Header Section */}

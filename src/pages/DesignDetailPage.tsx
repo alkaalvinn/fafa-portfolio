@@ -1,13 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Calendar, User, Tag } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import Footer from '../components/common/Footer';
 import { portfolioImages } from '../data/portfolioData';
 
+interface ImageData {
+  id: number;
+  src: string;
+  alt: string;
+}
+
 const DesignDetailPage = () => {
   const navigate = useNavigate();
-  const [selectedImage, setSelectedImage] = useState(null);
-  const [images, setImages] = useState([]);
+  const [selectedImage, setSelectedImage] = useState<ImageData | null>(null);
+  const [images, setImages] = useState<ImageData[]>([]);
 
   useEffect(() => {
     // Combine Kraft Heinz and PT Dua Puluh Tiga images only
@@ -92,15 +98,15 @@ const DesignDetailPage = () => {
           {/* Project Meta */}
           <div className="flex flex-wrap gap-3 sm:gap-4 mb-6 sm:mb-8 pb-4 sm:pb-6 border-b border-gray-200">
             <div className="flex items-center gap-1.5 sm:gap-2 text-gray-600">
-              <Calendar size={16} sm:size={18} />
+              <Calendar size={16}  />
               <span className="text-xs sm:text-sm">2024</span>
             </div>
             <div className="flex items-center gap-1.5 sm:gap-2 text-gray-600">
-              <User size={16} sm:size={18} />
+              <User size={16}  />
               <span className="text-xs sm:text-sm">Creative Director</span>
             </div>
             <div className="flex items-center gap-1.5 sm:gap-2 text-gray-600">
-              <Tag size={16} sm:size={18} />
+              <Tag size={16}  />
               <span className="text-xs sm:text-sm">Design</span>
             </div>
           </div>

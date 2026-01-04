@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { portfolioImages, placeholderImages } from '../../data/portfolioData';
 import emailjs from '@emailjs/browser';
 
@@ -18,7 +18,7 @@ const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState('idle');
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
@@ -121,7 +121,8 @@ const Contact = () => {
               className="w-full h-full object-cover"
               onError={(e) => {
                 // Fallback ke placeholder jika gambar tidak ditemukan
-                e.target.src = placeholderImages.contact.portrait1;
+                const target = e.target as HTMLImageElement;
+                target.src = placeholderImages.contact.portrait1;
               }}
             />
           </div>
@@ -152,7 +153,8 @@ const Contact = () => {
                 alt="Portrait 1"
                 className="w-full h-full object-cover"
                 onError={(e) => {
-                  e.target.src = placeholderImages.contact.portrait1;
+                  const target = e.target as HTMLImageElement;
+                  target.src = placeholderImages.contact.portrait1;
                 }}
               />
             </div>
@@ -165,7 +167,8 @@ const Contact = () => {
               alt="Portrait 2"
               className="w-full h-full object-cover"
               onError={(e) => {
-                e.target.src = placeholderImages.contact.portrait2;
+                const target = e.target as HTMLImageElement;
+                target.src = placeholderImages.contact.portrait2;
               }}
             />
           </div>
@@ -207,7 +210,8 @@ const Contact = () => {
                 alt="Portrait 2"
                 className="w-full h-full object-cover"
                 onError={(e) => {
-                  e.target.src = placeholderImages.contact.portrait2;
+                  const target = e.target as HTMLImageElement;
+                  target.src = placeholderImages.contact.portrait2;
                 }}
               />
             </div>

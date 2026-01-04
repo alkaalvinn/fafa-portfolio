@@ -1,11 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Footer from '../components/common/Footer';
 
+interface ImageData {
+  id: number;
+  src: string;
+  alt: string;
+  orientation: string;
+}
+
 const PhotographyDetailPage = () => {
   const navigate = useNavigate();
-  const [selectedImage, setSelectedImage] = useState(null);
-  const [images, setImages] = useState([]);
+  const [selectedImage, setSelectedImage] = useState<ImageData | null>(null);
+  const [images, setImages] = useState<ImageData[]>([]);
 
   useEffect(() => {
     const imageFiles = Array.from({ length: 24 }, (_, i) => i + 1);

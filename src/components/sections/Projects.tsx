@@ -180,7 +180,7 @@ const Projects = () => {
                     to={`/project/${filteredProjects[currentIndex].id}`}
                     className="bg-lime-400 text-gray-900 px-4 py-2 sm:px-5 sm:py-2.5 md:px-6 md:py-3 rounded-lg font-medium hover:bg-gray-100 transition-all duration-200 inline-flex items-center gap-2 shadow-lg hover:shadow-xl transform hover:scale-105 text-sm sm:text-base"
                   >
-                    <ExternalLink size={16} sm:size={18} />
+                    <ExternalLink size={16}  />
                     View Project
                   </Link>
                 </div>
@@ -209,7 +209,7 @@ const Projects = () => {
                   className="absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white text-gray-900 p-2 sm:p-3 rounded-full shadow-lg transition-all duration-200 hover:scale-110"
                   aria-label="Previous project"
                 >
-                  <ChevronLeft size={20} sm:size={24} />
+                  <ChevronLeft size={20}  />
                 </button>
 
                 {/* Next Button */}
@@ -218,7 +218,7 @@ const Projects = () => {
                   className="absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white text-gray-900 p-2 sm:p-3 rounded-full shadow-lg transition-all duration-200 hover:scale-110"
                   aria-label="Next project"
                 >
-                  <ChevronRight size={20} sm:size={24} />
+                  <ChevronRight size={20}  />
                 </button>
               </>
             )}

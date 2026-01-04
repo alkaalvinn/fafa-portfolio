@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { portfolioImages, placeholderImages } from '../../data/portfolioData';
+import { useState, useEffect } from 'react';
+import { portfolioImages } from '../../data/portfolioData';
 
 const VisualWorld = () => {
-  const [hoveredImage, setHoveredImage] = useState(null);
+  const [hoveredImage, setHoveredImage] = useState<number | null>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
 
   // Portfolio images dari portfolioData
@@ -10,12 +10,6 @@ const VisualWorld = () => {
   // Jika tidak, gunakan placeholder
   const getVisualImages = () => {
     const images = portfolioImages.visualWorld;
-
-    // Cek apakah semua gambar adalah placeholder
-    const hasOnlyPlaceholders = images.every(img =>
-      img.includes('placeholder-visual')
-    );
-
 
     // Jika ada gambar asli, gunakan gambar tersebut
     return images.map((imageUrl, index) => ({
@@ -52,7 +46,7 @@ const VisualWorld = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const calculateCircularPosition = (index, total, radius, baseRotation) => {
+  const calculateCircularPosition = (index: number, total: number, radius: number, baseRotation: number) => {
     const angle = (index / total) * 360 + baseRotation;
     const angleInRadians = (angle * Math.PI) / 180;
     const x = radius * Math.cos(angleInRadians);
@@ -186,7 +180,7 @@ const VisualWorld = () => {
           <div className="relative w-full h-full flex items-center justify-center">
             {visualImages.map((image, index) => {
               const isHovered = hoveredImage === image.id;
-              const { radius, imageSize, isMobile } = getResponsiveValues();
+              const { radius, imageSize } = getResponsiveValues();
               const position = calculateCircularPosition(index, visualImages.length, radius, 0);
               const imageRotation = position.angle - 90;
 

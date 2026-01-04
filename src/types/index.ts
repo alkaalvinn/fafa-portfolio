@@ -11,12 +11,11 @@ export interface Project {
   id: number;
   title: string;
   description: string;
-  category: 'photography' | 'videography' | 'design' | 'copywriting';
-  imageUrl: string;
-  featured: boolean;
+  category: 'photography' | 'videography' | 'design' | 'copywriting' | 'communication';
 }
 
 export interface Skill {
+  id: number;
   name: string;
   category: string;
   level: number;

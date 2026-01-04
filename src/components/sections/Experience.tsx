@@ -1,15 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Calendar, MapPin } from 'lucide-react';
-import { experiences, portfolioImages, placeholderImages } from '../../data/portfolioData';
-import arrow from '../../../public/images/arrow.png';
+import { experiences, portfolioImages } from '../../data/portfolioData';
 
 const Experience = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
 
   // Fungsi untuk mendapatkan gambar experience
-  const getExperienceImages = (companyId) => {
+  const getExperienceImages = (companyId: number): string[] | undefined => {
     // Cek apakah ada gambar di portfolioImages untuk companyId ini
-    const images = portfolioImages.experience[companyId];
+    const images = portfolioImages.experience[companyId as keyof typeof portfolioImages.experience];
 
     // Jika ada, gunakan gambar tersebut
     if (images && images.length > 0) {
@@ -179,7 +178,7 @@ const Experience = () => {
                         {/* Right Side - Images */}
                         <div className="relative">
                           <div className="grid grid-cols-2 gap-2 sm:gap-4 -pt-8 sm:pt-2">
-                            {getExperienceImages(exp.id).map((image, imgIndex) => (
+                            {getExperienceImages(exp.id)?.map((image: string, imgIndex: number) => (
                               <div
                                 key={imgIndex}
                                 className="relative overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
