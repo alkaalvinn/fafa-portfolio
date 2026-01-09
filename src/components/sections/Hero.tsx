@@ -51,7 +51,7 @@ const Hero = () => {
                   fontSize: 'clamp(1rem, 4vw, 1.25rem)'
                 }}
               >
-                I craft meaningful stories through design and communication
+                I craft meaningful stories through visual and communications.
               </h2>
 
               <p

@@ -124,39 +124,38 @@ export const skills: Skill[] = [
   // Photography Skills
   { id: 1, name: 'Photography', category: 'Creative', level: 90 },
   { id: 2, name: 'Photo Editing', category: 'Creative', level: 88 },
-  { id: 3, name: 'DSLR Photography', category: 'Creative', level: 85 },
 
   // Videography Skills
-  { id: 4, name: 'Videography', category: 'Creative', level: 85 },
-  { id: 5, name: 'Video Editing', category: 'Creative', level: 82 },
+  { id: 3, name: 'Videography', category: 'Creative', level: 85 },
+  { id: 4, name: 'Video Editing', category: 'Creative', level: 82 },
 
   // Design Skills
-  { id: 6, name: 'Graphic Design', category: 'Creative', level: 88 },
-  { id: 7, name: 'Brand Design', category: 'Creative', level: 85 },
+  { id: 5, name: 'Graphic Design', category: 'Creative', level: 88 },
 
   // Content Skills
-  { id: 8, name: 'Copywriting', category: 'Creative', level: 82 },
-  { id: 9, name: 'Content Creation', category: 'Creative', level: 90 },
-  { id: 10, name: 'Content Strategy', category: 'Creative', level: 85 },
+  { id: 6, name: 'Copywriting', category: 'Creative', level: 82 },
+  { id: 7, name: 'Content Creation', category: 'Creative', level: 90 },
+  { id: 8, name: 'Content Strategy', category: 'Creative', level: 85 },
 
   // Adobe Software
-  { id: 11, name: 'Adobe Photoshop', category: 'Software', level: 95 },
-  { id: 12, name: 'Adobe Illustrator', category: 'Software', level: 90 },
-  { id: 13, name: 'Adobe Premiere Pro', category: 'Software', level: 85 },
-  { id: 14, name: 'After Effects', category: 'Software', level: 80 },
+  { id: 9, name: 'Adobe Photoshop', category: 'Software', level: 95 },
+  { id: 10, name: 'Adobe Illustrator', category: 'Software', level: 90 },
+  { id: 11, name: 'Adobe Premiere Pro', category: 'Software', level: 85 },
+  { id: 12, name: 'After Effects', category: 'Software', level: 80 },
 
   // Communication Skills
-  { id: 15, name: 'Communication Strategy', category: 'Professional', level: 92 },
-  { id: 16, name: 'Brand Management', category: 'Professional', level: 88 },
-  { id: 17, name: 'Digital Marketing', category: 'Professional', level: 85 },
-  { id: 18, name: 'Social Media Management', category: 'Professional', level: 90 },
-  { id: 19, name: 'Public Relations', category: 'Professional', level: 82 },
-  { id: 20, name: 'Event Management', category: 'Professional', level: 80 },
-  { id: 21, name: 'Presentation Skills', category: 'Professional', level: 88 },
+  { id: 13, name: 'Project Management', category: 'Professional', level: 85 },
+  { id: 14, name: 'Communication Strategy', category: 'Professional', level: 92 },
+  { id: 15, name: 'Brand Management', category: 'Professional', level: 88 },
+  { id: 16, name: 'Digital Marketing', category: 'Professional', level: 85 },
+  { id: 17, name: 'Social Media Management', category: 'Professional', level: 90 },
+  { id: 18, name: 'Public Relations', category: 'Professional', level: 82 },
+  { id: 19, name: 'Event Management', category: 'Professional', level: 80 },
+  { id: 20, name: 'Presentation Skills', category: 'Professional', level: 88 },
 
   // Languages
-  { id: 22, name: 'Bahasa Indonesia', category: 'Language', level: 95 },
-  { id: 23, name: 'English', category: 'Language', level: 85 }
+  { id: 21, name: 'Bahasa Indonesia', category: 'Language', level: 95 },
+  { id: 22, name: 'English', category: 'Language', level: 85 }
 ];
 
 export const socialLinks = {
@@ -173,85 +172,78 @@ export const socialLinks = {
 
 export const portfolioImages = {
   // Hero Section - Tidak perlu diganti (fafa.png)
-  hero: '/images/fafa.webp',
+  hero: 'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944105/zlv6aiiwos55oexypezd.webp',
 
   // Visual World Section - 24 gambar untuk rotasi
   visualWorld: [
-    // TODO: Ganti dengan 24 foto portfolio Anda
-    // Contoh format:
-    // '/images/portfolio/visual-1.jpg',
-    // '/images/portfolio/visual-2.jpg',
-    // dst...
-
-    // Temporary placeholder images (akan diganti nanti)
-    '/images/visualworld/1.webp',
-    '/images/visualworld/2.webp',
-    '/images/visualworld/3.webp',
-    '/images/visualworld/4.webp',
-    '/images/visualworld/5.webp',
-    '/images/visualworld/6.webp',
-    '/images/visualworld/7.webp',
-    '/images/visualworld/8.webp',
-    '/images/visualworld/9.webp',
-    '/images/visualworld/10.webp',
-    '/images/visualworld/11.webp',
-    '/images/visualworld/12.webp',
-    '/images/visualworld/13.webp',
-    '/images/visualworld/14.webp',
-    '/images/visualworld/15.webp',
-    '/images/visualworld/16.webp',
-    '/images/visualworld/17.webp',
-    '/images/visualworld/18.webp',
-    '/images/visualworld/19.webp',
-    '/images/visualworld/20.webp',
-    '/images/visualworld/21.webp',
-    '/images/visualworld/22.webp',
-    '/images/visualworld/23.webp',
-    '/images/visualworld/24.webp'
+    'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944108/xip7wgbrk2vjl1s7a7k7.webp',
+    'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944110/rfwx33yu6mrapzk8upog.webp',
+    'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944112/t271dodbhsgjbpvqdggg.webp',
+    'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944112/dptbnecqabrfujooyvhf.webp',
+    'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944113/dyxhsrlhjahvmj5vjt5x.webp',
+    'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944116/v5jwl7kbvex1qhs57cjm.webp',
+    'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944113/tx2jofgssm5wq9uqkioa.webp',
+    'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944115/zenxcfpvrfqdapqdcyhl.webp',
+    'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944114/ea1o1udtzw0o8xzregmo.webp',
+    'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944114/iqf93hwcjj4nxyiuvtct.webp',
+    'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944108/fpv9dskrpgkia0a9374h.webp',
+    'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944108/rqidgjonczwhjzdwzjih.webp',
+    'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944108/okf10uxzevnkdtcad9ih.webp',
+    'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944108/t4cvjuptsga1jhk3urq4.webp',
+    'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944109/xv6jdvb3vfuglihnufto.webp',
+    'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944109/mxi6skesntm3ney5upyb.webp',
+    'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944110/d9ljfmztpyviystqnj47.webp',
+    'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944110/lyulxvertyspx4kkqszi.webp',
+    'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944114/hksvrbxyh2iiahelamk0.webp',
+    'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944110/ej8vmko3yhnlopfwsufn.webp',
+    'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944111/ukygtcrwxyolihpt9bqa.webp',
+    'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944111/d535accwdewhwmqk8nln.webp',
+    'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944111/su6cjswnwllgghbf5dse.webp',
+    'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944111/cvhp7y0doqyaezgujo5m.webp'
   ],
 
   // Experience Section - 4 gambar per perusahaan
   experience: {
     // Bank Indonesia - 4 gambar
     1: [
-      '/images/experience/bi-1.webp',
-      '/images/experience/bi-2.webp',
-      '/images/experience/bi-3.webp',
-      '/images/experience/bi-4.webp'
+      'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944105/mp9ne0qxn83eyf15iygw.webp',
+      'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944117/dnusho0oo1wxc9fhanfa.webp',
+      'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944106/abcloamz9twxsox7mz52.webp',
+      'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944106/t2ucfaqct8vp9kp3tv20.webp'
     ],
     // PT Dua Puluh Tiga - 4 gambar
     2: [
-      '/images/experience/23-1.webp',
-      '/images/experience/23-2.webp',
-      '/images/experience/23-3.webp',
-      '/images/experience/23-4.webp'
+      'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944105/bcbifxn0kfcqqqkhz36c.webp',
+      'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944106/imwismrhxjpiivi9u8jb.webp',
+      'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944116/ykzhvgcucppyu77mzgsv.webp',
+      'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944105/q3qwkyflc2t6wdim4hcp.webp'
     ],
     // Kraft Heinz - 4 gambar
     3: [
-      '/images/experience/kh-1.webp',
-      '/images/experience/kh-2.webp',
-      '/images/experience/kh-3.webp',
-      '/images/experience/kh-4.webp'
+      'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944107/laulpayhvqtxw4sdcfj7.webp',
+      'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944107/ylqcghrhyxwcg3j1rfiu.webp',
+      'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944107/j3dv91obdsbpcbihd7ef.webp',
+      'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944107/v6ci1hgnzjwriewpje3i.webp'
     ],
     // GMF AeroAsia - 4 gambar
     4: [
-      '/images/experience/ga-1.webp',
-      '/images/experience/ga-2.webp',
-      '/images/experience/ga-3.webp',
-      '/images/experience/ga-4.webp'
+      'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944115/v0mbv2o7xyarmkrqhspr.webp',
+      'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944118/bdwendnc2fnouof7vyuw.webp',
+      'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944114/viki0zowxi0oabziqqfz.webp',
+      'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944117/uz7gx3y65ifn3nib5z8u.webp'
     ],
     // Hangry - 4 gambar
     5: [
-      '/images/experience/ha-1.webp',
-      '/images/experience/ha-2.webp',
-      '/images/experience/ha-3.webp',
-      '/images/experience/ha-4.webp'
+      'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944120/vfzbr2u5awxigxfgxjxy.webp',
+      'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944119/kz4sqgxouml3qyilcazx.webp',
+      'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944116/thvm3vc0scu7zxjag5uw.webp',
+      'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944118/zbrzdc7rylhpazbuy6rl.webp'
     ],
     6: [
-      '/images/experience/pa-1.webp',
-      '/images/experience/pa-2.webp',
-      '/images/experience/pa-3.webp',
-      '/images/experience/pa-4.webp'
+      'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944107/pn03fzqv6xjwxvkcelzv.webp',
+      'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944107/puy9jr04gmdjpgfowryh.webp',
+      'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944107/alu6efo56xgruyosd5q4.webp',
+      'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944116/zrdkyz1bgiiq4kk2ksw7.webp'
     ]
   },
 
@@ -282,7 +274,7 @@ export const placeholderImages = {
 
   // Contact placeholders
   contact: {
-    portrait1: '/images/co-1.webp',
-    portrait2: '/images/co-2.webp'
+    portrait1: 'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944105/vacgqbas5qhcbzkruuvn.webp',
+    portrait2: 'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944120/sjyqod0avxciykxtax4r.webp'
   }
 };
