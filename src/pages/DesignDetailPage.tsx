@@ -114,11 +114,8 @@ const DesignDetailPage = () => {
           {/* Description */}
           <div className="mb-6 sm:mb-8">
             <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">Overview</h2>
-            <p className="text-base sm:text-lg text-gray-700 leading-relaxed mb-3 sm:mb-4">
-              Innovative design solutions that blend creativity with functionality to deliver exceptional visual experiences.
-            </p>
             <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
-              From brand identity and digital experiences to print design and environmental graphics, creating impactful designs that communicate your message effectively.
+              Delivering strategic design solutions that merge aesthetics with functionality. I specialize in transforming abstract concepts into tangible assets from comprehensive brand identities to digital experiences that not only captivate audiences but also communicate business value effectively
             </p>
           </div>
 
@@ -127,15 +124,15 @@ const DesignDetailPage = () => {
             <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">Design Philosophy</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
               <div>
-                <h3 className="font-semibold text-gray-900 mb-2 text-sm sm:text-base">User-Centered</h3>
+                <h3 className="font-semibold text-gray-900 mb-2 text-sm sm:text-base">User-Centric Approach</h3>
                 <p className="text-gray-600 text-sm sm:text-base">
-                  Every design decision starts with understanding the user's needs, behaviors, and emotions to create meaningful connections.
+                  Design with empathy. I ground every creative decision in user behavior analysis to ensure visual communication that resonates and converts.
                 </p>
               </div>
               <div>
-                <h3 className="font-semibold text-gray-900 mb-2 text-sm sm:text-base">Innovation</h3>
+                <h3 className="font-semibold text-gray-900 mb-2 text-sm sm:text-base">Functional Creativity</h3>
                 <p className="text-gray-600 text-sm sm:text-base">
-                  Pushing creative boundaries while maintaining usability and accessibility to deliver fresh, engaging design solutions.
+                  Pushing visual boundaries without compromising utility. I balance trend-forward aesthetics with strict usability standards to deliver designs that are as practical as they are striking.
                 </p>
               </div>
             </div>
@@ -145,7 +142,7 @@ const DesignDetailPage = () => {
           <div className="mb-6 sm:mb-8">
             <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">Design Tools</h2>
             <div className="flex flex-wrap gap-1.5 sm:gap-2">
-              {['Adobe Photoshop', 'Illustrator', 'Figma', 'Sketch', 'Adobe XD', 'After Effects', 'InDesign'].map((tool) => (
+              {['Adobe Photoshop', 'Adobe Illustrator', 'Adobe Lightroom', 'Canva'].map((tool) => (
                 <span
                   key={tool}
                   className="px-2.5 py-1 sm:px-3 sm:py-1 bg-gray-100 text-gray-700 rounded-full text-xs sm:text-sm"
@@ -159,7 +156,7 @@ const DesignDetailPage = () => {
           {/* Results */}
           <div className="mb-8">
             <h2 className="text-2xl font-bold text-gray-900 mb-4">Design Impact</h2>
-            <div className="grid md:grid-cols-3 gap-6 mb-6">
+            <div className="grid md:grid-cols-2 gap-6 mb-6">
               <div className="text-center p-4 bg-gray-50 rounded-lg">
                 <div className="text-3xl font-bold text-gray-900 mb-2">200+</div>
                 <div className="text-sm text-gray-600">Design Projects</div>
@@ -168,13 +165,9 @@ const DesignDetailPage = () => {
                 <div className="text-3xl font-bold text-gray-900 mb-2">85%</div>
                 <div className="text-sm text-gray-600">Client Retention</div>
               </div>
-              <div className="text-center p-4 bg-gray-50 rounded-lg">
-                <div className="text-3xl font-bold text-gray-900 mb-2">12</div>
-                <div className="text-sm text-gray-600">Design Awards</div>
-              </div>
             </div>
             <p className="text-gray-600">
-              Transforming ideas into visually stunning designs that elevate brands and create lasting impressions on target audiences.
+              Turning complex ideas into clear, compelling visual narratives that drive brand growth.
             </p>
           </div>
 

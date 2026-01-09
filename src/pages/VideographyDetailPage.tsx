@@ -147,11 +147,8 @@ const VideographyDetailPage = () => {
           {/* Description */}
           <div className="mb-6 sm:mb-8">
             <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">Overview</h2>
-            <p className="text-base sm:text-lg text-gray-700 leading-relaxed mb-3 sm:mb-4">
-              Professional videography services capturing moments and telling stories through the lens.
-            </p>
             <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
-              Specializing in corporate videos, event coverage, documentary filmmaking, and creative visual storytelling that brings your vision to life.
+              Delivering high-impact visual storytelling that drives engagement. I specialize in corporate communications, event coverage, and documentary filmmaking transforming complex brand visions into compelling visual narratives.
             </p>
           </div>
 
@@ -178,7 +175,7 @@ const VideographyDetailPage = () => {
           <div className="mb-6 sm:mb-8">
             <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">Equipment & Software</h2>
             <div className="flex flex-wrap gap-1.5 sm:gap-2">
-              {['Premiere Pro', 'After Effects', 'DaVinci Resolve', 'Final Cut Pro', 'Sony A7S III', 'DJI Ronin'].map((tool) => (
+              {['Adobe Premiere Pro', 'Adobe After Effects', 'CapCut', 'Sony A6300'].map((tool) => (
                 <span
                   key={tool}
                   className="px-2.5 py-1 sm:px-3 sm:py-1 bg-gray-100 text-gray-700 rounded-full text-xs sm:text-sm"
@@ -192,18 +189,14 @@ const VideographyDetailPage = () => {
           {/* Results */}
           <div className="mb-8">
             <h2 className="text-2xl font-bold text-gray-900 mb-4">Achievements</h2>
-            <div className="grid md:grid-cols-3 gap-6 mb-6">
+            <div className="grid md:grid-cols-2 gap-6 mb-6">
               <div className="text-center p-4 bg-gray-50 rounded-lg">
-                <div className="text-3xl font-bold text-gray-900 mb-2">50+</div>
-                <div className="text-sm text-gray-600">Projects Completed</div>
+                <div className="text-3xl font-bold text-gray-900 mb-2">100+</div>
+                <div className="text-sm text-gray-600">Projects</div>
               </div>
               <div className="text-center p-4 bg-gray-50 rounded-lg">
                 <div className="text-3xl font-bold text-gray-900 mb-2">10M+</div>
                 <div className="text-sm text-gray-600">Total Views</div>
-              </div>
-              <div className="text-center p-4 bg-gray-50 rounded-lg">
-                <div className="text-3xl font-bold text-gray-900 mb-2">15</div>
-                <div className="text-sm text-gray-600">Awards Won</div>
               </div>
             </div>
             <p className="text-gray-600">

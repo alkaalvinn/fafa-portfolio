@@ -128,10 +128,10 @@ const CommunicationDetailPage = () => {
           <div className="mb-6 sm:mb-8">
             <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">Overview</h2>
             <p className="text-base sm:text-lg text-gray-700 leading-relaxed mb-3 sm:mb-4">
-              Strategic communication solutions that connect brands with their audiences through compelling narratives and targeted messaging.
+              Strategic communication frameworks developed through comprehensive university case studies.
             </p>
             <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
-              Developing comprehensive communication strategies that include public relations, content creation, social media management, and brand storytelling to drive engagement and build lasting relationships.
+              This portfolio showcases my ability to construct robust PR strategies, content roadmaps, and brand narratives within simulated professional environments, demonstrating a deep understanding of communication principles.
             </p>
           </div>
 
@@ -142,13 +142,13 @@ const CommunicationDetailPage = () => {
               <div>
                 <h3 className="font-semibold text-gray-900 mb-2 text-sm sm:text-base">Brand Voice</h3>
                 <p className="text-gray-600 text-sm sm:text-base">
-                  Crafting unique brand voices that resonate with target audiences while maintaining consistency across all communication channels and touchpoints.
+                  Conceptualizing unique brand personas and messaging hierarchies for academic project briefs, ensuring consistency across theoretical touchpoints.
                 </p>
               </div>
               <div>
                 <h3 className="font-semibold text-gray-900 mb-2 text-sm sm:text-base">Multi-channel Approach</h3>
                 <p className="text-gray-600 text-sm sm:text-base">
-                  Integrating various communication channels - digital, traditional, and emerging platforms - to create cohesive and impactful brand experiences.
+                  Designing integrated channel maps to demonstrate how cohesive brand experiences are built in strategic planning scenarios.
                 </p>
               </div>
             </div>
@@ -171,23 +171,23 @@ const CommunicationDetailPage = () => {
 
           {/* Results */}
           <div className="mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Communication Success</h2>
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">Simulated Campaign Impact</h2>
             <div className="grid md:grid-cols-3 gap-6 mb-6">
               <div className="text-center p-4 bg-gray-50 rounded-lg">
                 <div className="text-3xl font-bold text-gray-900 mb-2">95%</div>
-                <div className="text-sm text-gray-600">Message Reach</div>
+                <div className="text-sm text-gray-600">Projected Reach</div>
               </div>
               <div className="text-center p-4 bg-gray-50 rounded-lg">
                 <div className="text-3xl font-bold text-gray-900 mb-2">3.5M</div>
-                <div className="text-sm text-gray-600">Audience Engagement</div>
+                <div className="text-sm text-gray-600">Target Engagement</div>
               </div>
               <div className="text-center p-4 bg-gray-50 rounded-lg">
-                <div className="text-3xl font-bold text-gray-900 mb-2">500+</div>
-                <div className="text-sm text-gray-600">Campaigns Launched</div>
+                <div className="text-3xl font-bold text-gray-900 mb-2">15+</div>
+                <div className="text-sm text-gray-600">Strategic Proposals</div>
               </div>
             </div>
             <p className="text-gray-600">
-              Building strong brand-consumer relationships through strategic communication initiatives that drive awareness, engagement, and conversion across diverse markets.
+              Building strong relationships through strategic planning. Note: All data above represents simulated outcomes from academic coursework.
             </p>
           </div>
 

@@ -249,8 +249,8 @@ export const portfolioImages = {
 
   // Contact Section - 2 gambar dekoratif
   contact: {
-    portrait1: '/images/contact/portrait-1.jpg',
-    portrait2: '/images/contact/portrait-2.jpg'
+    portrait1: 'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944105/vacgqbas5qhcbzkruuvn.webp',
+    portrait2: 'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944120/sjyqod0avxciykxtax4r.webp'
   }
 };
 
@@ -272,9 +272,4 @@ export const placeholderImages = {
     'https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=400&h=500&fit=crop'
   ],
 
-  // Contact placeholders
-  contact: {
-    portrait1: 'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944105/vacgqbas5qhcbzkruuvn.webp',
-    portrait2: 'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944120/sjyqod0avxciykxtax4r.webp'
-  }
 };
