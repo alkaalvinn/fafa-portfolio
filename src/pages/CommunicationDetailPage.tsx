@@ -190,8 +190,7 @@ const CommunicationDetailPage = () => {
               Building strong relationships through strategic planning. Note: All data above represents simulated outcomes from academic coursework.
             </p>
           </div>
-
-                  </div>
+        </div>
       </div>
 
       <Footer />
