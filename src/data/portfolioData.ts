@@ -217,9 +217,9 @@ export const portfolioImages = {
     // Kraft Heinz - 4 gambar
     3: [
       'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944107/laulpayhvqtxw4sdcfj7.webp',
-      'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944107/ylqcghrhyxwcg3j1rfiu.webp',
-      'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944107/j3dv91obdsbpcbihd7ef.webp',
-      'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944107/v6ci1hgnzjwriewpje3i.webp'
+      'https://res.cloudinary.com/doirxg4kz/image/upload/v1768039749/knc8rrqrkemwltc0a0h7.webp',
+      'https://res.cloudinary.com/doirxg4kz/image/upload/v1768040122/xcnanrbif3vtpx9fawtn.webp',
+      'https://res.cloudinary.com/doirxg4kz/image/upload/v1768039928/nvdqeqgvxd0r4jvglwoe.webp'
     ],
     // GMF AeroAsia - 4 gambar
     4: [
