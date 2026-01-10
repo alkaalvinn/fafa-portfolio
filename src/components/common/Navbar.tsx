@@ -65,7 +65,7 @@ const Navbar = () => {
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
     if (element) {
-      const offset = href === '#home' ? 0 : 80; // Offset for sections, none for home
+      const offset = href === '#home' ? 0 : 8;
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - offset;
 

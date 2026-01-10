@@ -15,7 +15,9 @@
       "Bash(curl:*)",
       "Bash(git restore:*)",
       "Bash(dir:*)",
-      "Bash(powershell -Command:*)"
+      "Bash(powershell -Command:*)",
+      "Bash(ls:*)",
+      "Bash(npx tsc:*)"
     ],
     "deny": [],
     "ask": []

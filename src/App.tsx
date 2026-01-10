@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { lazy, Suspense, useEffect } from 'react';
 import Navbar from './components/common/Navbar';
 import Hero from './components/sections/Hero';
 import CreativeBanner from './components/sections/CreativeBanner';
@@ -8,9 +9,26 @@ import Projects from './components/sections/Projects';
 import Skills from './components/sections/Skills';
 import Contact from './components/sections/Contact';
 import Footer from './components/common/Footer';
-import ProjectPage from './pages/ProjectPage';
-import { useEffect } from 'react';
 import './App.css';
+
+// Code splitting untuk ProjectPage - mengurangi initial bundle size
+const ProjectPage = lazy(() => import('./pages/ProjectPage'));
+
+// Loading component untuk Suspense fallback
+const PageLoader = () => (
+  <div className="min-h-screen flex items-center justify-center bg-white">
+    <div className="flex flex-col items-center gap-6">
+      <div className="relative w-20 h-20">
+        <div className="absolute inset-0 border-4 border-gray-200 rounded-full"></div>
+        <div className="absolute inset-0 border-4 border-black border-t-transparent rounded-full animate-spin"></div>
+      </div>
+      <div className="text-center space-y-2">
+        <p className="text-lg font-semibold text-gray-800">Loading Project...</p>
+        <p className="text-sm text-gray-500">Please wait while we prepare your content</p>
+      </div>
+    </div>
+  </div>
+);
 
 function HomePage() {
   return (
@@ -36,7 +54,14 @@ function App() {
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/project/:projectId" element={<ProjectPage />} />
+        <Route
+          path="/project/:projectId"
+          element={
+            <Suspense fallback={<PageLoader />}>
+              <ProjectPage />
+            </Suspense>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );
@@ -58,7 +83,7 @@ function ScrollToTop() {
       setTimeout(() => {
         const projectsSection = document.getElementById('projects');
         if (projectsSection) {
-          const offset = 80;
+          const offset = 8;
           const elementPosition = projectsSection.getBoundingClientRect().top;
           const offsetPosition = elementPosition + window.pageYOffset - offset;
 

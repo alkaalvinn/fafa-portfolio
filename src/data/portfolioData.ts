@@ -9,10 +9,11 @@ export const experiences: Experience[] = [
     description:
       'Supporting consumer protection initiatives through creative production, campaign support, and event management.',
     responsibilities: [
-      'Supported event activation by developing comprehensive Terms of References (ToR) and creative briefs  for the Geber PK campaign, delivering five campaign series that increased public awareness of consumer protection initiatives and attracted 5.000+ participants across online and offline platforms.',
-      'Produced 10+ monthly creative assets for social media and offline campaigns to support consumer protection initiatives.',
-      'Coordinated VIP guest relations and documentation to support consumer protection initiatives to ensure seamless execution for the high profile programs.',
-      'Oversaw end-to-end KOL and speaker management, from selection and briefing to on-site coordination, enhancing event credibility and reach.'
+      'Developed and executed an integrated communication strategy for “Geber PK” to increase public awareness and community advocacy against financial fraud.',
+      'Drove community-based campaigns through UGC initiatives, encouraging audiences to actively educate their peers on financial literacy and scam prevention.',
+      'Led on-ground activations and educational booths to facilitate direct public engagement and consultation on consumer protection issues.',
+      'Managed KOL and stakeholder collaborations to amplify campaign messages and ensure consistent communication across digital platforms.'
+
 
     ]
   },
@@ -65,7 +66,7 @@ export const experiences: Experience[] = [
     description:
       'Produced multimedia content and strengthened brand engagement through visual storytelling for a food-tech startup.',
     responsibilities: [
-      'Created and managed over 40 pieces of social media content, including hands-on photography and videography to capture and produce engaging visuals by ',
+      'Produced and managed over 40 pieces of engaging social media content, utilizing hands-on photography and videography for visual production.',
       'Developing storylines and storyboards to support content creation that strengthen brand tone.',
       'Edited and polished 50+ digital images and 25+ videos for social media platforms, enhancing visual appeal and engagement and ensuring high-quality visuals that align with brand standards.'
 

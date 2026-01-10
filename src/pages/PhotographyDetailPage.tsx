@@ -1,28 +1,69 @@
-import { useState, useEffect } from 'react';
+import { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Footer from '../components/common/Footer';
+import { portfolioImages, experiences } from '../data/portfolioData';
 
 interface ImageData {
-  id: number;
+  id: string | number;
   src: string;
   alt: string;
   orientation: string;
+  company?: string;
 }
+
+// Shuffle array helper untuk random urutan
+const shuffleArray = <T,>(array: T[]): T[] => {
+  const shuffled = [...array];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
+};
 
 const PhotographyDetailPage = () => {
   const navigate = useNavigate();
   const [selectedImage, setSelectedImage] = useState<ImageData | null>(null);
-  const [images, setImages] = useState<ImageData[]>([]);
 
-  useEffect(() => {
-    const imageFiles = Array.from({ length: 24 }, (_, i) => i + 1);
-    const imageData = imageFiles.map(num => ({
-      id: num,
-      src: `/images/visualworld/${num}.webp`,
-      alt: `Photography ${num}`,
-      orientation: num % 3 === 0 ? 'portrait' : 'landscape'
-    }));
-    setImages(imageData);
+  // Get images from portfolioData.ts - GMF, Hangry, dan visualWorld (random order)
+  const images = useMemo(() => {
+    const gmfImages = portfolioImages.experience[4] || [];
+    const hangryImages = portfolioImages.experience[5] || [];
+    const visualWorldImages = portfolioImages.visualWorld || [];
+
+    const gmfCompany = experiences.find(e => e.id === 4)?.company || 'GMF AeroAsia';
+    const hangryCompany = experiences.find(e => e.id === 5)?.company || 'Hangry';
+
+    // Combine all images with their metadata
+    const combined = [
+      // GMF images
+      ...gmfImages.map((src, index) => ({
+        id: `gmf-${index}`,
+        src,
+        alt: `${gmfCompany} Photography ${index + 1}`,
+        orientation: index % 2 === 0 ? 'landscape' : 'portrait',
+        company: gmfCompany
+      })),
+      // Hangry images
+      ...hangryImages.map((src, index) => ({
+        id: `hangry-${index}`,
+        src,
+        alt: `${hangryCompany} Photography ${index + 1}`,
+        orientation: index % 2 === 0 ? 'landscape' : 'portrait',
+        company: hangryCompany
+      })),
+      // Visual World images
+      ...visualWorldImages.map((src, index) => ({
+        id: `visual-${index}`,
+        src,
+        alt: `Visual World ${index + 1}`,
+        orientation: index % 3 === 0 ? 'portrait' : 'landscape',
+        company: 'Visual World'
+      }))
+    ];
+
+    // Shuffle array untuk random urutan
+    return shuffleArray(combined);
   }, []);
 
   const handleBackToProjects = () => {
@@ -46,16 +87,16 @@ const PhotographyDetailPage = () => {
 
       {/* Gallery Grid */}
       <div className="px-6 sm:px-8 md:px-20 pb-20">
-        <div className="grid grid-cols-4 gap-2 sm:gap-3 md:gap-4 auto-rows-[140px] sm:auto-rows-[160px] md:auto-rows-[180px]">
+        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-2 sm:gap-3 md:gap-4 auto-rows-[140px] sm:auto-rows-[160px] md:auto-rows-[180px]">
           {images.map((image, index) => {
-            // Repeating pattern that perfectly fills 4-column grid without gaps
-            const pos = index % 6; // Pattern repeats every 6 items
+            // Pattern dinamis untuk 32 gambar dengan variasi ukuran
+            const pos = index % 12; // Pattern repeats every 12 items
             let cols = 1, rows = 1;
 
-            if (pos === 0) { cols = 2; rows = 1; } // Wide photo spanning 2 cols
-            else if (pos === 2 || pos === 3) { cols = 1; rows = 2; } // Tall photos
-            else if (pos === 4) { cols = 2; rows = 1; } // Another wide photo
-            // pos 1 and 5 remain as single squares
+            // Grid pattern untuk variasi visual yang menarik
+            if (pos === 0 || pos === 6) { cols = 2; rows = 1; } // Wide photos
+            else if (pos === 2 || pos === 4 || pos === 8 || pos === 10) { cols = 1; rows = 2; } // Tall photos
+            // pos 1, 3, 5, 7, 9, 11 remain as single squares
 
             return (
               <div
@@ -71,7 +112,12 @@ const PhotographyDetailPage = () => {
                   src={image.src}
                   alt={image.alt}
                   className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  loading="lazy"
                 />
+                {/* Company label overlay */}
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-2 sm:p-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <p className="text-white text-xs sm:text-sm font-medium">{image.company}</p>
+                </div>
               </div>
             );
           })}

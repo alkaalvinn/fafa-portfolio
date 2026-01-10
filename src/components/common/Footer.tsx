@@ -6,7 +6,16 @@ const Footer = () => {
 
   const scrollToSection = (sectionId: string) => {
     const element = document.querySelector(sectionId);
-    element?.scrollIntoView({ behavior: 'smooth' });
+    if (element) {
+      const offset = sectionId === '#home' ? 0 : 8;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
   };
 
   return (

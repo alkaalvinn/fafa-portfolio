@@ -74,7 +74,7 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="min-h-screen bg-black flex items-center justify-center p-3 sm:p-4 md:p-6 lg:p-8">
+    <section id="contact" className="min-h-screen bg-black flex flex-col items-center justify-center p-3 sm:p-4 md:p-6 lg:p-8">
       <style>{`
         @keyframes floatRotate1 {
           0% {
@@ -108,6 +108,16 @@ const Contact = () => {
           animation: floatRotate2 3.5s ease-in-out infinite;
         }
       `}</style>
+
+      {/* Header Section - seperti Skills.tsx */}
+      <div className="text-center mb-8 sm:mb-12 md:mb-16 w-full max-w-7xl mx-auto">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-3 sm:mb-4">
+          Contact Me
+        </h2>
+        <p className="text-base sm:text-lg md:text-xl text-gray-300 max-w-2xl mx-auto">
+          Let's get in touch and discuss how we can work together
+        </p>
+      </div>
 
       <div className="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-16 items-center">
 

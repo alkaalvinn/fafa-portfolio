@@ -1,50 +1,27 @@
-import { useState, useEffect } from 'react';
+import { useState, useMemo } from 'react';
 import { portfolioImages } from '../../data/portfolioData';
+import { useOptimizedScroll } from '../../hooks/useOptimizedScroll';
+import { CircularImageSkeleton } from '../common/Skeleton';
+import { LazyImage } from '../common/LazyImage';
 
 const VisualWorld = () => {
   const [hoveredImage, setHoveredImage] = useState<number | null>(null);
-  const [scrollProgress, setScrollProgress] = useState(0);
 
-  // Portfolio images dari portfolioData
-  // Jika ada gambar di portfolioImages, gunakan itu
-  // Jika tidak, gunakan placeholder
-  const getVisualImages = () => {
+  // Optimized scroll dengan requestAnimationFrame - mengurangi scroll calls drastis
+  const scrollProgress = useOptimizedScroll('visual-world', 1);
+
+  // Portfolio images dari portfolioData - dimemoize untuk mencegah re-calculation
+  const visualImages = useMemo(() => {
     const images = portfolioImages.visualWorld;
-
-    // Jika ada gambar asli, gunakan gambar tersebut
     return images.map((imageUrl, index) => ({
       id: index + 1,
       imageUrl: imageUrl,
       angle: index * 15
     }));
-  };
-
-  const visualImages = getVisualImages();
+  }, []);
 
   // Background hero image
   const heroImage = "/images/visual.webp";
-
-  // Scroll progress dengan tracking lebih detail
-  useEffect(() => {
-    const handleScroll = () => {
-      const section = document.getElementById('visual-world');
-      if (!section) return;
-
-      const rect = section.getBoundingClientRect();
-      const sectionHeight = section.offsetHeight;
-      const viewportHeight = window.innerHeight;
-      
-      // Progress dari 0 sampai 1 berdasarkan scroll position
-      const rawProgress = (viewportHeight - rect.top) / sectionHeight;
-      const progress = Math.max(0, Math.min(1, rawProgress));
-      setScrollProgress(progress);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    handleScroll();
-    
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   const calculateCircularPosition = (index: number, total: number, radius: number, baseRotation: number) => {
     const angle = (index / total) * 360 + baseRotation;
@@ -176,7 +153,7 @@ const VisualWorld = () => {
             </h2>
           </div>
 
-          {/* Circle of Images - 24 gambar (tanpa rotasi) */}
+          {/* Circle of Images - 24 gambar dengan lazy loading dan skeleton */}
           <div className="relative w-full h-full flex items-center justify-center">
             {visualImages.map((image, index) => {
               const isHovered = hoveredImage === image.id;
@@ -200,15 +177,16 @@ const VisualWorld = () => {
                   onMouseLeave={() => setHoveredImage(null)}
                 >
                   <div className="relative w-full h-full overflow-hidden shadow-2xl">
-                    <img
+                    {/* LazyImage dengan skeleton fallback */}
+                    <LazyImage
                       src={image.imageUrl}
                       alt={`Visual World ${image.id}`}
-                      loading="lazy"
                       className="absolute inset-0 w-full h-full object-cover transition-all duration-700"
                       style={{
                         transform: isHovered ? 'scale(1.15)' : 'scale(1)',
                         filter: isHovered ? 'brightness(1.2) contrast(1.2)' : 'brightness(0.8) contrast(1)'
                       }}
+                      threshold={0.01}
                     />
                     <div
                       className="absolute inset-0 transition-opacity duration-300"

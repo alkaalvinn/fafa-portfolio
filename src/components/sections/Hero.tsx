@@ -5,7 +5,16 @@ import { socialLinks, portfolioImages } from '../../data/portfolioData';
 const Hero = () => {
   const scrollToSection = (sectionId: string) => {
     const element = document.querySelector(sectionId);
-    element?.scrollIntoView({ behavior: 'smooth' });
+    if (element) {
+      const offset = 8;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
   };
 
   return (
