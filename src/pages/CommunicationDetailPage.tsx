@@ -4,7 +4,10 @@ import { useNavigate } from 'react-router-dom';
 import Footer from '../components/common/Footer';
 
 // Core viewer
-import { Viewer } from '@react-pdf-viewer/core';
+import { Viewer, SpecialZoomLevel } from '@react-pdf-viewer/core';
+
+// Plugins for better viewing experience
+import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout';
 
 // Configure PDF.js worker
 import { GlobalWorkerOptions } from 'pdfjs-dist';
@@ -15,10 +18,14 @@ GlobalWorkerOptions.workerSrc = new URL(
 
 // Import styles
 import '@react-pdf-viewer/core/lib/styles/index.css';
+import '@react-pdf-viewer/default-layout/lib/styles/index.css';
 
 const CommunicationDetailPage = () => {
   const navigate = useNavigate();
   const [currentPdfIndex, setCurrentPdfIndex] = useState(0);
+
+  // Initialize default layout plugin
+  const defaultLayoutPluginInstance = defaultLayoutPlugin();
 
   // List of PDF files
   const pdfFiles = [
@@ -67,42 +74,53 @@ const CommunicationDetailPage = () => {
       </div>
 
       {/* PDF Viewer Section */}
-      <div className="px-6 sm:px-8 md:px-20 pb-12">
-        <div className="bg-gray-50 rounded-lg p-4 sm:p-6">
-          {/* PDF Navigation */}
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center gap-4">
+      <div className="px-4 sm:px-6 md:px-8 lg:px-20 pb-8 md:pb-12">
+        <div className="bg-gray-50 rounded-xl p-4 sm:p-6 md:p-8">
+          {/* PDF Navigation - Top */}
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4 mb-4 sm:mb-6">
+            <div className="flex items-center gap-3 sm:gap-4 w-full sm:w-auto">
               <button
                 onClick={() => changePdf('prev')}
                 disabled={currentPdfIndex === 0}
-                className={`p-2 rounded-lg ${currentPdfIndex === 0 ? 'bg-gray-200 text-gray-400' : 'bg-white text-gray-700 hover:bg-gray-100'} transition-colors`}
+                className={`p-2 rounded-lg transition-colors ${currentPdfIndex === 0
+                  ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                  : 'bg-white text-gray-700 hover:bg-gray-100 shadow-sm'
+                }`}
+                aria-label="Previous PDF"
               >
                 <ChevronLeft size={20} />
               </button>
-              <h3 className="text-lg font-semibold text-gray-900">
-                {pdfFiles[currentPdfIndex].name}
-              </h3>
+              <div className="flex-1 min-w-0">
+                <h3 className="text-base sm:text-lg font-semibold text-gray-900 truncate">
+                  {pdfFiles[currentPdfIndex].name}
+                </h3>
+                <p className="text-xs sm:text-sm text-gray-500 mt-0.5">
+                  {currentPdfIndex + 1} of {pdfFiles.length} documents
+                </p>
+              </div>
               <button
                 onClick={() => changePdf('next')}
                 disabled={currentPdfIndex === pdfFiles.length - 1}
-                className={`p-2 rounded-lg ${currentPdfIndex === pdfFiles.length - 1 ? 'bg-gray-200 text-gray-400' : 'bg-white text-gray-700 hover:bg-gray-100'} transition-colors`}
+                className={`p-2 rounded-lg transition-colors ${currentPdfIndex === pdfFiles.length - 1
+                  ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                  : 'bg-white text-gray-700 hover:bg-gray-100 shadow-sm'
+                }`}
+                aria-label="Next PDF"
               >
                 <ChevronRight size={20} />
               </button>
             </div>
-            <div className="flex items-center gap-2 text-sm text-gray-600">
-              {currentPdfIndex + 1} / {pdfFiles.length}
-            </div>
           </div>
 
-          {/* PDF Display */}
-          <div className="bg-white rounded-lg shadow-sm overflow-auto" style={{ height: '750px' }}>
+          {/* PDF Display - Responsive container */}
+          <div className="bg-white rounded-xl shadow-md overflow-hidden" style={{ height: '60vh', minHeight: '400px', maxHeight: '800px' }}>
             <Viewer
               fileUrl={pdfFiles[currentPdfIndex].path}
+              plugins={[defaultLayoutPluginInstance]}
+              defaultScale={SpecialZoomLevel.PageWidth}
             />
           </div>
-
-                  </div>
+        </div>
       </div>
 
       {/* Content */}
