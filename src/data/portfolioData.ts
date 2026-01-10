@@ -4,31 +4,29 @@ export const experiences: Experience[] = [
   {
     id: 1,
     company: 'Central Bank of Indonesia',
-    position: 'Program - Consumer Protection',
+    position: 'Program Project Management',
     period: 'October 2025 - Present',
     description:
       'Supporting consumer protection initiatives through creative production, campaign support, and event management.',
     responsibilities: [
-      'Developed Terms of References (ToR) and creative briefs for Geber PK campaign, delivering 5 campaign series that reached 5,000+ participants.',
-      'Produced 10+ monthly creative assets for social media and offline campaigns.',
-      'Coordinated VIP guest relations and documentation for high-profile federal programs.',
-      'Managed end-to-end KOL and speaker handling, from selection and briefing to on-site coordination.',
-      'Supported seamless execution of large-scale campaign events across online and offline platforms.'
+      'Supported event activation by developing comprehensive Terms of References (ToR) and creative briefs  for the Geber PK campaign, delivering five campaign series that increased public awareness of consumer protection initiatives and attracted 5.000+ participants across online and offline platforms.',
+      'Produced 10+ monthly creative assets for social media and offline campaigns to support consumer protection initiatives.',
+      'Coordinated VIP guest relations and documentation to support consumer protection initiatives to ensure seamless execution for the high profile programs.',
+      'Oversaw end-to-end KOL and speaker management, from selection and briefing to on-site coordination, enhancing event credibility and reach.'
+
     ]
   },
   {
     id: 2,
     company: 'PT Dua Puluh Tiga',
-    position: 'Graphic Design Intern',
+    position: 'Employer Branding Intern',
     period: 'July 2025 - October 2025',
     description:
       'Designed creative assets and audiovisual content to strengthen employer branding visibility and internal communication.',
     responsibilities: [
-      'Designed and delivered 20+ monthly creative assets for social media and offline activation.',
-      'Produced 7 monthly audiovisual contents for Instagram and TikTok to boost internal brand perception.',
-      'Developed and implemented visual identity guidelines for employer branding division.',
-      'Streamlined creative production workflow to ensure design consistency.',
-      'Supported content strategies that enhanced engagement for talent branding.'
+      'Designed and delivered 20+ monthly creative assets for social media and offline activations, strengthening employer branding visibility and engagement.',
+      'Produced 7 monthly audiovisual contents for Instagram and TikTok that boosted audience interaction to help attracting top talent and strengthening internal brand perception.',
+      'Developed and implemented visual identity guidelines that streamlined creative production, ensuring design consistency and efficiency across the Employer Branding division.'
     ]
   },
   {
@@ -39,11 +37,9 @@ export const experiences: Experience[] = [
     description:
       'Created visual and video assets for FMCG e-commerce and digital advertising campaigns.',
     responsibilities: [
-      'Designed 10+ monthly creative assets for e-commerce platforms such as Shopee, Tokopedia, and Lazada.',
-      'Produced optimized visuals to enhance product discoverability and platform performance.',
-      'Developed and edited 10+ monthly video ads for Meta and TikTok campaigns.',
-      'Improved campaign performance through visual consistency and market-oriented adaptation.',
-      'Collaborated with marketing team to support commercial communication goals.'
+      'Designed 10+ monthly creative assets for e-commerce platforms (Shopee, Tokopedia, Blibli, Meta, Lazada). Driving stronger online conversion potential.',
+      'Produced high quality visuals optimized for various platform display standards, enhancing product discoverability and customer engagement.',
+      'Developed and edited 10+ monthly video ads for Meta and TikTok campaigns, contributing to improved campaign performance and visibility.'
     ]
   },
   {
@@ -54,11 +50,11 @@ export const experiences: Experience[] = [
     description:
       'Strengthened corporate image through internal communication, content production, and stakeholder experience management.',
     responsibilities: [
-      'Produced internal mini releases distributed to 5,000+ employees.',
-      'Executed end-to-end content aligned with corporate reputation strategy.',
-      'Achieved +9.4% account reach, +45.6% engagement, and 23.8K average reel views through optimized storytelling.',
-      'Managed guest visit protocols and documentation for key stakeholders.',
-      'Created narrative-driven visuals to support corporate branding goals.'
+      'Produced internal mini releases from ideation to execution, delivering targeted communications to 5,000+ employees.',
+      'Executed end-to-end content production aligned with brand reputation strategy, strengthening GMF’s corporate image.',
+      'Achieved +9.4% increase in account reach, +45.6% engagement rate, and +0.2% follower growth through optimized storytelling and visuals. Generated an average of 23.8K views per reel by leveraging engaging narratives and creative content strategies.',
+      'Managed guest visit protocols and documentation, ensuring a professional and cohesive brand experience for stakeholders.'
+
     ]
   },
   {
@@ -69,11 +65,10 @@ export const experiences: Experience[] = [
     description:
       'Produced multimedia content and strengthened brand engagement through visual storytelling for a food-tech startup.',
     responsibilities: [
-      'Created and managed 40+ pieces of social media content including photography and videography.',
-      'Developed storylines and storyboards to strengthen brand tone.',
-      'Edited and polished 50+ images and 25+ videos for social media platforms.',
-      'Ensured visuals aligned with brand standards to maximize engagement.',
-      'Worked closely with marketing team to support ongoing campaigns.'
+      'Created and managed over 40 pieces of social media content, including hands-on photography and videography to capture and produce engaging visuals by ',
+      'Developing storylines and storyboards to support content creation that strengthen brand tone.',
+      'Edited and polished 50+ digital images and 25+ videos for social media platforms, enhancing visual appeal and engagement and ensuring high-quality visuals that align with brand standards.'
+
     ]
   },
   {
@@ -84,10 +79,10 @@ export const experiences: Experience[] = [
     description:
       'Managed multi-client projects, produced tailored content, supported advertising pitches, and contributed to improved client satisfaction.',
     responsibilities: [
-      'Acquired and managed projects for over 10 clients over a 2-year period.',
-      'Developed and produced 10+ pieces of content per client each month, tailored to specific needs.',
-      'Assisted in pitching 5 advertising decks, successfully addressing and fulfilling client requirements.',
-      'Significantly enhanced client customer satisfaction through strategic improvements and effective olutions.'
+      'Directed creative operations for 10+ clients, managing timelines, quality control, and deliverables to ensure client satisfaction.',
+      'Developed and produced tailored 10+ pieces of content per client each month, to supports their marketing and brand growth objectives.',
+      'Pitched and secured 5 advertising projects, successfully addressing and fulfilling client requirements.',
+      'Increased clients satisfaction through strategic improvements and effective solutions by streamlining communication and workflow efficiency.'
     ]
   }
 ];
