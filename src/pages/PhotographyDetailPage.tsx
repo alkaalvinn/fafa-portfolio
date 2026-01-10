@@ -114,10 +114,8 @@ const PhotographyDetailPage = () => {
                   className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                   loading="lazy"
                 />
-                {/* Company label overlay */}
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-2 sm:p-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <p className="text-white text-xs sm:text-sm font-medium">{image.company}</p>
-                </div>
+                {/* Dark overlay on hover */}
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300 pointer-events-none" />
               </div>
             );
           })}
@@ -126,25 +124,33 @@ const PhotographyDetailPage = () => {
 
       {/* Image Modal */}
       {selectedImage && (
-        <div className="fixed inset-0 z-60 flex items-center justify-center p-4">
+        <div className="fixed inset-0 z-60 flex items-center justify-center p-4 sm:p-6 md:p-8">
           <div
             className="absolute inset-0 bg-black/80 backdrop-blur-sm"
             onClick={() => setSelectedImage(null)}
           />
-          <div className="relative max-w-5xl max-h-[90vh]">
-            <button
-              onClick={() => setSelectedImage(null)}
-              className="absolute -top-12 right-0 text-white hover:text-gray-300 transition-colors"
-            >
-              <svg width="32" height="32" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-            <img
-              src={selectedImage.src}
-              alt={selectedImage.alt}
-              className="max-w-full max-h-[90vh] object-contain rounded-lg"
-            />
+          <div className="relative max-w-4xl w-full">
+            <div className="flex items-center justify-center">
+              <div className="relative">
+                <img
+                  src={selectedImage.src}
+                  alt={selectedImage.alt}
+                  className="max-w-full max-h-[80vh] object-contain rounded-lg"
+                />
+                {/* Button close di dalam area gambar - kanan atas */}
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setSelectedImage(null);
+                  }}
+                  className="absolute top-3 right-3 sm:top-4 sm:right-4 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition-all duration-200 z-10"
+                >
+                  <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       )}
