@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
-import { lazy, Suspense, useEffect } from 'react';
+import { lazy, Suspense, useEffect, useState } from 'react';
+import { AnimatePresence } from 'framer-motion';
 import Navbar from './components/common/Navbar';
 import Hero from './components/sections/Hero';
 import CreativeBanner from './components/sections/CreativeBanner';
@@ -9,6 +10,7 @@ import Projects from './components/sections/Projects';
 import Skills from './components/sections/Skills';
 import Contact from './components/sections/Contact';
 import Footer from './components/common/Footer';
+import LoadingScreen from './components/common/LoadingScreen';
 import './App.css';
 
 // Code splitting untuk ProjectPage - mengurangi initial bundle size
@@ -49,21 +51,34 @@ function HomePage() {
 }
 
 function App() {
+  const [isLoading, setIsLoading] = useState(true);
+
+  const handleLoadingComplete = () => {
+    setIsLoading(false);
+  };
+
   return (
-    <BrowserRouter>
-      <ScrollToTop />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route
-          path="/project/:projectId"
-          element={
-            <Suspense fallback={<PageLoader />}>
-              <ProjectPage />
-            </Suspense>
-          }
-        />
-      </Routes>
-    </BrowserRouter>
+    <>
+      <AnimatePresence>
+        {isLoading && <LoadingScreen onComplete={handleLoadingComplete} />}
+      </AnimatePresence>
+      {!isLoading && (
+        <BrowserRouter>
+          <ScrollToTop />
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route
+              path="/project/:projectId"
+              element={
+                <Suspense fallback={<PageLoader />}>
+                  <ProjectPage />
+                </Suspense>
+              }
+            />
+          </Routes>
+        </BrowserRouter>
+      )}
+    </>
   );
 }
 
