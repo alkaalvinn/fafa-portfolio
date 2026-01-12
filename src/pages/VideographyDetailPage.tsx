@@ -1,31 +1,31 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Calendar, User, Tag, ChevronLeft, ChevronRight, Play } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import Footer from '../components/common/Footer';
+import { videoFiles } from '../data/portfolioData';
 
 const VideographyDetailPage = () => {
   const navigate = useNavigate();
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
-
-  // List of video files
-  const videoFiles = [
-    { name: 'Project Showcase 1', path: '/videos/video.mp4' },
-    { name: 'Project Showcase 2', path: '/videos/video2.mp4' },
-    { name: 'Project Showcase 3', path: '/videos/video3.mp4' },
-    { name: 'Project Showcase 4', path: '/videos/video4.mp4' }
-  ];
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   const handleBackToProjects = () => {
     navigate('/#projects');
   };
 
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.play().catch(err => {
+        console.log('Autoplay prevented:', err);
+      });
+    }
+  }, [currentVideoIndex]);
+
   const changeVideo = (direction: 'next' | 'prev') => {
     if (direction === 'next' && currentVideoIndex < videoFiles.length - 1) {
       setCurrentVideoIndex(currentVideoIndex + 1);
-      // Video akan otomatis dimainkan karena autoPlay
     } else if (direction === 'prev' && currentVideoIndex > 0) {
       setCurrentVideoIndex(currentVideoIndex - 1);
-      // Video akan otomatis dimainkan karena autoPlay
     }
   };
 
@@ -76,13 +76,15 @@ const VideographyDetailPage = () => {
           {/* Video Player */}
           <div className="bg-black rounded-lg overflow-hidden relative">
             <video
-              key={currentVideoIndex} // Reset video when changing
+              ref={videoRef}
+              key={currentVideoIndex}
               className="w-full aspect-video"
               autoPlay
               muted
               controls
               playsInline
               loop
+              preload="auto"
             >
               <source src={videoFiles[currentVideoIndex].path} type="video/mp4" />
               Your browser does not support the video tag.
@@ -96,7 +98,6 @@ const VideographyDetailPage = () => {
                 key={index}
                 onClick={() => {
                   setCurrentVideoIndex(index);
-                  // Video akan otomatis dimainkan karena autoPlay
                 }}
                 className={`relative aspect-video rounded overflow-hidden transition-all ${
                   index === currentVideoIndex
@@ -108,9 +109,13 @@ const VideographyDetailPage = () => {
                   src={video.path}
                   className="w-full h-full object-cover"
                   muted
+                  preload="metadata"
                   onMouseEnter={(e) => {
-                    e.currentTarget.play();
-                    setTimeout(() => e.currentTarget.pause(), 2000); // Play 2 seconds then pause
+                    e.currentTarget.play().catch(() => {});
+                    setTimeout(() => {
+                      e.currentTarget.pause();
+                      e.currentTarget.currentTime = 0;
+                    }, 2000);
                   }}
                 />
                 <div className="absolute inset-0 bg-black/20 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">

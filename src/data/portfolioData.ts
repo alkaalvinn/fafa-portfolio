@@ -250,6 +250,25 @@ export const portfolioImages = {
   }
 };
 
+// === VIDEO FILES ===
+// TODO: Ganti dengan URL Cloudinary video Anda sendiri
+export const videoFiles = [
+  { name: 'HSS - Stopmotion Hand', path: 'https://res.cloudinary.com/doirxg4kz/video/upload/v1768054955/qrqhwz6c50e76hgqdldp.mp4' },
+  { name: 'MC - Tetap Paling Korea', path: 'https://res.cloudinary.com/doirxg4kz/video/upload/v1768054958/idpxf7qxgj4q5a1gbkdo.mp4' },
+  { name: 'WTF - Human Element Stopmo', path: 'https://res.cloudinary.com/doirxg4kz/video/upload/v1768054962/s0bf10jaddmoy7ftxlob.mp4' },
+  { name: 'WTF - Thai Bestorant', path: 'https://res.cloudinary.com/doirxg4kz/video/upload/v1768054966/ke59lykwasidchhrbf4m.mp4' },
+  { name: 'MC - Momoen Akhir Tahun Banyak Rasa', path: 'https://res.cloudinary.com/doirxg4kz/video/upload/v1768054974/jplrojjcaqyx6wy3zscf.mp4' },
+  { name: 'WTF - Bestoran', path: 'https://res.cloudinary.com/doirxg4kz/video/upload/v1768054975/zrsnjlrsyegcvvnaelp3.mp4' },
+  { name: 'WTF - Shopee Flash Sale', path: 'https://res.cloudinary.com/doirxg4kz/video/upload/v1768054977/qj3vm4lrogxyxtnaqycf.mp4' },
+  { name: 'WTF - Tomyum Fried Rice', path: 'https://res.cloudinary.com/doirxg4kz/video/upload/v1768054978/sflmlaxkmmu4wjtjgl3s.mp4' },
+  { name: 'GMF - Spirit of August', path: 'https://res.cloudinary.com/doirxg4kz/video/upload/v1768054984/iohtp766xhntvezuslc2.mp4' },
+  { name: 'Aurelia - Canvas Apalagi VHS', path: 'https://res.cloudinary.com/doirxg4kz/video/upload/v1768054986/rbwbd3tkbloeqyx9hw8h.mp4' },
+  { name: 'GMF - HUT RI 79', path: 'https://res.cloudinary.com/doirxg4kz/video/upload/v1768054994/dyoykrrbpp05qvmmhc6u.mp4' },
+  { name: 'ADIML KEENAN FINAL', path: 'https://res.cloudinary.com/doirxg4kz/video/upload/v1768055080/dtiqvgvbm0h516bpas5j.mp4' },
+  { name: 'Korea Style', path: 'https://res.cloudinary.com/doirxg4kz/video/upload/v1768055052/aj7eoecvfd0dxovrb61o.mp4' },
+  { name: 'Tes', path: '/videos/video.mp4' },
+];
+
 // Gambar placeholder untuk sementara (bisa dihapus setelah ada foto asli)
 export const placeholderImages = {
   // Visual World placeholders
