@@ -74,7 +74,7 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="min-h-screen bg-black flex flex-col items-center justify-center p-3 sm:p-4 md:p-6 lg:p-8">
+    <section id="contact" className="min-h-screen bg-black flex flex-col items-center justify-center p-3 sm:p-4 md:p-6 lg:p-8 py-12 sm:py-16 md:py-20">
       <style>{`
         @keyframes floatRotate1 {
           0% {

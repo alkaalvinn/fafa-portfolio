@@ -98,7 +98,8 @@ function ScrollToTop() {
       setTimeout(() => {
         const projectsSection = document.getElementById('projects');
         if (projectsSection) {
-          const offset = 8;
+          const isMobile = window.innerWidth < 768;
+          const offset = isMobile ? 32 : 8;
           const elementPosition = projectsSection.getBoundingClientRect().top;
           const offsetPosition = elementPosition + window.pageYOffset - offset;
 
