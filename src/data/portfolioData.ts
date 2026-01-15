@@ -247,7 +247,110 @@ export const portfolioImages = {
   contact: {
     portrait1: 'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944105/vacgqbas5qhcbzkruuvn.webp',
     portrait2: 'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944120/sjyqod0avxciykxtax4r.webp'
-  }
+  },
+
+  // Design Detail Page - Design Projects
+  // ============================================
+  // INPUT FOTO DESIGN DI SINI
+  // ============================================
+  design: [
+    {
+      id: 1,
+      src: 'https://res.cloudinary.com/doirxg4kz/image/upload/v1768201142/fqmjqojky1xly0wrvgwv.jpg',
+      alt: 'Design Project 1',
+      title: 'Visual Guidelines - 1'
+    },
+    {
+      id: 2,
+      src: 'https://res.cloudinary.com/doirxg4kz/image/upload/v1768201137/yxvbrtl7vv8bxhdqqrpw.jpg',
+      alt: 'Design Project 2',
+      title: 'Visual Guidelines - 2'
+    },
+    {
+      id: 3,
+      src: 'https://res.cloudinary.com/doirxg4kz/image/upload/v1768201130/leqvcsa2t6kypm6qxj2m.jpg',
+      alt: 'Design Project 3',
+      title: 'Visual Guidelines - 3'
+    },
+    {
+      id: 4,
+      src: 'https://res.cloudinary.com/doirxg4kz/image/upload/v1768201124/nfzbwbqmxrholo2g4jiq.jpg',
+      alt: 'Design Project 4',
+      title: 'Visual Guidelines - 4'
+    },
+    {
+      id: 5,
+      src: 'https://res.cloudinary.com/doirxg4kz/image/upload/v1768201118/mezbigbpo3f5b2pe7uss.jpg',
+      alt: 'Design Project 5',
+      title: 'Visual Guidelines - 5'
+    },
+    {
+      id: 6,
+      src: 'https://res.cloudinary.com/doirxg4kz/image/upload/v1768201121/rltdz3gujnw2k7sb7ujs.jpg',
+      alt: 'Design Project 6',
+      title: 'Visual Guidelines - 6'
+    },
+    {
+      id: 7,
+      src: 'https://res.cloudinary.com/doirxg4kz/image/upload/v1768201110/zyw74kp7infabhbvwsra.png',
+      alt: 'Design Project 7',
+      title: 'Visual Guidelines - 7'
+    },
+    {
+      id: 8,
+      src: 'https://res.cloudinary.com/doirxg4kz/image/upload/v1768201112/wtd4hdiisdjbwg7i2cd3.jpg',
+      alt: 'Design Project 8',
+      title: 'Visual Guidelines - 8'
+    },
+    {
+      id: 9,
+      src: 'https://res.cloudinary.com/doirxg4kz/image/upload/v1768201133/zqbyfgc33uavozbe28gb.jpg',
+      alt: 'eComFestiveBanner',
+      title: 'eComFestiveBanner TokpedBanner-V2'
+    },
+    {
+      id: 10,
+      src: 'https://res.cloudinary.com/doirxg4kz/image/upload/v1768201131/tr4cno47aybie4pfvx40.jpg',
+      alt: 'eComFestive2025',
+      title: 'eComFestive2025 eComFestive2025BannerAffiliate1000x1000-V1'
+    },
+    {
+      id: 11,
+      src: 'https://res.cloudinary.com/doirxg4kz/image/upload/v1768201125/xuqxdomczh5eghujwcpb.jpg',
+      alt: 'BannerShopeeAffiliate',
+      title: 'BannerShopeeAffiliate'
+    },
+    {
+      id: 12,
+      src: 'https://res.cloudinary.com/doirxg4kz/image/upload/v1768201124/d19a4kvwqcsuz2lbu7sc.jpg',
+      alt: 'Banner TikTok BNPL Cooperation_7',
+      title: 'Banner TikTok BNPL Cooperation_7. ABC Sambal Asli Jerigen 5.5 kg'
+    },
+    {
+      id: 13,
+      src: 'https://res.cloudinary.com/doirxg4kz/image/upload/v1768201136/eqyey0h3myqo0hmcfysc.jpg',
+      alt: 'Banner TikTok BNPL Cooperation_15',
+      title: 'Banner TikTok BNPL Cooperation_15. ABC Sambal Extra Pedas 950 g Multi Pack 3 pcs Free ABC Sambal Extreme Pedas 135 ml'
+    },
+    {
+      id: 14,
+      src: 'https://res.cloudinary.com/doirxg4kz/image/upload/v1768201128/sxhkppvj4jmvr01hxjxh.jpg',
+      alt: 'eComFestive2025',
+      title: 'eComFestive2025 TokpedBanner-V3_1'
+    },
+    {
+      id: 15,
+      src: 'https://res.cloudinary.com/doirxg4kz/image/upload/v1768201112/jh5lmbiuxcypegf5yr4c.jpg',
+      alt: 'eComFestive2025',
+      title: 'eComFestive2025 TokpedBanner-V3_2'
+    },
+    {
+      id: 16,
+      src: 'https://res.cloudinary.com/doirxg4kz/image/upload/v1768201141/bnwoewjvycls4m9r154z.jpg',
+      alt: 'EcommerceBannerAlfagiftSambalAsliEP1kg',
+      title: 'EcommerceBannerAlfagiftSambalAsliEP1kg-DiskonFebruari2025-900x300-V1'
+    },
+  ]
 };
 
 // === VIDEO FILES ===

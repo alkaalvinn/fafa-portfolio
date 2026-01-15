@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Calendar, User, Tag } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import Footer from '../components/common/Footer';
@@ -8,26 +8,15 @@ interface ImageData {
   id: number;
   src: string;
   alt: string;
+  title?: string;
 }
+
+// Ambil data design dari portfolioData.ts
+const designImages: ImageData[] = portfolioImages.design || [];
 
 const DesignDetailPage = () => {
   const navigate = useNavigate();
   const [selectedImage, setSelectedImage] = useState<ImageData | null>(null);
-  const [images, setImages] = useState<ImageData[]>([]);
-
-  useEffect(() => {
-    // Combine Kraft Heinz and PT Dua Puluh Tiga images only
-    const kraftHeinzImages = portfolioImages.experience[3] || []; // Kraft Heinz
-    const ptDuaPuluhTigaImages = portfolioImages.experience[2] || []; // PT Dua Puluh Tiga
-    const allImages = [...kraftHeinzImages, ...ptDuaPuluhTigaImages];
-
-    const imageData = allImages.map((src, index) => ({
-      id: index,
-      src: src,
-      alt: `Design Project ${index + 1}`
-    }));
-    setImages(imageData);
-  }, []);
 
   const handleBackToProjects = () => {
     navigate('/#projects');
@@ -51,7 +40,7 @@ const DesignDetailPage = () => {
       {/* Gallery Grid */}
       <div className="px-6 sm:px-8 md:px-20 pb-12">
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 sm:gap-4 md:gap-5">
-          {images.map((image, index) => (
+          {designImages.map((image) => (
             <div
               key={image.id}
               className="relative overflow-hidden rounded-lg cursor-pointer group aspect-square"
@@ -69,25 +58,33 @@ const DesignDetailPage = () => {
 
       {/* Image Modal */}
       {selectedImage && (
-        <div className="fixed inset-0 z-60 flex items-center justify-center p-4">
+        <div className="fixed inset-0 z-60 flex items-center justify-center p-4 sm:p-6 md:p-8">
           <div
             className="absolute inset-0 bg-black/80 backdrop-blur-sm"
             onClick={() => setSelectedImage(null)}
           />
-          <div className="relative max-w-5xl max-h-[90vh]">
-            <button
-              onClick={() => setSelectedImage(null)}
-              className="absolute -top-12 right-0 text-white hover:text-gray-300 transition-colors"
-            >
-              <svg width="32" height="32" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-            <img
-              src={selectedImage.src}
-              alt={selectedImage.alt}
-              className="max-w-full max-h-[90vh] object-contain rounded-lg"
-            />
+          <div className="relative max-w-4xl w-full">
+            <div className="flex items-center justify-center">
+              <div className="relative">
+                <img
+                  src={selectedImage.src}
+                  alt={selectedImage.alt}
+                  className="max-w-full max-h-[80vh] object-contain rounded-lg"
+                />
+                {/* Button close di dalam area gambar - kanan atas */}
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setSelectedImage(null);
+                  }}
+                  className="absolute top-3 right-3 sm:top-4 sm:right-4 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition-all duration-200 z-10"
+                >
+                  <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       )}
