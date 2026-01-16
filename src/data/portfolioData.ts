@@ -211,7 +211,7 @@ export const portfolioImages = {
     2: [
       'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944105/bcbifxn0kfcqqqkhz36c.webp',
       'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944106/imwismrhxjpiivi9u8jb.webp',
-      'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944116/ykzhvgcucppyu77mzgsv.webp',
+      'https://res.cloudinary.com/doirxg4kz/image/upload/v1768572865/bweta2xuzimmr4zdmyco.webp',
       'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944105/q3qwkyflc2t6wdim4hcp.webp'
     ],
     // Kraft Heinz - 4 gambar
@@ -223,17 +223,17 @@ export const portfolioImages = {
     ],
     // GMF AeroAsia - 4 gambar
     4: [
-      'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944115/v0mbv2o7xyarmkrqhspr.webp',
-      'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944118/bdwendnc2fnouof7vyuw.webp',
-      'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944114/viki0zowxi0oabziqqfz.webp',
-      'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944117/uz7gx3y65ifn3nib5z8u.webp'
+      'https://res.cloudinary.com/doirxg4kz/image/upload/v1768572864/eznoe19cofpouy7gxxdy.webp',
+      'https://res.cloudinary.com/doirxg4kz/image/upload/v1768572868/fb3mkzkuzazbcoiwhpmx.webp',
+      'https://res.cloudinary.com/doirxg4kz/image/upload/v1768572870/blh4pldaljgmx67vve8n.webp',
+      'https://res.cloudinary.com/doirxg4kz/image/upload/v1768572873/do5xfn1ck7xp4u9sozrn.webp'
     ],
     // Hangry - 4 gambar
     5: [
-      'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944120/vfzbr2u5awxigxfgxjxy.webp',
-      'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944119/kz4sqgxouml3qyilcazx.webp',
-      'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944116/thvm3vc0scu7zxjag5uw.webp',
-      'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944118/zbrzdc7rylhpazbuy6rl.webp'
+      'https://res.cloudinary.com/doirxg4kz/image/upload/v1768572528/lijwoocn9u6hu3un3r6h.webp',
+      'https://res.cloudinary.com/doirxg4kz/image/upload/v1768572527/ktlnmzjwltdbcrawy9e5.webp',
+      'https://res.cloudinary.com/doirxg4kz/image/upload/v1768572527/o6x2nvf4iexxda0hbn4x.webp',
+      'https://res.cloudinary.com/doirxg4kz/image/upload/v1768572526/baodbzvftsyc8w6nc0w0.webp'
     ],
     6: [
       'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944107/pn03fzqv6xjwxvkcelzv.webp',

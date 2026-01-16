@@ -25,11 +25,19 @@ const Experience = () => {
   const titleY = scrollProgress * -40; // Move up
   const titleOpacity = scrollProgress < 0.5 ? 1 : 1 - ((scrollProgress - 0.5) * 2);
 
+  // OPTIMIZATION: Only render visible + neighboring cards for smooth transitions
+  // This reduces DOM elements from ~24 images to ~8-12 images
+  const renderRange = [
+    visibleExpIndex - 1,
+    visibleExpIndex,
+    visibleExpIndex + 1
+  ].filter(index => index >= 0 && index < experiences.length);
+
   return (
     <section id="experience" className="relative bg-white" style={{ minHeight: `${200 + experiences.length * 120}vh` }}>
       {/* Sticky Container */}
       <div className="sticky top-0 h-screen overflow-hidden flex items-center">
-        
+
         {/* Animated Title - Center to Top */}
         <div
           className="absolute inset-0 flex items-center justify-center pointer-events-none"
@@ -54,14 +62,15 @@ const Experience = () => {
           {/* Experience Cards Container - Takes remaining space */}
           <div className="flex-1 relative px-4 sm:px-6 py-6 sm:py-8">
             <div className="container mx-auto max-w-7xl h-full flex items-center pt-6 sm:pt-8 pb-16 sm:pb-20">
-              {experiences.map((exp, index) => {
+              {renderRange.map((index) => {
+                const exp = experiences[index];
                 const isVisible = visibleExpIndex === index;
                 const opacity = isVisible ? 1 : 0;
                 const translateY = isVisible ? 0 : 20;
 
                 return (
                   <div
-                    key={exp.id}
+                    key={index}
                     className="absolute inset-0 flex items-center px-4 sm:px-6"
                     style={{
                       opacity: opacity,
