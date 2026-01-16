@@ -239,7 +239,7 @@ export const portfolioImages = {
       'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944107/pn03fzqv6xjwxvkcelzv.webp',
       'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944107/puy9jr04gmdjpgfowryh.webp',
       'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944107/alu6efo56xgruyosd5q4.webp',
-      'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944116/zrdkyz1bgiiq4kk2ksw7.webp'
+      'https://res.cloudinary.com/doirxg4kz/image/upload/v1768570494/vhqu9gooderz32n8z9tj.webp'
     ]
   },
 
