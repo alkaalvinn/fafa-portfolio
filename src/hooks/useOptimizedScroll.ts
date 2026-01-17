@@ -3,11 +3,18 @@ import { useState, useEffect, useRef } from 'react';
 /**
  * Hook untuk scroll yang sudah di-optimasi dengan requestAnimationFrame
  * Mengurangi scroll event calls dari 100+ per detik menjadi ~60fps
+ *
+ * OPTIMIZED:
+ * - Cache DOM reads untuk mengurangi layout thrashing
+ * - Throttle updates dengan threshold lebih besar (0.005)
+ * - Passive event listeners untuk non-blocking scroll
  */
 export const useOptimizedScroll = (sectionId: string, multiplier: number = 1) => {
   const [scrollProgress, setScrollProgress] = useState(0);
   const rafRef = useRef<number | null>(null);
   const lastProgressRef = useRef(0);
+  // Cache section dimensi untuk mengurangi DOM reads
+  const sectionCacheRef = useRef<{ height: number; viewportHeight: number } | null>(null);
 
   useEffect(() => {
     let ticking = false;
@@ -19,15 +26,24 @@ export const useOptimizedScroll = (sectionId: string, multiplier: number = 1) =>
           if (!section) return;
 
           const rect = section.getBoundingClientRect();
-          const sectionHeight = section.offsetHeight;
-          const viewportHeight = window.innerHeight;
 
-          const rawProgress = (viewportHeight - rect.top) / (sectionHeight * multiplier);
+          // Gunakan cache jika tersedia untuk mengurangi DOM reads
+          let sectionHeight = sectionCacheRef.current?.height;
+          let viewportHeight = sectionCacheRef.current?.viewportHeight;
+
+          // Hanya baca dari DOM jika cache tidak ada atau section berubah
+          if (!sectionHeight || !viewportHeight) {
+            sectionHeight = section.offsetHeight;
+            viewportHeight = window.innerHeight;
+            sectionCacheRef.current = { height: sectionHeight, viewportHeight };
+          }
+
+          const rawProgress = (viewportHeight - rect.top) / (sectionHeight! * multiplier);
           const progress = Math.max(0, Math.min(1, rawProgress));
 
-          // Hanya update jika progress berubah signifikan (>0.001)
-          // Ini mengurangi unnecessary re-renders secara drastis
-          if (Math.abs(progress - lastProgressRef.current) > 0.001) {
+          // INCREASED THRESHOLD: 0.005 untuk mengurangi re-renders lebih agresif
+          // Ini berarti hanya update jika progress berubah minimal 0.5%
+          if (Math.abs(progress - lastProgressRef.current) > 0.005) {
             lastProgressRef.current = progress;
             setScrollProgress(progress);
           }
@@ -39,13 +55,25 @@ export const useOptimizedScroll = (sectionId: string, multiplier: number = 1) =>
       }
     };
 
+    // Invalidate cache on resize
+    const handleResize = () => {
+      sectionCacheRef.current = null;
+      if (!ticking) {
+        rafRef.current = requestAnimationFrame(() => {
+          handleScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
     window.addEventListener('scroll', handleScroll, { passive: true });
-    window.addEventListener('resize', handleScroll, { passive: true });
+    window.addEventListener('resize', handleResize, { passive: true });
     handleScroll(); // Initial call
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', handleScroll);
+      window.removeEventListener('resize', handleResize);
       if (rafRef.current !== null) {
         cancelAnimationFrame(rafRef.current);
       }

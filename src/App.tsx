@@ -40,7 +40,7 @@ function HomePage() {
         <Hero />
         <CreativeBanner />
         <Experience />
-        {/* <VisualWorld /> */}
+        <VisualWorld />
         <Projects />
         <Skills />
         <Contact />
