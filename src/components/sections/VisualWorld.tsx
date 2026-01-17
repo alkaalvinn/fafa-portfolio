@@ -1,11 +1,11 @@
 import { useState, useMemo, useEffect, useCallback, memo } from 'react';
 import { portfolioImages } from '../../data/portfolioData';
 import { useOptimizedScroll } from '../../hooks/useOptimizedScroll';
-import { LazyImage } from '../common/LazyImage';
 
 // ============================================
 // MEMOIZED COMPONENT: CircularImage
 // Hanya re-render jika props berubah
+// NATIVE LAZY LOADING: Tidak pakai IntersectionObserver (mengurangi memory)
 // ============================================
 interface CircularImageProps {
   image: {
@@ -22,9 +22,17 @@ interface CircularImageProps {
 }
 
 const CircularImage = memo(({ image, imageSize, isHovered, onHover, onLeave }: CircularImageProps) => {
+  // State untuk image load status
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [hasError, setHasError] = useState(false);
+
   // Callbacks untuk event handlers - stable references
   const handleMouseEnter = useCallback(() => onHover(image.id), [image.id, onHover]);
   const handleMouseLeave = useCallback(() => onLeave(), [onLeave]);
+
+  // Image load handler
+  const handleImageLoad = useCallback(() => setIsLoaded(true), []);
+  const handleImageError = useCallback(() => setHasError(true), []);
 
   // Pre-compute transform string
   const transformStyle = useMemo(
@@ -76,18 +84,44 @@ const CircularImage = memo(({ image, imageSize, isHovered, onHover, onLeave }: C
         className="relative w-full h-full overflow-hidden shadow-2xl"
         style={{ contain: 'layout style paint' }}
       >
-        <LazyImage
+        {/* Skeleton loading state */}
+        {!isLoaded && !hasError && (
+          <div
+            className="absolute inset-0 bg-gray-200 animate-pulse"
+            style={{ zIndex: 1 }}
+            aria-hidden="true"
+          />
+        )}
+
+        {/* NATIVE LAZY LOADING - browser built-in, jauh lebih efisien */}
+        <img
           src={image.imageUrl}
           alt={`Visual World ${image.id}`}
+          loading="lazy"
           className="absolute inset-0 w-full h-full object-cover"
           style={{
             transform: imageTransformStyle,
             filter: filterStyle,
             transition: 'transform 0.7s ease-out, filter 0.3s ease-out',
             willChange: 'transform, filter',
+            opacity: isLoaded ? 1 : 0,
+            // Fade in saat loaded
+            transitionProperty: 'opacity, transform, filter',
           }}
-          threshold={0.01}
+          onLoad={handleImageLoad}
+          onError={handleImageError}
         />
+
+        {/* Error fallback */}
+        {hasError && (
+          <div
+            className="absolute inset-0 bg-gray-300 flex items-center justify-center"
+            style={{ zIndex: 2 }}
+          >
+            <span className="text-xs text-gray-500">Failed to load</span>
+          </div>
+        )}
+
         <div
           className="absolute inset-0"
           style={{
