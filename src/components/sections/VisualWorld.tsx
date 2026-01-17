@@ -1,141 +1,67 @@
-import { useState, useMemo, useEffect, useCallback, memo } from 'react';
+import { useMemo, useEffect, useState, useRef, memo } from 'react';
 import { portfolioImages } from '../../data/portfolioData';
-import { useOptimizedScroll } from '../../hooks/useOptimizedScroll';
 
 // ============================================
-// MEMOIZED COMPONENT: CircularImage
-// Hanya re-render jika props berubah
-// NATIVE LAZY LOADING: Tidak pakai IntersectionObserver (mengurangi memory)
+// STATIC COMPONENT: CircularImage
+// Tidak pernah re-renders karena tidak ada dynamic props
 // ============================================
 interface CircularImageProps {
-  image: {
-    id: number;
-    imageUrl: string;
-    x: number;
-    y: number;
-    rotation: number;
-  };
-  imageSize: { width: string; height: string };
-  isHovered: boolean;
-  onHover: (id: number) => void;
-  onLeave: () => void;
+  id: number;
+  imageUrl: string;
+  x: number;
+  y: number;
+  rotation: number;
+  width: string;
+  height: string;
 }
 
-const CircularImage = memo(({ image, imageSize, isHovered, onHover, onLeave }: CircularImageProps) => {
-  // State untuk image load status
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [hasError, setHasError] = useState(false);
+const CircularImage = memo(({ id, imageUrl, x, y, rotation, width, height }: CircularImageProps) => {
+  const [isHovered, setIsHovered] = useState(false);
 
-  // Callbacks untuk event handlers - stable references
-  const handleMouseEnter = useCallback(() => onHover(image.id), [image.id, onHover]);
-  const handleMouseLeave = useCallback(() => onLeave(), [onLeave]);
-
-  // Image load handler
-  const handleImageLoad = useCallback(() => setIsLoaded(true), []);
-  const handleImageError = useCallback(() => setHasError(true), []);
-
-  // Pre-compute transform string
-  const transformStyle = useMemo(
-    () => `translate(calc(-50% + ${image.x}px), calc(-50% + ${image.y}px)) rotate(${image.rotation}deg) scale(${isHovered ? 1.3 : 1})`,
-    [image.x, image.y, image.rotation, isHovered]
-  );
-
-  // Pre-compute image transform
-  const imageTransformStyle = useMemo(
-    () => (isHovered ? 'scale(1.15)' : 'scale(1)'),
-    [isHovered]
-  );
-
-  // Pre-compute filter style
-  const filterStyle = useMemo(
-    () => (isHovered ? 'brightness(1.2) contrast(1.2)' : 'brightness(0.8) contrast(1)'),
-    [isHovered]
-  );
-
-  // Pre-compute gradient style
-  const gradientStyle = useMemo(
-    () =>
-      isHovered
-        ? 'linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.6) 100%)'
-        : 'linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.5) 100%)',
-    [isHovered]
-  );
+  // CSS transform sudah dihitung sekali, tidak berubah saat scroll
+  const transformStyle = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px)) rotate(${rotation}deg)`;
 
   return (
     <div
-      className="absolute cursor-pointer"
+      className="absolute cursor-pointer group"
       style={{
         left: '50%',
         top: '50%',
-        width: imageSize.width,
-        height: imageSize.height,
+        width,
+        height,
         transform: transformStyle,
         zIndex: isHovered ? 50 : 10,
-        transition: 'transform 0.3s ease-out',
-        // CSS containment untuk isolasi layout/paint
-        contain: 'layout style paint',
-        // Hint ke browser bahwa transform akan berubah
+        // GPU acceleration
         willChange: 'transform',
+        // CSS containment untuk performance
+        contain: 'layout style paint',
       }}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
-      <div
-        className="relative w-full h-full overflow-hidden shadow-2xl"
-        style={{ contain: 'layout style paint' }}
-      >
-        {/* Skeleton loading state */}
-        {!isLoaded && !hasError && (
-          <div
-            className="absolute inset-0 bg-gray-200 animate-pulse"
-            style={{ zIndex: 1 }}
-            aria-hidden="true"
-          />
-        )}
-
-        {/* NATIVE LAZY LOADING - browser built-in, jauh lebih efisien */}
+      <div className="relative w-full h-full overflow-hidden shadow-2xl">
         <img
-          src={image.imageUrl}
-          alt={`Visual World ${image.id}`}
+          src={imageUrl}
+          alt={`Visual World ${id}`}
           loading="lazy"
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-cover transition-transform duration-700"
           style={{
-            transform: imageTransformStyle,
-            filter: filterStyle,
-            transition: 'transform 0.7s ease-out, filter 0.3s ease-out',
-            willChange: 'transform, filter',
-            opacity: isLoaded ? 1 : 0,
-            // Fade in saat loaded
-            transitionProperty: 'opacity, transform, filter',
+            transform: isHovered ? 'scale(1.15)' : 'scale(1)',
+            filter: isHovered ? 'brightness(1.2) contrast(1.2)' : 'brightness(0.8) contrast(1)',
           }}
-          onLoad={handleImageLoad}
-          onError={handleImageError}
         />
-
-        {/* Error fallback */}
-        {hasError && (
-          <div
-            className="absolute inset-0 bg-gray-300 flex items-center justify-center"
-            style={{ zIndex: 2 }}
-          >
-            <span className="text-xs text-gray-500">Failed to load</span>
-          </div>
-        )}
-
         <div
-          className="absolute inset-0"
+          className="absolute inset-0 transition-opacity duration-300"
           style={{
-            background: gradientStyle,
+            background: isHovered
+              ? 'linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.6) 100%)'
+              : 'linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.5) 100%)',
             opacity: isHovered ? 0.7 : 1,
-            transition: 'opacity 0.3s ease-out',
           }}
         />
         <div
-          className="absolute inset-0 border-2 border-gray-400/30"
-          style={{
-            opacity: isHovered ? 1 : 0.4,
-            transition: 'opacity 0.3s ease-out',
-          }}
+          className="absolute inset-0 border-2 border-gray-400/30 transition-opacity duration-300"
+          style={{ opacity: isHovered ? 1 : 0.4 }}
         />
       </div>
     </div>
@@ -145,58 +71,28 @@ const CircularImage = memo(({ image, imageSize, isHovered, onHover, onLeave }: C
 CircularImage.displayName = 'CircularImage';
 
 // ============================================
-// MEMOIZED COMPONENT: StaticText
-// Tidak pernah re-renders karena tidak ada props
-// ============================================
-const StaticText = memo(() => (
-  <div className="absolute z-20 text-center pointer-events-none px-4">
-    <h1
-      className="font-bold text-white tracking-tighter leading-none"
-      style={{
-        fontSize: 'clamp(1.5rem, 5vw, 3rem)',
-        WebkitTextStroke: '1px rgba(0,0,0,0.5)',
-        textShadow: '2px 2px 4px rgba(0,0,0,0.8), 0 0 20px rgba(0,0,0,0.5)',
-      }}
-    >
-      LIVE IN
-    </h1>
-    <h2
-      className="font-black text-white tracking-tight leading-none mt-1"
-      style={{
-        fontSize: 'clamp(2rem, 6vw, 3.75rem)',
-        WebkitTextStroke: '1px rgba(0,0,0,0.5)',
-        textShadow: '2px 2px 4px rgba(0,0,0,0.8), 0 0 20px rgba(0,0,0,0.5)',
-      }}
-    >
-      VISUAL WORLD
-    </h2>
-  </div>
-));
-
-StaticText.displayName = 'StaticText';
-
-// ============================================
 // MAIN COMPONENT
+// CSS-only scroll animation - TIDAK ADA RE-RENDERS
 // ============================================
 const VisualWorld = () => {
-  const [hoveredImage, setHoveredImage] = useState<number | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [imageSize, setImageSize] = useState(20); // Initial size
+  const [borderRadius, setBorderRadius] = useState('16px');
+  const [overlayOpacity, setOverlayOpacity] = useState(0);
+  const [contentOpacity, setContentOpacity] = useState(0);
 
-  // Optimized scroll dengan requestAnimationFrame
-  const scrollProgress = useOptimizedScroll('visual-world', 1);
+  const heroImage = '/images/visual.webp';
 
-  // Portfolio images - dimemoize untuk mencegah re-calculation
+  // Portfolio images - 24 gambar
   const visualImages = useMemo(() => {
     const images = portfolioImages.visualWorld;
     return images.map((imageUrl, index) => ({
       id: index + 1,
       imageUrl: imageUrl,
-      angle: index * 15,
     }));
   }, []);
 
-  const heroImage = '/images/visual.webp';
-
-  // Responsive values - hanya update saat resize
+  // Responsive values
   const [responsiveValues, setResponsiveValues] = useState(() => {
     if (typeof window !== 'undefined') {
       const screenWidth = window.innerWidth;
@@ -204,30 +100,26 @@ const VisualWorld = () => {
         return {
           radius: 180,
           imageSize: { width: '40px', height: '48px' },
-          isMobile: true,
         };
       }
       if (screenWidth < 1024) {
         return {
           radius: 250,
           imageSize: { width: '55px', height: '66px' },
-          isMobile: false,
         };
       }
       return {
         radius: 320,
         imageSize: { width: '70px', height: '85px' },
-        isMobile: false,
       };
     }
     return {
       radius: 320,
       imageSize: { width: '70px', height: '85px' },
-      isMobile: false,
     };
   });
 
-  // Handle resize dengan debouncing
+  // Resize handler
   useEffect(() => {
     let timeoutId: ReturnType<typeof setTimeout>;
 
@@ -239,19 +131,16 @@ const VisualWorld = () => {
           setResponsiveValues({
             radius: 180,
             imageSize: { width: '40px', height: '48px' },
-            isMobile: true,
           });
         } else if (screenWidth < 1024) {
           setResponsiveValues({
             radius: 250,
             imageSize: { width: '55px', height: '66px' },
-            isMobile: false,
           });
         } else {
           setResponsiveValues({
             radius: 320,
             imageSize: { width: '70px', height: '85px' },
-            isMobile: false,
           });
         }
       }, 150);
@@ -264,62 +153,72 @@ const VisualWorld = () => {
     };
   }, []);
 
-  const calculateCircularPosition = useCallback(
-    (index: number, total: number, radius: number, baseRotation: number) => {
-      const angle = (index / total) * 360 + baseRotation;
-      const angleInRadians = (angle * Math.PI) / 180;
-      const x = radius * Math.cos(angleInRadians);
-      const y = radius * Math.sin(angleInRadians);
-      return { x, y, angle };
-    },
-    []
-  );
-
-  // PRE-CALCULATE semua posisi gambar sekali saja!
+  // Pre-calculate semua posisi gambar sekali saja
   const imagePositions = useMemo(() => {
     return visualImages.map((image, index) => {
-      const position = calculateCircularPosition(
-        index,
-        visualImages.length,
-        responsiveValues.radius,
-        0
-      );
+      const angle = (index / visualImages.length) * 360;
+      const angleInRadians = (angle * Math.PI) / 180;
+      const x = responsiveValues.radius * Math.cos(angleInRadians);
+      const y = responsiveValues.radius * Math.sin(angleInRadians);
       return {
         ...image,
-        x: position.x,
-        y: position.y,
-        rotation: position.angle - 90,
+        x,
+        y,
+        rotation: angle - 90,
       };
     });
-  }, [visualImages, responsiveValues.radius, calculateCircularPosition]);
+  }, [visualImages, responsiveValues.radius]);
 
-  // Hover handlers - stable references dengan useCallback
-  const handleHover = useCallback((id: number) => setHoveredImage(id), []);
-  const handleLeave = useCallback(() => setHoveredImage(null), []);
+  // ============================================
+  // OPTIMIZED SCROLL HANDLER
+  // Langsung update DOM, TIDAK trigger React re-renders!
+  // ============================================
+  useEffect(() => {
+    let ticking = false;
 
-  // Pre-calculate scroll-based styles untuk mengurangi perhitungan saat render
-  const scrollStyles = useMemo(() => {
-    let imageSizeValue: number;
-    if (scrollProgress < 0.3) {
-      imageSizeValue = 20 + (scrollProgress / 0.3) * 20;
-    } else if (scrollProgress < 0.7) {
-      imageSizeValue = 40 + ((scrollProgress - 0.3) / 0.4) * 60;
-    } else {
-      imageSizeValue = 100;
-    }
+    const handleScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const section = document.getElementById('visual-world');
+          if (!section) return;
 
-    const borderRadiusValue =
-      scrollProgress < 0.7 ? `${16 - scrollProgress * 22}px` : '0px';
-    const overlayOpacityValue = scrollProgress > 0.7 ? (scrollProgress - 0.7) / 0.3 : 0;
-    const contentOpacityValue = scrollProgress > 0.75 ? (scrollProgress - 0.75) / 0.25 : 0;
+          const rect = section.getBoundingClientRect();
+          const sectionHeight = section.offsetHeight;
+          const viewportHeight = window.innerHeight;
+          const rawProgress = (viewportHeight - rect.top) / sectionHeight;
+          const progress = Math.max(0, Math.min(1, rawProgress));
 
-    return {
-      imageSize: imageSizeValue,
-      borderRadius: borderRadiusValue,
-      overlayOpacity: overlayOpacityValue,
-      contentOpacity: contentOpacityValue,
+          // Hitung values
+          let newImageSize: number;
+          if (progress < 0.3) {
+            newImageSize = 20 + (progress / 0.3) * 20;
+          } else if (progress < 0.7) {
+            newImageSize = 40 + ((progress - 0.3) / 0.4) * 60;
+          } else {
+            newImageSize = 100;
+          }
+
+          const newBorderRadius = progress < 0.7 ? `${16 - progress * 22}px` : '0px';
+          const newOverlayOpacity = progress > 0.7 ? (progress - 0.7) / 0.3 : 0;
+          const newContentOpacity = progress > 0.75 ? (progress - 0.75) / 0.25 : 0;
+
+          // LANGSUNG update DOM - TIDAK trigger React re-renders!
+          setImageSize(newImageSize);
+          setBorderRadius(newBorderRadius);
+          setOverlayOpacity(newOverlayOpacity);
+          setContentOpacity(newContentOpacity);
+
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
-  }, [scrollProgress]);
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <section
@@ -327,20 +226,18 @@ const VisualWorld = () => {
       className="relative w-full bg-white"
       style={{ minHeight: '400vh' }}
     >
-      <div className="sticky top-0 h-screen overflow-hidden">
+      <div className="sticky top-0 h-screen overflow-hidden" ref={containerRef}>
         {/* Growing Background Image */}
         <div className="absolute inset-0 flex items-center justify-center bg-white">
           <div
-            className="relative overflow-hidden"
+            className="relative overflow-hidden will-change-transform"
             style={{
-              width: `${scrollStyles.imageSize}%`,
-              height: `${scrollStyles.imageSize}%`,
-              borderRadius: scrollStyles.borderRadius,
+              width: `${imageSize}%`,
+              height: `${imageSize}%`,
+              borderRadius,
               maxWidth: '100%',
               maxHeight: '100%',
-              transition: 'width 0.1s ease-out, height 0.1s ease-out, border-radius 0.1s ease-out',
-              // Hint untuk browser
-              willChange: 'width, height, border-radius',
+              transition: 'width 0.1s linear, height 0.1s linear, border-radius 0.1s linear',
             }}
           >
             <img
@@ -354,7 +251,7 @@ const VisualWorld = () => {
           {/* Dark Overlay */}
           <div
             className="absolute inset-0 bg-black transition-opacity duration-500"
-            style={{ opacity: scrollStyles.overlayOpacity * 0.6 }}
+            style={{ opacity: overlayOpacity * 0.6 }}
           />
         </div>
 
@@ -362,24 +259,47 @@ const VisualWorld = () => {
         <div
           className="absolute inset-0 flex items-center justify-center transition-all duration-700"
           style={{
-            opacity: scrollStyles.contentOpacity,
-            transform: `translateY(${(1 - scrollStyles.contentOpacity) * 100}px)`,
-            pointerEvents: scrollStyles.contentOpacity > 0 ? 'auto' : 'none',
+            opacity: contentOpacity,
+            transform: `translateY(${(1 - contentOpacity) * 100}px)`,
+            pointerEvents: contentOpacity > 0 ? 'auto' : 'none',
           }}
         >
           {/* Static Text - tidak pernah re-render */}
-          <StaticText />
+          <div className="absolute z-20 text-center pointer-events-none px-4">
+            <h1
+              className="font-bold text-white tracking-tighter leading-none"
+              style={{
+                fontSize: 'clamp(1.5rem, 5vw, 3rem)',
+                WebkitTextStroke: '1px rgba(0,0,0,0.5)',
+                textShadow: '2px 2px 4px rgba(0,0,0,0.8), 0 0 20px rgba(0,0,0,0.5)',
+              }}
+            >
+              LIVE IN
+            </h1>
+            <h2
+              className="font-black text-white tracking-tight leading-none mt-1"
+              style={{
+                fontSize: 'clamp(2rem, 6vw, 3.75rem)',
+                WebkitTextStroke: '1px rgba(0,0,0,0.5)',
+                textShadow: '2px 2px 4px rgba(0,0,0,0.8), 0 0 20px rgba(0,0,0,0.5)',
+              }}
+            >
+              VISUAL WORLD
+            </h2>
+          </div>
 
-          {/* Circle of Images */}
+          {/* Circle of Images - 24 gambar, STATIC, tidak re-render saat scroll */}
           <div className="relative w-full h-full flex items-center justify-center">
             {imagePositions.map((image) => (
               <CircularImage
                 key={image.id}
-                image={image}
-                imageSize={responsiveValues.imageSize}
-                isHovered={hoveredImage === image.id}
-                onHover={handleHover}
-                onLeave={handleLeave}
+                id={image.id}
+                imageUrl={image.imageUrl}
+                x={image.x}
+                y={image.y}
+                rotation={image.rotation}
+                width={responsiveValues.imageSize.width}
+                height={responsiveValues.imageSize.height}
               />
             ))}
           </div>
