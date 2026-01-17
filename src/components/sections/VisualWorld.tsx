@@ -1,121 +1,88 @@
-import { useMemo, useEffect, useState, useRef, memo } from 'react';
+import { useMemo, useEffect, useState, useRef } from 'react';
 import { portfolioImages } from '../../data/portfolioData';
 
 // ============================================
-// STATIC COMPONENT: CircularImage
-// Tidak pernah re-renders karena tidak ada dynamic props
+// PHOTO TILE COMPONENT
 // ============================================
-interface CircularImageProps {
+interface PhotoTileProps {
   id: number;
   imageUrl: string;
   x: number;
   y: number;
+  width: number;
+  height: number;
   rotation: number;
-  width: string;
-  height: string;
 }
 
-const CircularImage = memo(({ id, imageUrl, x, y, rotation, width, height }: CircularImageProps) => {
-  const [isHovered, setIsHovered] = useState(false);
-
-  // CSS transform sudah dihitung sekali, tidak berubah saat scroll
-  const transformStyle = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px)) rotate(${rotation}deg)`;
-
+const PhotoTile = ({ id, imageUrl, x, y, width, height, rotation }: PhotoTileProps) => {
   return (
     <div
-      className="absolute cursor-pointer group"
+      className="photo-tile"
       style={{
         left: '50%',
         top: '50%',
-        width,
-        height,
-        transform: transformStyle,
-        zIndex: isHovered ? 50 : 10,
-        // GPU acceleration
-        willChange: 'transform',
-        // CSS containment untuk performance
-        contain: 'layout style paint',
+        width: `${width}px`,
+        height: `${height}px`,
+        transform: `translate(calc(-50% + ${x}px), calc(-50% + ${y}px)) rotate(${rotation}deg)`,
       }}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="relative w-full h-full overflow-hidden shadow-2xl">
-        <img
-          src={imageUrl}
-          alt={`Visual World ${id}`}
-          loading="lazy"
-          className="absolute inset-0 w-full h-full object-cover transition-transform duration-700"
-          style={{
-            transform: isHovered ? 'scale(1.15)' : 'scale(1)',
-            filter: isHovered ? 'brightness(1.2) contrast(1.2)' : 'brightness(0.8) contrast(1)',
-          }}
-        />
-        <div
-          className="absolute inset-0 transition-opacity duration-300"
-          style={{
-            background: isHovered
-              ? 'linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.6) 100%)'
-              : 'linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.5) 100%)',
-            opacity: isHovered ? 0.7 : 1,
-          }}
-        />
-        <div
-          className="absolute inset-0 border-2 border-gray-400/30 transition-opacity duration-300"
-          style={{ opacity: isHovered ? 1 : 0.4 }}
-        />
-      </div>
+      <img src={imageUrl} alt={`Photo ${id}`} loading="lazy" className="photo-tile-img" />
     </div>
   );
-});
-
-CircularImage.displayName = 'CircularImage';
+};
 
 // ============================================
 // MAIN COMPONENT
-// CSS-only scroll animation - TIDAK ADA RE-RENDERS
 // ============================================
 const VisualWorld = () => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [imageSize, setImageSize] = useState(20); // Initial size
-  const [borderRadius, setBorderRadius] = useState('16px');
-  const [overlayOpacity, setOverlayOpacity] = useState(0);
-  const [contentOpacity, setContentOpacity] = useState(0);
+  const bgImageRef = useRef<HTMLDivElement>(null);
+  const overlayRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
 
   const heroImage = '/images/visual.webp';
 
-  // Portfolio images - 24 gambar
+  // 11 gambar untuk arc
   const visualImages = useMemo(() => {
-    const images = portfolioImages.visualWorld;
+    const images = portfolioImages.visualWorld.slice(0, 11);
     return images.map((imageUrl, index) => ({
       id: index + 1,
       imageUrl: imageUrl,
     }));
   }, []);
 
-  // Responsive values
+  // Responsive values - rasio 5:4 portrait (tinggi > lebar)
   const [responsiveValues, setResponsiveValues] = useState(() => {
     if (typeof window !== 'undefined') {
       const screenWidth = window.innerWidth;
       if (screenWidth < 640) {
         return {
-          radius: 180,
-          imageSize: { width: '40px', height: '48px' },
+          arcRadius: 130,
+          tileWidth: 36,
+          tileHeight: 45,
+          yOffset: 10,
         };
       }
       if (screenWidth < 1024) {
         return {
-          radius: 250,
-          imageSize: { width: '55px', height: '66px' },
+          arcRadius: 200,
+          tileWidth: 48,
+          tileHeight: 60,
+          yOffset: 15,
         };
       }
       return {
-        radius: 320,
-        imageSize: { width: '70px', height: '85px' },
+        arcRadius: 320,
+        tileWidth: 64,
+        tileHeight: 80,
+        yOffset: 80, // Ditambah lagi agar lebih ke bawah
       };
     }
     return {
-      radius: 320,
-      imageSize: { width: '70px', height: '85px' },
+      arcRadius: 320,
+      tileWidth: 64,
+      tileHeight: 80,
+      yOffset: 80,
     };
   });
 
@@ -129,18 +96,24 @@ const VisualWorld = () => {
         const screenWidth = window.innerWidth;
         if (screenWidth < 640) {
           setResponsiveValues({
-            radius: 180,
-            imageSize: { width: '40px', height: '48px' },
+            arcRadius: 130,
+            tileWidth: 36,
+            tileHeight: 45,
+            yOffset: 10,
           });
         } else if (screenWidth < 1024) {
           setResponsiveValues({
-            radius: 250,
-            imageSize: { width: '55px', height: '66px' },
+            arcRadius: 200,
+            tileWidth: 48,
+            tileHeight: 60,
+            yOffset: 15,
           });
         } else {
           setResponsiveValues({
-            radius: 320,
-            imageSize: { width: '70px', height: '85px' },
+            arcRadius: 320,
+            tileWidth: 64,
+            tileHeight: 80,
+            yOffset: 80,
           });
         }
       }, 150);
@@ -153,25 +126,46 @@ const VisualWorld = () => {
     };
   }, []);
 
-  // Pre-calculate semua posisi gambar sekali saja
-  const imagePositions = useMemo(() => {
+  // Pre-calculate posisi untuk SETENGAH LINGKARAN yang RAPI dan SIMETRIS
+  const tilePositions = useMemo(() => {
     return visualImages.map((image, index) => {
-      const angle = (index / visualImages.length) * 360;
+      // Setengah lingkaran dari kiri (180°) ke kanan (0°/360°) melalui atas
+      // Sudut mulai dari 175° (kiri atas) ke 5° (kanan atas)
+      const totalPhotos = visualImages.length;
+      const startAngle = 175; // derajat
+      const endAngle = 5;     // derajat (melewati 180/0)
+
+      // Hitung sudut untuk setiap foto dengan spacing SERAGAM
+      const angleStep = (endAngle + (360 - startAngle)) / (totalPhotos - 1);
+      let angle = startAngle + (index * angleStep);
+
+      // Handle wrap-around di 180°
+      if (angle >= 180) {
+        angle = angle - 360;
+      }
+
       const angleInRadians = (angle * Math.PI) / 180;
-      const x = responsiveValues.radius * Math.cos(angleInRadians);
-      const y = responsiveValues.radius * Math.sin(angleInRadians);
+
+      // Posisi pada lingkaran
+      const x = responsiveValues.arcRadius * Math.cos(angleInRadians);
+      const y = responsiveValues.arcRadius * Math.sin(angleInRadians) + responsiveValues.yOffset;
+
+      // Rotasi sesuai posisi pada lingkaran:
+      // -90° di ujung kiri, 0° di tengah, +90° di ujung kanan
+      // Rumus: angle = sudut posisi foto, rotasi = angle + 90 (karena 0° di tengah atas = menghadap ke bawah)
+      const rotation = angle + 90;
+
       return {
         ...image,
         x,
         y,
-        rotation: angle - 90,
+        rotation,
       };
     });
-  }, [visualImages, responsiveValues.radius]);
+  }, [visualImages, responsiveValues.arcRadius, responsiveValues.yOffset]);
 
   // ============================================
-  // OPTIMIZED SCROLL HANDLER
-  // Langsung update DOM, TIDAK trigger React re-renders!
+  // SCROLL HANDLER - Direct DOM manipulation
   // ============================================
   useEffect(() => {
     let ticking = false;
@@ -180,7 +174,11 @@ const VisualWorld = () => {
       if (!ticking) {
         requestAnimationFrame(() => {
           const section = document.getElementById('visual-world');
-          if (!section) return;
+          const bgImage = bgImageRef.current;
+          const overlay = overlayRef.current;
+          const content = contentRef.current;
+
+          if (!section || !bgImage || !overlay || !content) return;
 
           const rect = section.getBoundingClientRect();
           const sectionHeight = section.offsetHeight;
@@ -189,24 +187,26 @@ const VisualWorld = () => {
           const progress = Math.max(0, Math.min(1, rawProgress));
 
           // Hitung values
-          let newImageSize: number;
+          let imageSize: number;
           if (progress < 0.3) {
-            newImageSize = 20 + (progress / 0.3) * 20;
+            imageSize = 20 + (progress / 0.3) * 20;
           } else if (progress < 0.7) {
-            newImageSize = 40 + ((progress - 0.3) / 0.4) * 60;
+            imageSize = 40 + ((progress - 0.3) / 0.4) * 60;
           } else {
-            newImageSize = 100;
+            imageSize = 100;
           }
 
-          const newBorderRadius = progress < 0.7 ? `${16 - progress * 22}px` : '0px';
-          const newOverlayOpacity = progress > 0.7 ? (progress - 0.7) / 0.3 : 0;
-          const newContentOpacity = progress > 0.75 ? (progress - 0.75) / 0.25 : 0;
+          const borderRadius = progress < 0.7 ? `${16 - progress * 22}px` : '0px';
+          const overlayOpacity = progress > 0.7 ? (progress - 0.7) / 0.3 : 0;
+          const contentOpacity = progress > 0.75 ? (progress - 0.75) / 0.25 : 0;
 
-          // LANGSUNG update DOM - TIDAK trigger React re-renders!
-          setImageSize(newImageSize);
-          setBorderRadius(newBorderRadius);
-          setOverlayOpacity(newOverlayOpacity);
-          setContentOpacity(newContentOpacity);
+          // Direct DOM manipulation
+          bgImage.style.width = `${imageSize}%`;
+          bgImage.style.height = `${imageSize}%`;
+          bgImage.style.borderRadius = borderRadius;
+          overlay.style.opacity = `${overlayOpacity * 0.6}`;
+          content.style.opacity = `${contentOpacity}`;
+          content.style.transform = `translateY(${(1 - contentOpacity) * 100}px)`;
 
           ticking = false;
         });
@@ -221,91 +221,159 @@ const VisualWorld = () => {
   }, []);
 
   return (
-    <section
-      id="visual-world"
-      className="relative w-full bg-white"
-      style={{ minHeight: '400vh' }}
-    >
-      <div className="sticky top-0 h-screen overflow-hidden" ref={containerRef}>
-        {/* Growing Background Image */}
-        <div className="absolute inset-0 flex items-center justify-center bg-white">
-          <div
-            className="relative overflow-hidden will-change-transform"
-            style={{
-              width: `${imageSize}%`,
-              height: `${imageSize}%`,
-              borderRadius,
-              maxWidth: '100%',
-              maxHeight: '100%',
-              transition: 'width 0.1s linear, height 0.1s linear, border-radius 0.1s linear',
-            }}
-          >
-            <img
-              src={heroImage}
-              alt="Visual World"
-              loading="eager"
-              className="w-full h-full object-cover"
+    <>
+      <style>{`
+        .photo-tile {
+          position: absolute;
+          z-index: 10;
+          /* Bayangan lembut untuk kesan melayang */
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+          /* Transisi halus */
+          transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+        }
+
+        .photo-tile:hover {
+          z-index: 20;
+          transform: translate(calc(-50% + var(--x)), calc(-50% + var(--y))) scale(1.08) !important;
+          box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .photo-tile-img {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          /* Sudut membulat sedang */
+          border-radius: 10px;
+          /* Sedikit memperjelas kontras */
+          filter: brightness(0.95) contrast(1.05);
+          transition: filter 0.3s ease-out;
+        }
+
+        .photo-tile:hover .photo-tile-img {
+          filter: brightness(1.02) contrast(1.08);
+        }
+
+        /* Vignette overlay di ujung kiri dan kanan */
+        .arc-vignette-left {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 15%;
+          height: 50%;
+          background: linear-gradient(to right, rgba(0,0,0,0.5) 0%, transparent 100%);
+          pointer-events: none;
+          z-index: 15;
+        }
+
+        .arc-vignette-right {
+          position: absolute;
+          right: 0;
+          top: 0;
+          width: 15%;
+          height: 50%;
+          background: linear-gradient(to left, rgba(0,0,0,0.5) 0%, transparent 100%);
+          pointer-events: none;
+          z-index: 15;
+        }
+
+        /* Text styling - Simple, Elegan, dan Kecil */
+        .visual-world-title {
+          font-size: clamp(0.625rem, 1.8vw, 1.25rem); /* Mobile lebih kecil */
+          font-weight: 300; /* Light untuk kesan elegant */
+          color: #ffffff;
+          letter-spacing: 0.15em; /* Letter spacing luas untuk modern look */
+          line-height: 1.2;
+          text-align: center;
+          text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
+          text-transform: uppercase; /* Uppercase untuk modern */
+        }
+
+        /* Mobile specific: font lebih kecil */
+        @media (max-width: 640px) {
+          .visual-world-title {
+            font-size: 0.65rem; /* Extra kecil untuk mobile */
+            letter-spacing: 0.1em;
+          }
+        }
+      `}</style>
+
+      <section
+        id="visual-world"
+        className="relative w-full bg-white"
+        style={{ minHeight: '400vh' }}
+      >
+        <div className="sticky top-0 h-screen overflow-hidden" ref={containerRef}>
+          {/* Growing Background Image - TIDAK DIUBAH */}
+          <div className="absolute inset-0 flex items-center justify-center bg-white">
+            <div
+              ref={bgImageRef}
+              className="relative overflow-hidden will-change-transform"
+              style={{
+                width: '20%',
+                height: '20%',
+                borderRadius: '16px',
+                maxWidth: '100%',
+                maxHeight: '100%',
+                transition: 'width 0.1s linear, height 0.1s linear, border-radius 0.1s linear',
+              }}
+            >
+              <img
+                src={heroImage}
+                alt="Visual World"
+                loading="eager"
+                className="w-full h-full object-cover"
+              />
+            </div>
+
+            {/* Dark Overlay */}
+            <div
+              ref={overlayRef}
+              className="absolute inset-0 bg-black transition-opacity duration-500"
+              style={{ opacity: 0 }}
             />
           </div>
 
-          {/* Dark Overlay */}
+          {/* Photo Tiles Arc di ATAS */}
           <div
-            className="absolute inset-0 bg-black transition-opacity duration-500"
-            style={{ opacity: overlayOpacity * 0.6 }}
-          />
-        </div>
+            ref={contentRef}
+            className="absolute inset-0"
+            style={{
+              opacity: 0,
+              transform: 'translateY(100px)',
+              pointerEvents: 'none',
+              transition: 'opacity 0.7s ease-out, transform 0.7s ease-out',
+            }}
+          >
+            {/* Photo Tiles - Setengah lingkaran di tengah */}
+            <div className="relative w-full h-full flex items-center justify-center">
+              {tilePositions.map((tile) => (
+                <PhotoTile
+                  key={tile.id}
+                  id={tile.id}
+                  imageUrl={tile.imageUrl}
+                  x={tile.x}
+                  y={tile.y}
+                  width={responsiveValues.tileWidth}
+                  height={responsiveValues.tileHeight}
+                  rotation={tile.rotation}
+                />
+              ))}
+            </div>
 
-        {/* Text and Rotating Images Container */}
-        <div
-          className="absolute inset-0 flex items-center justify-center transition-all duration-700"
-          style={{
-            opacity: contentOpacity,
-            transform: `translateY(${(1 - contentOpacity) * 100}px)`,
-            pointerEvents: contentOpacity > 0 ? 'auto' : 'none',
-          }}
-        >
-          {/* Static Text - tidak pernah re-render */}
-          <div className="absolute z-20 text-center pointer-events-none px-4">
-            <h1
-              className="font-bold text-white tracking-tighter leading-none"
-              style={{
-                fontSize: 'clamp(1.5rem, 5vw, 3rem)',
-                WebkitTextStroke: '1px rgba(0,0,0,0.5)',
-                textShadow: '2px 2px 4px rgba(0,0,0,0.8), 0 0 20px rgba(0,0,0,0.5)',
-              }}
-            >
-              LIVE IN
-            </h1>
-            <h2
-              className="font-black text-white tracking-tight leading-none mt-1"
-              style={{
-                fontSize: 'clamp(2rem, 6vw, 3.75rem)',
-                WebkitTextStroke: '1px rgba(0,0,0,0.5)',
-                textShadow: '2px 2px 4px rgba(0,0,0,0.8), 0 0 20px rgba(0,0,0,0.5)',
-              }}
-            >
-              VISUAL WORLD
-            </h2>
-          </div>
+            {/* Text di TENGAH - Sejajar dengan foto */}
+            <div className="absolute inset-0 flex items-center justify-center z-30 px-6">
+              <h1 className="visual-world-title">Live in Visual World</h1>
+            </div>
 
-          {/* Circle of Images - 24 gambar, STATIC, tidak re-render saat scroll */}
-          <div className="relative w-full h-full flex items-center justify-center">
-            {imagePositions.map((image) => (
-              <CircularImage
-                key={image.id}
-                id={image.id}
-                imageUrl={image.imageUrl}
-                x={image.x}
-                y={image.y}
-                rotation={image.rotation}
-                width={responsiveValues.imageSize.width}
-                height={responsiveValues.imageSize.height}
-              />
-            ))}
+            {/* Vignette overlays di ujung */}
+            <div className="arc-vignette-left" />
+            <div className="arc-vignette-right" />
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 };
 
