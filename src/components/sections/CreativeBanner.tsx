@@ -8,7 +8,6 @@ const CreativeBanner = () => {
     "Thoughts, ideas, and digital craft",
     "Purpose-driven digital work",
     "Design with intention",
-    "Code with creativity",
     "Innovation through imagination",
     "Where art meets technology",
     "Crafting digital experiences",

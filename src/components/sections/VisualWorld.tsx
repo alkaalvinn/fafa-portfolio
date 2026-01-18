@@ -75,14 +75,14 @@ const VisualWorld = () => {
         arcRadius: 320,
         tileWidth: 64,
         tileHeight: 80,
-        yOffset: 80, // Ditambah lagi agar lebih ke bawah
+        yOffset: 130, // Ditambah lagi agar lebih ke bawah
       };
     }
     return {
       arcRadius: 320,
       tileWidth: 64,
       tileHeight: 80,
-      yOffset: 80,
+      yOffset: 130,
     };
   });
 
@@ -113,7 +113,7 @@ const VisualWorld = () => {
             arcRadius: 320,
             tileWidth: 64,
             tileHeight: 80,
-            yOffset: 80,
+            yOffset: 130,
           });
         }
       }, 150);
@@ -261,7 +261,7 @@ const VisualWorld = () => {
           left: 0;
           top: 0;
           width: 15%;
-          height: 50%;
+          height: 100%;
           background: linear-gradient(to right, rgba(0,0,0,0.5) 0%, transparent 100%);
           pointer-events: none;
           z-index: 15;
@@ -272,7 +272,7 @@ const VisualWorld = () => {
           right: 0;
           top: 0;
           width: 15%;
-          height: 50%;
+          height: 100%;
           background: linear-gradient(to left, rgba(0,0,0,0.5) 0%, transparent 100%);
           pointer-events: none;
           z-index: 15;
@@ -281,7 +281,7 @@ const VisualWorld = () => {
         /* Text styling - Simple, Elegan, dan Kecil */
         .visual-world-title {
           font-size: clamp(0.625rem, 1.8vw, 1.25rem); /* Mobile lebih kecil */
-          font-weight: 300; /* Light untuk kesan elegant */
+          font-weight: 400; /* Light untuk kesan elegant */
           color: #ffffff;
           letter-spacing: 0.15em; /* Letter spacing luas untuk modern look */
           line-height: 1.2;
@@ -363,7 +363,7 @@ const VisualWorld = () => {
             </div>
 
             {/* Text di TENGAH - Sejajar dengan foto */}
-            <div className="absolute inset-0 flex items-center justify-center z-30 px-6">
+            <div className="absolute inset-0 flex items-center justify-center z-30 px-6" style={{ marginTop: '40px' }}>
               <h1 className="visual-world-title">Live in Visual World</h1>
             </div>
 

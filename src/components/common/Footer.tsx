@@ -19,7 +19,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-black text-white">
+    <footer id="footer" className="bg-black text-white">
       {/* Top border line */}
       <div className="w-full h-px bg-gradient-to-r from-transparent via-gray-700 to-transparent"></div>
 

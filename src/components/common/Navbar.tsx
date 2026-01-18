@@ -10,7 +10,7 @@ const Navbar = () => {
       setScrolled(window.scrollY > 50);
 
       // Update active section based on scroll position
-      const sections = ['home', 'experience', 'visual-world', 'projects', 'skills', 'contact'];
+      const sections = ['home', 'experience', 'visual-world', 'projects', 'skills', 'contact', 'footer'];
       const scrollPosition = window.scrollY + 100;
       let currentSection = 'home';
       let shouldBeDark = false;
@@ -40,7 +40,7 @@ const Navbar = () => {
               }
             } else {
               // For other sections, check if they're dark sections
-              shouldBeDark = ['projects', 'skills', 'contact'].includes(section);
+              shouldBeDark = ['projects', 'skills', 'contact', 'footer'].includes(section);
             }
             break;
           }
