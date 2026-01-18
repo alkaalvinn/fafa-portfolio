@@ -4,6 +4,12 @@ import { useNavigate } from 'react-router-dom';
 import Footer from '../components/common/Footer';
 import { videoFiles } from '../data/portfolioData';
 
+type VideoFile = {
+  name: string;
+  path?: string;
+  youtubeId?: string;
+};
+
 const VideographyDetailPage = () => {
   const navigate = useNavigate();
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
@@ -14,7 +20,9 @@ const VideographyDetailPage = () => {
   };
 
   useEffect(() => {
-    if (videoRef.current) {
+    const currentVideo = videoFiles[currentVideoIndex] as VideoFile;
+    // Hanya autoplay untuk video langsung (bukan YouTube)
+    if (currentVideo.path && videoRef.current) {
       videoRef.current.play().catch(err => {
         console.log('Autoplay prevented:', err);
       });
@@ -75,57 +83,90 @@ const VideographyDetailPage = () => {
 
           {/* Video Player */}
           <div className="bg-black rounded-lg overflow-hidden relative">
-            <video
-              ref={videoRef}
-              key={currentVideoIndex}
-              className="w-full aspect-video"
-              autoPlay
-              muted
-              controls
-              playsInline
-              loop
-              preload="auto"
-            >
-              <source src={videoFiles[currentVideoIndex].path} type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
+            {(videoFiles[currentVideoIndex] as VideoFile).youtubeId ? (
+              // YouTube Embed
+              <iframe
+                key={`youtube-${currentVideoIndex}`}
+                className="w-full aspect-video"
+                src={`https://www.youtube.com/embed/${(videoFiles[currentVideoIndex] as VideoFile).youtubeId}?autoplay=1&mute=1&enablejsapi=1`}
+                title={videoFiles[currentVideoIndex].name}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            ) : (
+              // Video Player Langsung (Cloudinary/direct file)
+              <video
+                ref={videoRef}
+                key={`video-${currentVideoIndex}`}
+                className="w-full aspect-video"
+                autoPlay
+                muted
+                controls
+                playsInline
+                loop
+                preload="auto"
+              >
+                <source src={(videoFiles[currentVideoIndex] as VideoFile).path} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            )}
           </div>
 
           {/* Video Thumbnails */}
           <div className="grid grid-cols-4 gap-2 mt-4">
-            {videoFiles.map((video, index) => (
-              <button
-                key={index}
-                onClick={() => {
-                  setCurrentVideoIndex(index);
-                }}
-                className={`relative aspect-video rounded overflow-hidden transition-all ${
-                  index === currentVideoIndex
-                    ? 'ring-2 ring-black ring-offset-2'
-                    : 'hover:opacity-80'
-                }`}
-              >
-                <video
-                  src={video.path}
-                  className="w-full h-full object-cover"
-                  muted
-                  preload="metadata"
-                  onMouseEnter={(e) => {
-                    e.currentTarget.play().catch(() => {});
-                    setTimeout(() => {
-                      e.currentTarget.pause();
-                      e.currentTarget.currentTime = 0;
-                    }, 2000);
+            {videoFiles.map((video, index) => {
+              const videoFile = video as VideoFile;
+              const isYoutube = !!videoFile.youtubeId;
+
+              return (
+                <button
+                  key={index}
+                  onClick={() => {
+                    setCurrentVideoIndex(index);
                   }}
-                />
-                <div className="absolute inset-0 bg-black/20 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
-                  <Play size={20} className="text-white" />
-                </div>
-                <span className="absolute bottom-1 right-1 text-xs bg-black/70 text-white px-1 rounded">
-                  {index + 1}
-                </span>
-              </button>
-            ))}
+                  className={`relative aspect-video rounded overflow-hidden transition-all ${
+                    index === currentVideoIndex
+                      ? 'ring-2 ring-black ring-offset-2'
+                      : 'hover:opacity-80'
+                  }`}
+                >
+                  {isYoutube ? (
+                    // YouTube Thumbnail
+                    <img
+                      src={`https://img.youtube.com/vi/${videoFile.youtubeId}/mqdefault.jpg`}
+                      alt={videoFile.name}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    // Video Preview
+                    <video
+                      src={videoFile.path}
+                      className="w-full h-full object-cover"
+                      muted
+                      preload="metadata"
+                      onMouseEnter={(e) => {
+                        e.currentTarget.play().catch(() => {});
+                        setTimeout(() => {
+                          e.currentTarget.pause();
+                          e.currentTarget.currentTime = 0;
+                        }, 2000);
+                      }}
+                    />
+                  )}
+                  <div className="absolute inset-0 bg-black/20 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
+                    <Play size={20} className="text-white" />
+                  </div>
+                  <span className="absolute bottom-1 right-1 text-xs bg-black/70 text-white px-1 rounded">
+                    {index + 1}
+                  </span>
+                  {isYoutube && (
+                    <span className="absolute top-1 left-1 text-xs bg-red-600 text-white px-1.5 py-0.5 rounded text-[10px] font-semibold">
+                      YouTube
+                    </span>
+                  )}
+                </button>
+              );
+            })}
           </div>
         </div>
       </div>

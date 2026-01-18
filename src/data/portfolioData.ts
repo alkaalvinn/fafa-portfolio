@@ -372,6 +372,7 @@ export const videoFiles = [
   { name: 'Korea Style', path: 'https://res.cloudinary.com/doirxg4kz/video/upload/v1768055052/aj7eoecvfd0dxovrb61o.mp4' },
   { name: 'TikTokNative1STBSardines', path: 'https://res.cloudinary.com/dg8mikfls/video/upload/v1768731228/TikTokNative1STBSardines_f13fvo.mp4' },
   { name: 'TikTokNative2STBSardines', path: 'https://res.cloudinary.com/dg8mikfls/video/upload/v1768731171/TikTokNative2STBSardines_rzunyr.mp4' },
+  { name: 'Portfolio Video (YouTube)', youtubeId: '7cG9aWm21Fs' },
 ];
 
 // Gambar placeholder untuk sementara (bisa dihapus setelah ada foto asli)
