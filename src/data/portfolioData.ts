@@ -211,8 +211,8 @@ export const portfolioImages = {
     2: [
       'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944105/bcbifxn0kfcqqqkhz36c.webp',
       'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944106/imwismrhxjpiivi9u8jb.webp',
-      'https://res.cloudinary.com/doirxg4kz/image/upload/v1768572865/bweta2xuzimmr4zdmyco.webp',
-      'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944105/q3qwkyflc2t6wdim4hcp.webp'
+      'https://res.cloudinary.com/doirxg4kz/image/upload/v1768733822/ts1fahtwctdi52ubteyp.webp',
+      'https://res.cloudinary.com/doirxg4kz/image/upload/v1768572865/bweta2xuzimmr4zdmyco.webp'
     ],
     // Kraft Heinz - 4 gambar
     3: [
@@ -230,16 +230,16 @@ export const portfolioImages = {
     ],
     // Hangry - 4 gambar
     5: [
-      'https://res.cloudinary.com/doirxg4kz/image/upload/v1768572528/lijwoocn9u6hu3un3r6h.webp',
-      'https://res.cloudinary.com/doirxg4kz/image/upload/v1768572527/ktlnmzjwltdbcrawy9e5.webp',
-      'https://res.cloudinary.com/doirxg4kz/image/upload/v1768572527/o6x2nvf4iexxda0hbn4x.webp',
-      'https://res.cloudinary.com/doirxg4kz/image/upload/v1768572526/baodbzvftsyc8w6nc0w0.webp'
+      'https://res.cloudinary.com/doirxg4kz/image/upload/v1768731685/rw6knbxeyvx5dvkv4pll.webp',
+      'https://res.cloudinary.com/doirxg4kz/image/upload/v1768731684/qdg5ssfl7su2zyu2w2fs.webp',
+      'https://res.cloudinary.com/doirxg4kz/image/upload/v1768731683/yvgjwdy0vvnzdl0cw05q.webp',
+      'https://res.cloudinary.com/doirxg4kz/image/upload/v1768731684/v0nfvuqv1kblpygvnur8.webp'
     ],
     6: [
-      'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944107/pn03fzqv6xjwxvkcelzv.webp',
-      'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944107/puy9jr04gmdjpgfowryh.webp',
-      'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944107/alu6efo56xgruyosd5q4.webp',
-      'https://res.cloudinary.com/doirxg4kz/image/upload/v1768570494/vhqu9gooderz32n8z9tj.webp'
+      'https://res.cloudinary.com/doirxg4kz/image/upload/v1768733431/terxy77y75loo55odn4y.webp',
+      'https://res.cloudinary.com/doirxg4kz/image/upload/v1768733503/gs8bcozqmrpwl2mlhnbt.webp',
+      'https://res.cloudinary.com/doirxg4kz/image/upload/v1768733442/rduafb4qwa1w6msek35q.webp',
+      'https://res.cloudinary.com/doirxg4kz/image/upload/v1768733505/nsrqi4tbptf0axonxerz.webp'
     ]
   },
 
@@ -358,6 +358,7 @@ export const portfolioImages = {
 export const videoFiles = [
   { name: 'HSS - Stopmotion Hand', path: 'https://res.cloudinary.com/doirxg4kz/video/upload/v1768054955/qrqhwz6c50e76hgqdldp.mp4' },
   { name: 'MC - Tetap Paling Korea', path: 'https://res.cloudinary.com/doirxg4kz/video/upload/v1768054958/idpxf7qxgj4q5a1gbkdo.mp4' },
+  { name: 'WTF - Instastory Bean Bag', path: 'https://res.cloudinary.com/dg8mikfls/video/upload/v1768731162/WTF_-_Instastory_Bean_Bag_tmsne3.mp4' },
   { name: 'WTF - Human Element Stopmo', path: 'https://res.cloudinary.com/doirxg4kz/video/upload/v1768054962/s0bf10jaddmoy7ftxlob.mp4' },
   { name: 'WTF - Thai Bestorant', path: 'https://res.cloudinary.com/doirxg4kz/video/upload/v1768054966/ke59lykwasidchhrbf4m.mp4' },
   { name: 'MC - Momoen Akhir Tahun Banyak Rasa', path: 'https://res.cloudinary.com/doirxg4kz/video/upload/v1768054974/jplrojjcaqyx6wy3zscf.mp4' },
@@ -369,7 +370,8 @@ export const videoFiles = [
   { name: 'GMF - HUT RI 79', path: 'https://res.cloudinary.com/doirxg4kz/video/upload/v1768054994/dyoykrrbpp05qvmmhc6u.mp4' },
   { name: 'ADIML KEENAN FINAL', path: 'https://res.cloudinary.com/doirxg4kz/video/upload/v1768055080/dtiqvgvbm0h516bpas5j.mp4' },
   { name: 'Korea Style', path: 'https://res.cloudinary.com/doirxg4kz/video/upload/v1768055052/aj7eoecvfd0dxovrb61o.mp4' },
-  { name: 'Tes', path: '/videos/video.mp4' },
+  { name: 'TikTokNative1STBSardines', path: 'https://res.cloudinary.com/dg8mikfls/video/upload/v1768731228/TikTokNative1STBSardines_f13fvo.mp4' },
+  { name: 'TikTokNative2STBSardines', path: 'https://res.cloudinary.com/dg8mikfls/video/upload/v1768731171/TikTokNative2STBSardines_rzunyr.mp4' },
 ];
 
 // Gambar placeholder untuk sementara (bisa dihapus setelah ada foto asli)
