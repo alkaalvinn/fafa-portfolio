@@ -11,6 +11,7 @@ import Skills from './components/sections/Skills';
 import Contact from './components/sections/Contact';
 import Footer from './components/common/Footer';
 import LoadingScreen from './components/common/LoadingScreen';
+import NotFoundPage from './pages/NotFoundPage';
 import './App.css';
 
 // Code splitting untuk ProjectPage - mengurangi initial bundle size
@@ -75,6 +76,7 @@ function App() {
                 </Suspense>
               }
             />
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </BrowserRouter>
       )}
