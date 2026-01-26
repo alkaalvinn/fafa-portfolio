@@ -1,7 +1,7 @@
 import { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Footer from '../components/common/Footer';
-import { portfolioImages, experiences } from '../data/portfolioData';
+import { portfolioImages } from '../data/portfolioData';
 
 interface ImageData {
   id: string | number;
@@ -11,59 +11,21 @@ interface ImageData {
   company?: string;
 }
 
-// Shuffle array helper untuk random urutan
-const shuffleArray = <T,>(array: T[]): T[] => {
-  const shuffled = [...array];
-  for (let i = shuffled.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-  }
-  return shuffled;
-};
-
 const PhotographyDetailPage = () => {
   const navigate = useNavigate();
   const [selectedImage, setSelectedImage] = useState<ImageData | null>(null);
 
-  // Get images from portfolioData.ts - GMF, Hangry, dan visualWorld (random order)
+  // Get images dari portfolioData.ts - urutan MANUAL sesuai setting di data file
   const images = useMemo(() => {
-    const gmfImages = portfolioImages.experience[4] || [];
-    const hangryImages = portfolioImages.experience[5] || [];
-    const visualWorldImages = portfolioImages.visualWorld || [];
+    const photographyData = portfolioImages.photography || [];
 
-    const gmfCompany = experiences.find(e => e.id === 4)?.company || 'GMF AeroAsia';
-    const hangryCompany = experiences.find(e => e.id === 5)?.company || 'Hangry';
-
-    // Combine all images with their metadata
-    const combined = [
-      // GMF images
-      ...gmfImages.map((src, index) => ({
-        id: `gmf-${index}`,
-        src,
-        alt: `${gmfCompany} Photography ${index + 1}`,
-        orientation: index % 2 === 0 ? 'landscape' : 'portrait',
-        company: gmfCompany
-      })),
-      // Hangry images
-      ...hangryImages.map((src, index) => ({
-        id: `hangry-${index}`,
-        src,
-        alt: `${hangryCompany} Photography ${index + 1}`,
-        orientation: index % 2 === 0 ? 'landscape' : 'portrait',
-        company: hangryCompany
-      })),
-      // Visual World images
-      ...visualWorldImages.map((src, index) => ({
-        id: `visual-${index}`,
-        src,
-        alt: `Visual World ${index + 1}`,
-        orientation: index % 3 === 0 ? 'portrait' : 'landscape',
-        company: 'Visual World'
-      }))
-    ];
-
-    // Shuffle array untuk random urutan
-    return shuffleArray(combined);
+    return photographyData.map((item, index) => ({
+      id: item.id,
+      src: item.src,
+      alt: `${item.company} Photography ${index + 1}`,
+      orientation: item.orientation || 'landscape',
+      company: item.company || 'Unknown'
+    }));
   }, []);
 
   const handleBackToProjects = () => {

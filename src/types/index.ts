@@ -26,3 +26,10 @@ export interface ContactForm {
   email: string;
   message: string;
 }
+
+export interface PhotographyImage {
+  id: string;
+  src: string;
+  company: string;
+  orientation: 'landscape' | 'portrait';
+}

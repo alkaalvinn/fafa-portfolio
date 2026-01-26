@@ -1,4 +1,4 @@
-import type { Experience, Project, Skill } from '../types';
+import type { Experience, Project, Skill, PhotographyImage } from '../types';
 
 export const experiences: Experience[] = [
   {
@@ -248,6 +248,31 @@ export const portfolioImages = {
     portrait1: 'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944105/vacgqbas5qhcbzkruuvn.webp',
     portrait2: 'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944120/sjyqod0avxciykxtax4r.webp'
   },
+
+  // Photography Detail Page - Manual Order
+  // ============================================
+  // INPUT FOTO PHOTOGRAPHY DI SINI
+  // Urutan sesuai yang kamu mau, tidak di-acak
+  // ============================================
+  photography: [
+    // GMF AeroAsia Photos (4 gambar)
+    { id: 'gmf-1', src: 'https://res.cloudinary.com/doirxg4kz/image/upload/v1768572864/eznoe19cofpouy7gxxdy.webp', company: 'GMF AeroAsia', orientation: 'landscape' as const },
+    { id: 'gmf-2', src: 'https://res.cloudinary.com/doirxg4kz/image/upload/v1768572868/fb3mkzkuzazbcoiwhpmx.webp', company: 'GMF AeroAsia', orientation: 'portrait' as const },
+    { id: 'gmf-3', src: 'https://res.cloudinary.com/doirxg4kz/image/upload/v1768572870/blh4pldaljgmx67vve8n.webp', company: 'GMF AeroAsia', orientation: 'landscape' as const },
+    { id: 'gmf-4', src: 'https://res.cloudinary.com/doirxg4kz/image/upload/v1768572873/do5xfn1ck7xp4u9sozrn.webp', company: 'GMF AeroAsia', orientation: 'portrait' as const },
+    // Hangry Photos (4 gambar)
+    { id: 'hangry-1', src: 'https://res.cloudinary.com/doirxg4kz/image/upload/v1768731685/rw6knbxeyvx5dvkv4pll.webp', company: 'Hangry', orientation: 'landscape' as const },
+    { id: 'hangry-2', src: 'https://res.cloudinary.com/doirxg4kz/image/upload/v1768731684/qdg5ssfl7su2zyu2w2fs.webp', company: 'Hangry', orientation: 'portrait' as const },
+    { id: 'hangry-3', src: 'https://res.cloudinary.com/doirxg4kz/image/upload/v1768731683/yvgjwdy0vvnzdl0cw05q.webp', company: 'Hangry', orientation: 'landscape' as const },
+    { id: 'hangry-4', src: 'https://res.cloudinary.com/doirxg4kz/image/upload/v1768731684/v0nfvuqv1kblpygvnur8.webp', company: 'Hangry', orientation: 'portrait' as const },
+    // Visual World Photos (pilih dari array visualWorld di atas)
+    { id: 'visual-1', src: 'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944108/xip7wgbrk2vjl1s7a7k7.webp', company: 'Visual World', orientation: 'portrait' as const },
+    { id: 'visual-2', src: 'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944110/rfwx33yu6mrapzk8upog.webp', company: 'Visual World', orientation: 'landscape' as const },
+    { id: 'visual-3', src: 'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944112/t271dodbhsgjbpvqdggg.webp', company: 'Visual World', orientation: 'landscape' as const },
+    { id: 'visual-4', src: 'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944112/dptbnecqabrfujooyvhf.webp', company: 'Visual World', orientation: 'portrait' as const },
+    // Tambah atau kurangi gambar di sini sesuai kebutuhan
+    // Kamu bisa copy-paste dari visualWorld array di atas
+  ] as PhotographyImage[],
 
   // Design Detail Page - Design Projects
   // ============================================
