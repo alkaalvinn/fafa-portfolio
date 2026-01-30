@@ -249,35 +249,52 @@ export const portfolioImages = {
     portrait2: 'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944120/sjyqod0avxciykxtax4r.webp'
   },
 
-  // Photography Detail Page - Manual Order
-  // ============================================
-  // INPUT FOTO PHOTOGRAPHY DI SINI
-  // Urutan sesuai yang kamu mau, tidak di-acak
-  // ============================================
   photography: [
-    // GMF AeroAsia Photos (4 gambar)
+
     { id: 'gmf-1', src: 'https://res.cloudinary.com/doirxg4kz/image/upload/v1768572864/eznoe19cofpouy7gxxdy.webp', company: 'GMF AeroAsia', orientation: 'landscape' as const },
     { id: 'gmf-2', src: 'https://res.cloudinary.com/doirxg4kz/image/upload/v1768572868/fb3mkzkuzazbcoiwhpmx.webp', company: 'GMF AeroAsia', orientation: 'portrait' as const },
     { id: 'gmf-3', src: 'https://res.cloudinary.com/doirxg4kz/image/upload/v1768572870/blh4pldaljgmx67vve8n.webp', company: 'GMF AeroAsia', orientation: 'landscape' as const },
     { id: 'gmf-4', src: 'https://res.cloudinary.com/doirxg4kz/image/upload/v1768572873/do5xfn1ck7xp4u9sozrn.webp', company: 'GMF AeroAsia', orientation: 'portrait' as const },
-    // Hangry Photos (4 gambar)
-    { id: 'hangry-1', src: 'https://res.cloudinary.com/doirxg4kz/image/upload/v1768731685/rw6knbxeyvx5dvkv4pll.webp', company: 'Hangry', orientation: 'landscape' as const },
-    { id: 'hangry-2', src: 'https://res.cloudinary.com/doirxg4kz/image/upload/v1768731684/qdg5ssfl7su2zyu2w2fs.webp', company: 'Hangry', orientation: 'portrait' as const },
-    { id: 'hangry-3', src: 'https://res.cloudinary.com/doirxg4kz/image/upload/v1768731683/yvgjwdy0vvnzdl0cw05q.webp', company: 'Hangry', orientation: 'landscape' as const },
-    { id: 'hangry-4', src: 'https://res.cloudinary.com/doirxg4kz/image/upload/v1768731684/v0nfvuqv1kblpygvnur8.webp', company: 'Hangry', orientation: 'portrait' as const },
-    // Visual World Photos (pilih dari array visualWorld di atas)
+
+    { id: 'hangry-1', src: 'https://res.cloudinary.com/dg8mikfls/image/upload/v1769773855/Mother_s_Day_btthi2.webp', company: 'Hangry', orientation: 'potrait' as const },
+    { id: 'hangry-2', src: 'https://res.cloudinary.com/dg8mikfls/image/upload/v1769773853/DSC01846_ppk25r.webp', company: 'Hangry', orientation: 'portrait' as const },
+    { id: 'hangry-3', src: 'https://res.cloudinary.com/dg8mikfls/image/upload/v1769773852/DSC01794_pe6j4e.webp', company: 'Hangry', orientation: 'potrait' as const },
+    { id: 'hangry-4', src: 'https://res.cloudinary.com/dg8mikfls/image/upload/v1769773849/DSC01781_ock2h8.webp', company: 'Hangry', orientation: 'portrait' as const },
+    { id: 'hangry-5', src: 'https://res.cloudinary.com/dg8mikfls/image/upload/v1769773849/DSC01763_tu9ybn.webp', company: 'Hangry', orientation: 'potrait' as const },
+    { id: 'hangry-6', src: 'https://res.cloudinary.com/dg8mikfls/image/upload/v1769773847/DSC01741_f1zg92.webp', company: 'Hangry', orientation: 'portrait' as const },
+    { id: 'hangry-7', src: 'https://res.cloudinary.com/dg8mikfls/image/upload/v1769773846/DSC01517_g3riji.webp', company: 'Hangry', orientation: 'potrait' as const },
+    { id: 'hangry-8', src: 'https://res.cloudinary.com/dg8mikfls/image/upload/v1769773846/DSC01695_ms3iau.webp', company: 'Hangry', orientation: 'portrait' as const },
+    { id: 'hangry-9', src: 'https://res.cloudinary.com/dg8mikfls/image/upload/v1769773842/DSC01503_uv38uh.webp', company: 'Hangry', orientation: 'potrait' as const },
+    { id: 'hangry-10', src: 'https://res.cloudinary.com/dg8mikfls/image/upload/v1769773840/DSC01431_buvove.webp', company: 'Hangry', orientation: 'portrait' as const },
+    { id: 'hangry-11', src: 'https://res.cloudinary.com/dg8mikfls/image/upload/v1769773841/DSC01479.2_xpjaun.webp', company: 'Hangry', orientation: 'potrait' as const },
+    { id: 'hangry-12', src: 'https://res.cloudinary.com/dg8mikfls/image/upload/v1769773840/DSC01401_q8p8ec.webp', company: 'Hangry', orientation: 'portrait' as const },
+    { id: 'hangry-13', src: 'https://res.cloudinary.com/dg8mikfls/image/upload/v1769773840/DSC01396_ndae9s.webp', company: 'Hangry', orientation: 'potrait' as const },
+    { id: 'hangry-14', src: 'https://res.cloudinary.com/dg8mikfls/image/upload/v1769773838/DSC01311.5_hfjxgx.webp', company: 'Hangry', orientation: 'landscape' as const },
+    { id: 'hangry-15', src: 'https://res.cloudinary.com/dg8mikfls/image/upload/v1769773835/DSC01268-2_kllwwn.webp', company: 'Hangry', orientation: 'potrait' as const },
+    { id: 'hangry-16', src: 'https://res.cloudinary.com/dg8mikfls/image/upload/v1769773832/DSC00500_ndsk5i.webp', company: 'Hangry', orientation: 'portrait' as const },
+    { id: 'hangry-17', src: 'https://res.cloudinary.com/dg8mikfls/image/upload/v1769773833/DSC01242_jmhvjm.webp', company: 'Hangry', orientation: 'portrait' as const },
+    { id: 'hangry-18', src: 'https://res.cloudinary.com/dg8mikfls/image/upload/v1769773832/DSC00576_tlkgyv.webp', company: 'Hangry', orientation: 'potrait' as const },
+    { id: 'hangry-19', src: 'https://res.cloudinary.com/dg8mikfls/image/upload/v1769773832/DSC01215_nkfphg.webp', company: 'Hangry', orientation: 'portrait' as const },
+    { id: 'hangry-20', src: 'https://res.cloudinary.com/dg8mikfls/image/upload/v1769773830/DSC00454_riyw0i.webp', company: 'Hangry', orientation: 'potrait' as const },
+    { id: 'hangry-21', src: 'https://res.cloudinary.com/dg8mikfls/image/upload/v1769773830/DSC00166_aeoozt.webp', company: 'Hangry', orientation: 'portrait' as const },
+    { id: 'hangry-22', src: 'https://res.cloudinary.com/dg8mikfls/image/upload/v1769773830/DSC00419_ie5gno.webp', company: 'Hangry', orientation: 'potrait' as const },
+    { id: 'hangry-23', src: 'https://res.cloudinary.com/dg8mikfls/image/upload/v1769773830/Product_Foc_tom_yum_gai_grob_gigi_x_fafa_-_edited_2_qpqn7t.webp', company: 'Hangry', orientation: 'portrait' as const },
+    { id: 'hangry-24', src: 'https://res.cloudinary.com/dg8mikfls/image/upload/v1769773829/Family_photo_fjfkg6.webp', company: 'Hangry', orientation: 'potrait' as const },
+    { id: 'hangry-25', src: 'https://res.cloudinary.com/dg8mikfls/image/upload/v1769773830/MFC_Card_lx6wa1.webp', company: 'Hangry', orientation: 'portrait' as const },
+    { id: 'hangry-26', src: 'https://res.cloudinary.com/dg8mikfls/image/upload/v1769773828/DSC03054-Edit_ru6ikq.webp', company: 'Hangry', orientation: 'portrait' as const },
+    { id: 'hangry-27', src: 'https://res.cloudinary.com/dg8mikfls/image/upload/v1769773828/INI_OKE_copy_edited_dhaiv3.webp', company: 'Hangry', orientation: 'potrait' as const },
+    { id: 'hangry-28', src: 'https://res.cloudinary.com/dg8mikfls/image/upload/v1769773828/DSC02902-Edit_xeaf2a.webp', company: 'Hangry', orientation: 'portrait' as const },
+    { id: 'hangry-29', src: 'https://res.cloudinary.com/dg8mikfls/image/upload/v1769773828/DSC03001-Edit_1_qkf7ki.webp', company: 'Hangry', orientation: 'potrait' as const },
+    { id: 'hangry-30', src: 'https://res.cloudinary.com/dg8mikfls/image/upload/v1769773828/DSC02926-Edit_hwzjw0.webp', company: 'Hangry', orientation: 'portrait' as const },
+    { id: 'hangry-31', src: 'https://res.cloudinary.com/dg8mikfls/image/upload/v1769773827/DSC01950_ct8msy.webp', company: 'Hangry', orientation: 'landscape' as const },
+
     { id: 'visual-1', src: 'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944108/xip7wgbrk2vjl1s7a7k7.webp', company: 'Visual World', orientation: 'portrait' as const },
     { id: 'visual-2', src: 'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944110/rfwx33yu6mrapzk8upog.webp', company: 'Visual World', orientation: 'landscape' as const },
     { id: 'visual-3', src: 'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944112/t271dodbhsgjbpvqdggg.webp', company: 'Visual World', orientation: 'landscape' as const },
     { id: 'visual-4', src: 'https://res.cloudinary.com/doirxg4kz/image/upload/v1767944112/dptbnecqabrfujooyvhf.webp', company: 'Visual World', orientation: 'portrait' as const },
-    // Tambah atau kurangi gambar di sini sesuai kebutuhan
-    // Kamu bisa copy-paste dari visualWorld array di atas
+
   ] as PhotographyImage[],
 
-  // Design Detail Page - Design Projects
-  // ============================================
-  // INPUT FOTO DESIGN DI SINI
-  // ============================================
   design: [
     {
       id: 1,
