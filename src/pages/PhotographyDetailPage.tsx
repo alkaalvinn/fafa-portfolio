@@ -1,7 +1,9 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Footer from '../components/common/Footer';
+import { OptimizedImage } from '../components/common/OptimizedImage';
 import { portfolioImages } from '../data/portfolioData';
+import { preloadImages, getVisibleImageCount, getGridImageUrl } from '../utils/imageOptimizer';
 
 interface ImageData {
   id: string | number;
@@ -27,6 +29,13 @@ const PhotographyDetailPage = () => {
       company: item.company || 'Unknown'
     }));
   }, []);
+
+  // Preload gambar-gambar yang terlihat pertama (above-the-fold)
+  useEffect(() => {
+    const visibleCount = getVisibleImageCount(images.length, 6);
+    const imagesToPreload = images.slice(0, visibleCount).map(img => getGridImageUrl(img.src));
+    preloadImages(imagesToPreload, 'high');
+  }, [images]);
 
   const handleBackToProjects = () => {
     navigate('/#projects');
@@ -70,11 +79,11 @@ const PhotographyDetailPage = () => {
                 `}
                 onClick={() => setSelectedImage(image)}
               >
-                <img
+                <OptimizedImage
                   src={image.src}
                   alt={image.alt}
                   className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                  loading="lazy"
+                  priority={index < 12} // Preload 12 gambar pertama (above the fold)
                 />
                 {/* Dark overlay on hover */}
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300 pointer-events-none" />
@@ -94,10 +103,12 @@ const PhotographyDetailPage = () => {
           <div className="relative max-w-4xl w-full">
             <div className="flex items-center justify-center">
               <div className="relative">
-                <img
+                <OptimizedImage
                   src={selectedImage.src}
                   alt={selectedImage.alt}
                   className="max-w-full max-h-[80vh] object-contain rounded-lg"
+                  useFullQuality={true}
+                  priority={true}
                 />
                 {/* Button close di dalam area gambar - kanan atas */}
                 <button
