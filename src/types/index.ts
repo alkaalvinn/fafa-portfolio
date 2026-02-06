@@ -31,5 +31,13 @@ export interface PhotographyImage {
   id: string;
   src: string;
   company: string;
-  orientation: 'landscape' | 'portrait' | 'square';
+  orientation: 'landscape' | 'square';
+}
+
+export interface DesignImage {
+  id: number;
+  src: string;
+  alt: string;
+  title: string;
+  orientation: 'landscape' | 'square';
 }

@@ -1,22 +1,35 @@
-import { useState } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { Calendar, User, Tag } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import Footer from '../components/common/Footer';
+import { OptimizedImage } from '../components/common/OptimizedImage';
 import { portfolioImages } from '../data/portfolioData';
+import { preloadImages, getVisibleImageCount, getGridImageUrl } from '../utils/imageOptimizer';
 
 interface ImageData {
   id: number;
   src: string;
   alt: string;
-  title?: string;
+  title: string;
+  orientation: 'landscape' | 'square';
 }
-
-// Ambil data design dari portfolioData.ts
-const designImages: ImageData[] = portfolioImages.design || [];
 
 const DesignDetailPage = () => {
   const navigate = useNavigate();
   const [selectedImage, setSelectedImage] = useState<ImageData | null>(null);
+
+  // Get images dari portfolioData.ts
+  const images = useMemo(() => {
+    const designData = portfolioImages.design || [];
+    return designData;
+  }, []);
+
+  // Preload gambar-gambar yang terlihat pertama (above-the-fold)
+  useEffect(() => {
+    const visibleCount = getVisibleImageCount(images.length, 4);
+    const imagesToPreload = images.slice(0, visibleCount).map(img => getGridImageUrl(img.src));
+    preloadImages(imagesToPreload, 'high');
+  }, [images]);
 
   const handleBackToProjects = () => {
     navigate('/#projects');
@@ -39,20 +52,36 @@ const DesignDetailPage = () => {
 
       {/* Gallery Grid */}
       <div className="px-6 sm:px-8 md:px-20 pb-12">
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 sm:gap-4 md:gap-5">
-          {designImages.map((image) => (
-            <div
-              key={image.id}
-              className="relative overflow-hidden rounded-lg cursor-pointer group aspect-square"
-              onClick={() => setSelectedImage(image)}
-            >
-              <img
-                src={image.src}
-                alt={image.alt}
-                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-              />
-            </div>
-          ))}
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 sm:gap-3 md:gap-4 auto-rows-[200px] sm:auto-rows-[220px] md:auto-rows-[240px]">
+          {images.map((image, index) => {
+            // Gunakan orientasi asli dari data untuk menentukan ukuran grid
+            // landscape = wide (col-span-2), square = kotak (1x1)
+            const isLandscape = image.orientation === 'landscape';
+
+            const cols = isLandscape ? 2 : 1;
+            const rows = 1;
+
+            return (
+              <div
+                key={image.id}
+                className={`
+                  relative overflow-hidden rounded-lg cursor-pointer group
+                  ${cols === 2 ? 'col-span-2' : 'col-span-1'}
+                  ${rows === 2 ? 'row-span-2' : 'row-span-1'}
+                `}
+                onClick={() => setSelectedImage(image)}
+              >
+                <OptimizedImage
+                  src={image.src}
+                  alt={image.alt}
+                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  priority={index < 8} // Preload 8 gambar pertama (above the fold)
+                />
+                {/* Dark overlay on hover */}
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300 pointer-events-none" />
+              </div>
+            );
+          })}
         </div>
       </div>
 
@@ -66,10 +95,12 @@ const DesignDetailPage = () => {
           <div className="relative max-w-4xl w-full">
             <div className="flex items-center justify-center">
               <div className="relative">
-                <img
+                <OptimizedImage
                   src={selectedImage.src}
                   alt={selectedImage.alt}
                   className="max-w-full max-h-[80vh] object-contain rounded-lg"
+                  useFullQuality={true}
+                  priority={true}
                 />
                 {/* Button close di dalam area gambar - kanan atas */}
                 <button

@@ -9,7 +9,7 @@ interface ImageData {
   id: string | number;
   src: string;
   alt: string;
-  orientation: string;
+  orientation: 'landscape' | 'square';
   company?: string;
 }
 
@@ -58,22 +58,14 @@ const PhotographyDetailPage = () => {
 
       {/* Gallery Grid */}
       <div className="px-6 sm:px-8 md:px-20 pb-20">
-        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-2 sm:gap-3 md:gap-4 auto-rows-[140px] sm:auto-rows-[160px] md:auto-rows-[180px]">
+        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-2 sm:gap-3 md:gap-4 auto-rows-[180px] sm:auto-rows-[200px] md:auto-rows-[220px]">
           {images.map((image, index) => {
             // Gunakan orientasi asli dari data untuk menentukan ukuran grid
-            // portrait = tall (row-span-2), landscape = wide (col-span-2), square = kotak (1x1)
-            const isPortrait = image.orientation === 'portrait';
+            // landscape = wide (col-span-2), square = kotak (1x1)
             const isLandscape = image.orientation === 'landscape';
-            const isSquare = image.orientation === 'square';
 
-            let cols = 1, rows = 1;
-
-            if (isLandscape) {
-              cols = 2; rows = 1; // Wide photos
-            } else if (isPortrait) {
-              cols = 1; rows = 2; // Tall photos
-            }
-            // Square dan default tetap 1x1
+            const cols = isLandscape ? 2 : 1;
+            const rows = 1;
 
             return (
               <div
