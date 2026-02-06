@@ -60,14 +60,20 @@ const PhotographyDetailPage = () => {
       <div className="px-6 sm:px-8 md:px-20 pb-20">
         <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-2 sm:gap-3 md:gap-4 auto-rows-[140px] sm:auto-rows-[160px] md:auto-rows-[180px]">
           {images.map((image, index) => {
-            // Pattern dinamis untuk 32 gambar dengan variasi ukuran
-            const pos = index % 12; // Pattern repeats every 12 items
+            // Gunakan orientasi asli dari data untuk menentukan ukuran grid
+            // portrait = tall (row-span-2), landscape = wide (col-span-2), square = kotak (1x1)
+            const isPortrait = image.orientation === 'portrait';
+            const isLandscape = image.orientation === 'landscape';
+            const isSquare = image.orientation === 'square';
+
             let cols = 1, rows = 1;
 
-            // Grid pattern untuk variasi visual yang menarik
-            if (pos === 0 || pos === 6) { cols = 2; rows = 1; } // Wide photos
-            else if (pos === 2 || pos === 4 || pos === 8 || pos === 10) { cols = 1; rows = 2; } // Tall photos
-            // pos 1, 3, 5, 7, 9, 11 remain as single squares
+            if (isLandscape) {
+              cols = 2; rows = 1; // Wide photos
+            } else if (isPortrait) {
+              cols = 1; rows = 2; // Tall photos
+            }
+            // Square dan default tetap 1x1
 
             return (
               <div
