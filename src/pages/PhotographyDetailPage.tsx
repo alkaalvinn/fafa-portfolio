@@ -64,8 +64,8 @@ const PhotographyDetailPage = () => {
             // landscape = wide (col-span-2), square = kotak (1x1)
             const isLandscape = image.orientation === 'landscape';
 
-            const cols = isLandscape ? 2 : 1;
-            const rows = 1;
+            const cols: number = isLandscape ? 2 : 1;
+            const rows: number = 1;
 
             return (
               <div
